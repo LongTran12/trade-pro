@@ -23,18 +23,19 @@ import CounterWidget from '../Counter/CounterWidget';
 import CounterTrading from '../Counter/CounterTrading';
 import { AppContext } from '../../../provider/appContext';
 import { CHANGE_LOCALE } from '../../containers/LanguageProvider/actions';
-import messages from '../../../messages';
 import SelectLanguage from '../../containers/LanguageProvider/languageSelect';
 import { selectLanguage } from '../../containers/LanguageProvider/selectors';
+import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
+import i18n from 'i18next'
+import '../../i18n'
 
-const CounterCryptoWidgetContainer = ({ classes, width }) => {
+const CounterCryptoWidgetContainer = ({ classes, width, intl }) => {
     const { oteSeller, oteStacking, otePrice, totalMemberStacking } = useContext(
         AppContext
     );
-    // const [lang,setLang]= useState('en')
+    let txt = i18n.exists('seller') ? i18n.t("seller") : "text"
     return (
         <div className={classes.rootCounter}>
-            <SelectLanguage />
             <Grid container spacing={2}>
                 <Grid item sm={3} xs={6}>
                     <CounterWidget
@@ -43,7 +44,7 @@ const CounterCryptoWidgetContainer = ({ classes, width }) => {
                         start={0}
                         end={oteSeller ? oteSeller : 0}
                         duration={3}
-                        title="Seller Order"
+                        title={txt}
                     >
                         <AccountBalanceWallet className={classes.counterIcon} />
                     </CounterWidget>

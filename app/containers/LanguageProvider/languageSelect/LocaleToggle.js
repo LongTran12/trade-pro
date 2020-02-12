@@ -4,59 +4,36 @@
  *
  */
 /* eslint-disable */
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
-// import { changeDirectionAction } from 'enl-redux/actions/uiActions';
-
-
 import Toggle from './Toggle';
-import messages from './messages';
-import { appLocales } from '../../../i18n';
-// import changeLocale from '../LanguageProvider/actions';
-import { changeLocale } from '../actions';
-import { makeSelectLocale } from '../selectors';
+import { LanguageContext } from '../../../contexts/LanguageContext';
+import i18n from '../../../i18n'
 
-export class LocaleToggle extends React.PureComponent {
-    handleLocalToggle(event) {
-        const { onLocaleToggle,
-        } = this.props;
-        onLocaleToggle(event);
-    }
+const apps = [
+    'en',
+    'vi',
+];
+const LocaleToggle = () => {
+    const { changeLang } = useContext(LanguageContext)
+    const [locale, setLocale] = useState('en')
 
-    render() {
-        const { locale } = this.props;
-        return (
-            <Toggle
-                value={locale}
-                values={appLocales}
-                messages={messages}
-                onToggle={(e) => this.handleLocalToggle(e)}
-            />
-        );
+    const handleLocalToggle = (event) => {
+        changeLang(event)
     }
+    // const locale = "en"
+    let initLang = i18n.languages
+    console.log('lang', initLang)
+    return (
+        <Toggle
+        />
+    );
 }
 
 LocaleToggle.propTypes = {
     onLocaleToggle: PropTypes.func.isRequired,
-    // changeDirection: PropTypes.func.isRequired,
+    changeDirection: PropTypes.func.isRequired,
     locale: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = createSelector(makeSelectLocale(), locale => ({
-    locale,
-}));
-
-export function mapDispatchToProps(dispatch) {
-    return {
-        onLocaleToggle: evt => dispatch(changeLocale(evt.target.value)),
-        // changeDirection: dir => dispatch(changeDirectionAction(dir)),
-        dispatch,
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(LocaleToggle);
+export default LocaleToggle;

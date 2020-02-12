@@ -23,167 +23,168 @@ import dummy from 'dan-api/dummy/dummyContents';
 import messageStyles from 'dan-styles/Messages.scss';
 import avatarApi from 'dan-api/images/avatars';
 import link from 'dan-api/ui/link';
-import styles from './header-jss';
 import { FormControl, Select } from '@material-ui/core';
+import styles from './header-jss';
 import DropDownLanguage from './DropDownLanguage';
 
 class UserMenu extends React.Component {
-  state = {
-    anchorEl: null,
-    openMenu: null
-  };
+    state = {
+        anchorEl: null,
+        openMenu: null
+    };
 
-  handleMenu = menu => (event) => {
-    const { openMenu } = this.state;
-    this.setState({
-      openMenu: openMenu === menu ? null : menu,
-      anchorEl: event.currentTarget
-    });
-  };
+    handleMenu = menu => (event) => {
+        const { openMenu } = this.state;
+        this.setState({
+            openMenu: openMenu === menu ? null : menu,
+            anchorEl: event.currentTarget
+        });
+    };
 
-  handleClose = () => {
-    this.setState({ anchorEl: null, openMenu: null });
-  };
+    handleClose = () => {
+        this.setState({ anchorEl: null, openMenu: null });
+    };
 
-  render() {
-    const { classes, dark } = this.props;
-    const { anchorEl, openMenu } = this.state;
-    return (
-      <div>
-        <IconButton
-          aria-haspopup="true"
-          onClick={this.handleMenu('notification')}
-          color="inherit"
-          className={classNames(classes.notifIcon, dark ? classes.dark : classes.light)}
-        >
-          <Badge className={classes.badge} badgeContent={4} color="secondary">
-            <Ionicon icon="ios-notifications-outline" />
-          </Badge>
-        </IconButton>
-        <Menu
-          id="menu-notification"
-          anchorEl={anchorEl}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          className={classes.notifMenu}
-          PaperProps={{
-            style: {
-              width: 350,
-            },
-          }}
-          open={openMenu === 'notification'}
-          onClose={this.handleClose}
-        >
-          <MenuItem onClick={this.handleClose}>
-            <div className={messageStyles.messageInfo}>
-              <ListItemAvatar>
-                <Avatar alt="User Name" src={avatarApi[0]} />
-              </ListItemAvatar>
-              <ListItemText primary={dummy.text.subtitle} secondary={dummy.text.date} />
-            </div>
-          </MenuItem>
-          <Divider variant="inset" />
-          <MenuItem onClick={this.handleClose}>
-            <div className={messageStyles.messageInfo}>
-              <ListItemAvatar>
-                <Avatar className={messageStyles.icon}>
-                  <Info />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={dummy.text.sentences} className={classes.textNotif} secondary={dummy.text.date} />
-            </div>
-          </MenuItem>
-          <Divider variant="inset" />
-          <MenuItem onClick={this.handleClose}>
-            <div className={messageStyles.messageSuccess}>
-              <ListItemAvatar>
-                <Avatar className={messageStyles.icon}>
-                  <Check />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={dummy.text.subtitle} className={classes.textNotif} secondary={dummy.text.date} />
-            </div>
-          </MenuItem>
-          <Divider variant="inset" />
-          <MenuItem onClick={this.handleClose}>
-            <div className={messageStyles.messageWarning}>
-              <ListItemAvatar>
-                <Avatar className={messageStyles.icon}>
-                  <Warning />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={dummy.text.subtitle} className={classes.textNotif} secondary={dummy.text.date} />
-            </div>
-          </MenuItem>
-          <Divider variant="inset" />
-          <MenuItem onClick={this.handleClose}>
-            <div className={messageStyles.messageError}>
-              <ListItemAvatar>
-                <Avatar className={messageStyles.icon}>
-                  <Error />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary="Suspendisse pharetra pulvinar sollicitudin. Aenean ut orci eu odio cursus lobortis eget tempus velit. " className={classes.textNotif} secondary="Jan 9, 2016" />
-            </div>
-          </MenuItem>
-        </Menu>
-        <Button onClick={this.handleMenu('user-setting')}>
-          <Avatar
-            alt={dummy.user.name}
-            src={dummy.user.avatar}
-          />
-        </Button>
-        <Menu
-          id="menu-appbar"
-          anchorEl={anchorEl}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          open={openMenu === 'user-setting'}
-          onClose={this.handleClose}
-        >
-          <MenuItem onClick={this.handleClose} component={Link} to={link.profile}>My Profile</MenuItem>
-          <MenuItem onClick={this.handleClose}>
+    render() {
+        const { classes, dark } = this.props;
+        const { anchorEl, openMenu } = this.state;
+        return (
+            <div>
+                <IconButton
+                    aria-haspopup="true"
+                    onClick={this.handleMenu('notification')}
+                    color="inherit"
+                    className={classNames(classes.notifIcon, dark ? classes.dark : classes.light)}
+                >
+                    <Badge className={classes.badge} badgeContent={4} color="secondary">
+                        <Ionicon icon="ios-notifications-outline" />
+                    </Badge>
+                </IconButton>
+                <Menu
+                    id="menu-notification"
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    className={classes.notifMenu}
+                    PaperProps={{
+                        style: {
+                            width: 350,
+                        },
+                    }}
+                    open={openMenu === 'notification'}
+                    onClose={this.handleClose}
+                >
+                    <MenuItem onClick={this.handleClose}>
+                        <div className={messageStyles.messageInfo}>
+                            <ListItemAvatar>
+                                <Avatar alt="User Name" src={avatarApi[0]} />
+                            </ListItemAvatar>
+                            <ListItemText primary={dummy.text.subtitle} secondary={dummy.text.date} />
+                        </div>
+                    </MenuItem>
+                    <Divider variant="inset" />
+                    <MenuItem onClick={this.handleClose}>
+                        <div className={messageStyles.messageInfo}>
+                            <ListItemAvatar>
+                                <Avatar className={messageStyles.icon}>
+                                    <Info />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText primary={dummy.text.sentences} className={classes.textNotif} secondary={dummy.text.date} />
+                        </div>
+                    </MenuItem>
+                    <Divider variant="inset" />
+                    <MenuItem onClick={this.handleClose}>
+                        <div className={messageStyles.messageSuccess}>
+                            <ListItemAvatar>
+                                <Avatar className={messageStyles.icon}>
+                                    <Check />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText primary={dummy.text.subtitle} className={classes.textNotif} secondary={dummy.text.date} />
+                        </div>
+                    </MenuItem>
+                    <Divider variant="inset" />
+                    <MenuItem onClick={this.handleClose}>
+                        <div className={messageStyles.messageWarning}>
+                            <ListItemAvatar>
+                                <Avatar className={messageStyles.icon}>
+                                    <Warning />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText primary={dummy.text.subtitle} className={classes.textNotif} secondary={dummy.text.date} />
+                        </div>
+                    </MenuItem>
+                    <Divider variant="inset" />
+                    <MenuItem onClick={this.handleClose}>
+                        <div className={messageStyles.messageError}>
+                            <ListItemAvatar>
+                                <Avatar className={messageStyles.icon}>
+                                    <Error />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText primary="Suspendisse pharetra pulvinar sollicitudin. Aenean ut orci eu odio cursus lobortis eget tempus velit. " className={classes.textNotif} secondary="Jan 9, 2016" />
+                        </div>
+                    </MenuItem>
+                </Menu>
+                <Button onClick={this.handleMenu('user-setting')}>
+                    <Avatar
+                        alt={dummy.user.name}
+                        src={dummy.user.avatar}
+                    />
+                </Button>
+                <Menu
+                    id="menu-appbar"
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    open={openMenu === 'user-setting'}
+                    onClose={this.handleClose}
+                >
+                    <MenuItem onClick={this.handleClose} component={Link} to={link.profile}>My Profile</MenuItem>
+
+                    {/* <MenuItem onClick={this.handleClose}>
             <DropDownLanguage />
-          </MenuItem>
-          <MenuItem onClick={this.handleClose} component={Link} to={link.calendar}>My Calendar</MenuItem>
-          <MenuItem onClick={this.handleClose} component={Link} to={link.email}>
-            My Inbox
-            <ListItemIcon>
-              <Badge className={classNames(classes.badge, classes.badgeMenu)} badgeContent={2} color="secondary" />
-            </ListItemIcon>
-          </MenuItem>
-          <Divider />
-          <MenuItem onClick={this.handleClose} component={Link} to="/">
-            <ListItemIcon>
-              <ExitToApp />
-            </ListItemIcon>
-            Log Out
-          </MenuItem>
-        </Menu>
-      </div>
-    );
-  }
+          </MenuItem> */}
+                    <MenuItem onClick={this.handleClose} component={Link} to={link.calendar}>My Calendar</MenuItem>
+                    <MenuItem onClick={this.handleClose} component={Link} to={link.email}>
+                        My Inbox
+              <ListItemIcon>
+                            <Badge className={classNames(classes.badge, classes.badgeMenu)} badgeContent={2} color="secondary" />
+                        </ListItemIcon>
+                    </MenuItem>
+                    <Divider />
+                    <MenuItem onClick={this.handleClose} component={Link} to="/">
+                        <ListItemIcon>
+                            <ExitToApp />
+                        </ListItemIcon>
+                        Log Out
+            </MenuItem>
+                </Menu>
+            </div>
+        );
+    }
 }
 
 UserMenu.propTypes = {
-  classes: PropTypes.object.isRequired,
-  dark: PropTypes.bool,
+    classes: PropTypes.object.isRequired,
+    dark: PropTypes.bool,
 };
 
 UserMenu.defaultProps = {
-  dark: false
+    dark: false
 };
 
 export default withStyles(styles)(UserMenu);

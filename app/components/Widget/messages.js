@@ -40,6 +40,10 @@ export default defineMessages({
     },
     trade: {
         id: `${scope}.trade`,
-        defaultMessage: 'Lich su trade',
+        defaultMessage: 'history',
+    },
+    guide: {
+        id: `${scope}.action.guide`,
+        defaultMessage: 'Show Guide',
     },
 });

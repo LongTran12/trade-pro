@@ -1,4 +1,4 @@
 
 export default {
-    'history': 'history'
-}
+    seller: 'seller order',
+};

@@ -136,12 +136,11 @@ const HistoryTableContainer = ({ classes, intl }) => {
                     numSelected={0}
                     filterText={filterText}
                     onUserInput={(event) => handleUserInput(event)}
-                    // title={'history'}
-                    title={intl.formatMessage(messages.trade)}
+                    title={'history'}
+
                     // title={i18n.exists('history') ? i18n.t('history') : 'history'}
                     placeholder="Search Coin"
                 />
-                {/* <div><FormattedMessage {...messages.trade} /></div> */}
                 {/* <TableContainer className={classes.container}> */}
                 <div className={classes.tableWrapper}>
                     <Table padding="default" className={classNames(classes.table, classes.stripped, classes.hover)}>
@@ -211,7 +210,5 @@ const HistoryTableContainer = ({ classes, intl }) => {
 HistoryTableContainer.propTypes = {
     classes: PropTypes.object.isRequired,
     filterText: PropTypes.string,
-    intl: intlShape.isRequired
-
 }
-export default withStyles(styles)(injectIntl(HistoryTableContainer));
+export default withStyles(styles)(HistoryTableContainer);
