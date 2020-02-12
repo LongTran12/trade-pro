@@ -24,6 +24,8 @@ import messageStyles from 'dan-styles/Messages.scss';
 import avatarApi from 'dan-api/images/avatars';
 import link from 'dan-api/ui/link';
 import styles from './header-jss';
+import { FormControl, Select } from '@material-ui/core';
+import DropDownLanguage from './DropDownLanguage';
 
 class UserMenu extends React.Component {
   state = {
@@ -152,6 +154,9 @@ class UserMenu extends React.Component {
           onClose={this.handleClose}
         >
           <MenuItem onClick={this.handleClose} component={Link} to={link.profile}>My Profile</MenuItem>
+          <MenuItem onClick={this.handleClose}>
+            <DropDownLanguage />
+          </MenuItem>
           <MenuItem onClick={this.handleClose} component={Link} to={link.calendar}>My Calendar</MenuItem>
           <MenuItem onClick={this.handleClose} component={Link} to={link.email}>
             My Inbox

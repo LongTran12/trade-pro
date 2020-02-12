@@ -139,7 +139,7 @@ class TradingTable extends React.Component {
       if (itemCell.id === 'change') {
         return (
           <TableCell padding="default" align={itemCell.numeric ? 'right' : 'left'} key={index.toString()}>
-            { getCondition(dataArray.position, dataArray[itemCell.id]) }
+            {getCondition(dataArray.position, dataArray[itemCell.id])}
           </TableCell>
         );
       }

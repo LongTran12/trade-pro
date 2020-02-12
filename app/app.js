@@ -33,6 +33,7 @@ import configureStore from './redux/configureStore';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
+import WrapLangContext from './contexts/LanguageContext';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
@@ -55,7 +56,9 @@ const render = messages => {
         <ConnectedRouter history={history}>
           <Web3Provider>
             <AppWrap>
-              <App />
+              <WrapLangContext>
+                <App />
+              </WrapLangContext>
             </AppWrap>
           </Web3Provider>
         </ConnectedRouter>
@@ -83,6 +86,8 @@ if (!window.Intl) {
     .then(() => Promise.all([
       import('intl/locale-data/jsonp/en.js'),
       import('intl/locale-data/jsonp/de.js'),
+      import('intl/locale-data/jsonp/fr.js'),
+      import('intl/locale-data/jsonp/vi.js'),
     ])) // eslint-disable-line prettier/prettier
     .then(() => render(translationMessages))
     .catch(err => {

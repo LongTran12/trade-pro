@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { PureComponent, useContext, Component } from 'react';
+import React, { PureComponent, useContext, Component, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -22,13 +22,19 @@ import styles from './widget-jss';
 import CounterWidget from '../Counter/CounterWidget';
 import CounterTrading from '../Counter/CounterTrading';
 import { AppContext } from '../../../provider/appContext';
+import { CHANGE_LOCALE } from '../../containers/LanguageProvider/actions';
+import messages from '../../../messages';
+import SelectLanguage from '../../containers/LanguageProvider/languageSelect';
+import { selectLanguage } from '../../containers/LanguageProvider/selectors';
 
 const CounterCryptoWidgetContainer = ({ classes, width }) => {
     const { oteSeller, oteStacking, otePrice, totalMemberStacking } = useContext(
         AppContext
     );
+    // const [lang,setLang]= useState('en')
     return (
         <div className={classes.rootCounter}>
+            <SelectLanguage />
             <Grid container spacing={2}>
                 <Grid item sm={3} xs={6}>
                     <CounterWidget
@@ -54,7 +60,7 @@ const CounterCryptoWidgetContainer = ({ classes, width }) => {
                         <CompareArrows className={classes.counterIcon} />
                     </CounterWidget>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item sm={3} xs={6}>
                     <CounterWidget
                         unitBefore="$ "
                         color={colorfull[0]}
@@ -68,7 +74,7 @@ const CounterCryptoWidgetContainer = ({ classes, width }) => {
                         </AreaChart>
                     </CounterWidget>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item sm={3} xs={6}>
                     <CounterWidget
                         color={colorfull[1]}
                         start={0}

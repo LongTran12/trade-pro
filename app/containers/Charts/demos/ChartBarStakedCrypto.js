@@ -26,58 +26,20 @@ const color = ({
 const ChartBarStakedCrypto = ({ classes }) => {
     const { chart } = useContext(AppContext);
     console.log('chart', chart)
-    // const schart = [...chart]
-    const value = [
-        {
-            line: "0.5$",
-        },
-        {
-            line: "0.75$",
-        },
-        {
-            line: "1$",
-        }
-    ]
-    const data1 = [
-        {
-            name: 'Page A',
-            uv: (chart &&
-                chart.company &&
-                chart.company.map((item) => item / 10 ** 18)) ||
-                [],
-            pv:
-                (chart &&
-                    chart.order &&
-                    chart.order.map(item => item / 10 ** 18)) ||
-                [],
-            amt: 2400
-        },
-    ]
-    const company = (chart &&
-        chart.company &&
-        chart.company.map((item) => item / 10 ** 18)) ||
-        []
-    const order = (chart &&
-        chart.company &&
-        chart.company.map((item) => item / 10 ** 18)) ||
-        []
-    console.log('data1', data1)
-    const datax = company.map((index, i) => {
-        let name = '0.5$'
-        let pv = order.map(index => index)
-        let datar = [name, ...pv, uv]
-        let uv = index[0]
-        console.log('datar', datar)
-        return datar
-    }
-    )
+    const name = [0.5, 0.75, 1]
+    let chartData = chart && chart.order ? chart.order.map((item, index) => ({
+        name: name[index],
+        order: item / 10 ** 18,
+        company: chart.company[index] / 10 ** 18
+    })) : []
+    console.log('chart data', chartData)
     return (
         <div className={classes.chartFluid}>
             <ResponsiveContainer>
                 <BarChart
                     width={800}
                     height={450}
-                    data={data1}
+                    data={chartData}
                     margin={{
                         top: 5,
                         right: 30,
@@ -91,8 +53,8 @@ const ChartBarStakedCrypto = ({ classes }) => {
                     <CartesianAxis vertical={false} />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="pv" stackId="a" fillOpacity="0.8" fill={color.secondary} />
-                    <Bar dataKey="uv" stackId="a" fillOpacity="0.8" fill={color.primary} />
+                    <Bar dataKey="company" stackId="a" fillOpacity="0.8" fill={color.secondary} />
+                    <Bar dataKey="order" stackId="a" fillOpacity="0.8" fill={color.primary} />
                 </BarChart>
             </ResponsiveContainer>
         </div>
@@ -101,6 +63,7 @@ const ChartBarStakedCrypto = ({ classes }) => {
 
 ChartBarStakedCrypto.propTypes = {
     classes: PropTypes.object.isRequired,
+
 };
 
 export default withStyles(styles)(ChartBarStakedCrypto);
