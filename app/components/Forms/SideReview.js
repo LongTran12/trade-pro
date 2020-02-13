@@ -11,6 +11,7 @@ import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import imgApi from 'dan-api/images/photos';
+import { useTranslation } from 'react-i18next';
 
 const dataCart = [
   {
@@ -87,6 +88,10 @@ const styles = theme => ({
 });
 
 function SideReview(props) {
+  const { t, i18n } = useTranslation();
+  const textTranslate = (text) => {
+    return i18n.exists(text) ? t(text) : text;
+  }
   const { classes } = props;
   const getCartItem = dataArray => dataArray.map((item, index) => (
     <Fragment key={index.toString()}>
@@ -109,7 +114,8 @@ function SideReview(props) {
     <Paper className={classes.paper} elevation={0}>
       <Typography variant="h6" gutterBottom>
         <ShoppingCart />
-        &nbsp; Order Summary
+        &nbsp;
+        {textTranslate('orderSummary')}
       </Typography>
       <List component="ul">
         {getCartItem(dataCart)}

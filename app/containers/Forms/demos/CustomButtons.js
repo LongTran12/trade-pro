@@ -92,7 +92,7 @@ const theme = createMuiTheme({
 class CustomButtons extends PureComponent { // eslint-disable-line
   render() {
     const { classes } = this.props;
-    const MyLink = React.forwardRef((props, ref) => <Link innerRef={ref} to="/app/forms/reduxform" {...props} />); // eslint-disable-line
+    const MyLink = React.forwardRef((props, ref) => <Link innerRef={ref} to="/forms/reduxform" {...props} />); // eslint-disable-line
     return (
       <Fragment>
         <Grid
@@ -210,7 +210,7 @@ class CustomButtons extends PureComponent { // eslint-disable-line
                 color="primary"
                 className={classNames(classes.margin, classes.cssRoot)}
                 component={LinkBtn}
-                to="/app/forms/date-time-picker"
+                to="/forms/date-time-picker"
               >
                 Go To Date Time Picker
               </Button>
@@ -234,14 +234,14 @@ class CustomButtons extends PureComponent { // eslint-disable-line
                 multiple
                 type="file"
               />
-              { /* eslint-disable-next-line */ }
+              { /* eslint-disable-next-line */}
               <label htmlFor="raised-button-file">
                 <Button variant="contained" component="span" id="raised-button-file" className={classes.button}>
                   Upload
                 </Button>
               </label>
               <input accept="image/*" className={classes.inputUpload} id="icon-button-file" type="file" />
-              { /* eslint-disable-next-line */ }
+              { /* eslint-disable-next-line */}
               <label htmlFor="icon-button-file">
                 <IconButton color="primary" id="uploadBtnIcon" className={classes.button} component="span">
                   <FileUpload />

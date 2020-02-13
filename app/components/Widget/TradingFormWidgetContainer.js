@@ -26,6 +26,7 @@ import { usdtPublic, usdiPublic } from "../../../provider/web3Public";
 import { config } from "../../../config";
 import TradingFormWidgetSell from './TradingFormWidgetSell';
 import TradingFormWidgetStacking from './TradingFormWidgetStacking';
+import { useTranslation } from 'react-i18next';
 
 function TabContainer({ children, dir }) {
   return (
@@ -138,8 +139,13 @@ const TradingFormWidgetContainer = ({ classes }) => {
       }, 1000);
     }
   };
+  const { t, i18n } = useTranslation();
+  const textTranslate = (text) => {
+    return i18n.exists(text)
+      ? t(text) : text;
+  }
   return (
-    <PapperBlock whiteBg noMargin title="Quick Trade" icon="ios-swap" desc="">
+    <PapperBlock whiteBg noMargin title={textTranslate('quickTrade')} icon="ios-swap" desc="">
       <AppBar position="static" color="default">
         <Tabs
           value={value}
@@ -148,9 +154,9 @@ const TradingFormWidgetContainer = ({ classes }) => {
           textColor="primary"
           variant="fullWidth"
         >
-          <Tab label="Buy" />
-          <Tab label="Sell" />
-          <Tab label="Staking" />
+          <Tab label={textTranslate('buy')} />
+          <Tab label={textTranslate('sell')} />
+          <Tab label={textTranslate('stakingTrade')} />
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -162,26 +168,8 @@ const TradingFormWidgetContainer = ({ classes }) => {
           <div className={classes.tabContainer}>
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <FormControl fullWidth className={classes.formControlTrade}>
-                  <InputLabel htmlFor="adornment-amount4">Amount</InputLabel>
-                  <Input
-                    id="adornment-amount4"
-                    value={amount}
-                    onChange={e => setAmount(e.target.value)}
-                    startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                    onBlur={e => {
-                      if (e.target.value < 100) {
-                        setAmount(100);
-                        alert("Must be bigger than 100 OTE");
-                      }
-                    }}
-                  />
-                  <FormHelperText>Total Amount: ${(otePrice / 10 ** 6) * amount}</FormHelperText>
-                </FormControl>
-              </Grid>
-              <Grid item xs={6}>
                 <FormControl className={classes.formControlTrade}>
-                  <InputLabel htmlFor="coin-simple">Coin</InputLabel>
+                  <InputLabel htmlFor="coin-simple">{textTranslate('chooseCurrency')}</InputLabel>
                   <Select
                     value={coin}
                     onChange={handleChange}
@@ -197,17 +185,37 @@ const TradingFormWidgetContainer = ({ classes }) => {
                   </Select>
                 </FormControl>
               </Grid>
+              <Grid item xs={6}>
+                <FormControl fullWidth className={classes.formControlTrade}>
+                  <InputLabel htmlFor="adornment-amount4">{textTranslate('selectAmount')}</InputLabel>
+                  <Input
+                    id="adornment-amount4"
+                    value={amount}
+                    onChange={e => setAmount(e.target.value)}
+                    startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                    onBlur={e => {
+                      if (e.target.value < 100) {
+                        setAmount(100);
+                        alert(textTranslate('validateInput'));
+                      }
+                    }}
+                  />
+                  <FormHelperText>{textTranslate('totalPurchase')} ${(otePrice / 10 ** 6) * amount}</FormHelperText>
+                </FormControl>
+              </Grid>
+
             </Grid>
             <Divider className={classes.divider} />
             <div className={classes.btnArea}>
-              <Typography variant="subtitle1">Estimation: 0.02 BTC</Typography>
+              {/* <Typography variant="subtitle1">Estimation: 0.02 BTC</Typography> */}
+              <div />
               <Button
                 onClick={() => {
                   buyOTE();
                 }}
                 color="secondary" variant="contained" className={classes.button}>
-                Purcharse
-                </Button>
+                {textTranslate('purchase')}
+              </Button>
             </div>
           </div>
         </TabContainer>

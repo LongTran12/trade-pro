@@ -111,28 +111,28 @@ function MessagesList(props) {
   const { classes } = props;
   return (
     <List>
-      <ListItem button component={NavLink} to="/app/pages/chat">
+      <ListItem button component={NavLink} to="/pages/chat">
         <Avatar alt={dataContact[2].name} src={dataContact[2].avatar} className={classes.avatar} />
         <ListItemText primary={dataContact[2].name} className={classes.messages} secondary="Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
         <ListItemSecondaryAction>
           <Typography variant="caption">10:42 PM</Typography>
         </ListItemSecondaryAction>
       </ListItem>
-      <ListItem button component={NavLink} to="/app/pages/chat">
+      <ListItem button component={NavLink} to="pages/chat">
         <Avatar alt={dataContact[5].name} src={dataContact[5].avatar} className={classes.avatar} />
         <ListItemText primary={dataContact[5].name} className={classes.messages} secondary="Sed a ipsum euismod, eleifend turpis sed." />
         <ListItemSecondaryAction>
           <Typography variant="caption">11:17 AM</Typography>
         </ListItemSecondaryAction>
       </ListItem>
-      <ListItem button component={NavLink} to="/app/pages/chat">
+      <ListItem button component={NavLink} to="/pages/chat">
         <Avatar alt={dataContact[1].name} src={dataContact[1].avatar} className={classes.avatar} />
         <ListItemText primary={dataContact[1].name} className={classes.messages} secondary="Praesent viverra est et risus fringilla bibendum." />
         <ListItemSecondaryAction>
           <Typography variant="caption">11 Oct</Typography>
         </ListItemSecondaryAction>
       </ListItem>
-      <ListItem button component={NavLink} to="/app/pages/chat">
+      <ListItem button component={NavLink} to="/pages/chat">
         <Avatar alt={dataContact[0].name} src={dataContact[0].avatar} className={classes.avatar} />
         <ListItemText primary={dataContact[0].name} className={classes.messages} secondary="Praesent at ex non leo iaculis dignissim. Proin nec venenatis nulla, nec vulputate ipsum. Curabitur eu dignissim nibh, eget condimentum massa." />
         <ListItemSecondaryAction>

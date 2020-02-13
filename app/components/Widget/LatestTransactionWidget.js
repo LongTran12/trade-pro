@@ -12,6 +12,7 @@ import Chip from '@material-ui/core/Chip';
 import styles from 'dan-components/Tables/tableStyle-jss';
 import messageStyles from 'dan-styles/Messages.scss';
 import PapperBlock from '../PapperBlock/PapperBlock';
+import { useTranslation } from 'react-i18next';
 
 let id = 0;
 function createData(time, market, price, total, get, status) {
@@ -46,8 +47,13 @@ function LatestTransactionWidget(props) {
       default: return messageStyles.bgDefault;
     }
   };
+  const { t, i18n } = useTranslation();
+  const textTranslate = (text) => {
+    return i18n.exists(text)
+      ? t(text) : text;
+  }
   return (
-    <PapperBlock whiteBg noMargin title="Recent Trade" icon="ios-time-outline" desc="">
+    <PapperBlock whiteBg noMargin title={textTranslate('recentTrade')} icon="ios-time-outline" desc="">
       <div className={classes.rootTable}>
         <Table padding="none" className={classes.tableSmall}>
           <TableHead>

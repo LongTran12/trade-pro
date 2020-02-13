@@ -4,12 +4,17 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import { useTranslation } from 'react-i18next';
 
 function AddressForm() {
+  const { t, i18n } = useTranslation();
+  const textTranslate = (text) => {
+    return i18n.exists(text) ? t(text) : text;
+  }
   return (
     <Fragment>
       <Typography variant="h6" gutterBottom>
-        Shipping address
+        {textTranslate('shippingAddress')}
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
@@ -17,7 +22,7 @@ function AddressForm() {
             required
             id="firstName"
             name="firstName"
-            label="First name"
+            label={textTranslate('firstName')}
             fullWidth
             autoComplete="fname"
           />
@@ -27,7 +32,7 @@ function AddressForm() {
             required
             id="lastName"
             name="lastName"
-            label="Last name"
+            label={textTranslate('lastName')}
             fullWidth
             autoComplete="lname"
           />
@@ -37,7 +42,7 @@ function AddressForm() {
             required
             id="address1"
             name="address1"
-            label="Address line 1"
+            label={textTranslate('addressLine1')}
             fullWidth
             autoComplete="billing address-line1"
           />
@@ -46,7 +51,7 @@ function AddressForm() {
           <TextField
             id="addiress2"
             name="addiress2"
-            label="Address line 2"
+            label={textTranslate('addressLine2')}
             fullWidth
             autoComplete="billing address-line2"
           />
@@ -56,20 +61,22 @@ function AddressForm() {
             required
             id="city"
             name="city"
-            label="City"
+            label={textTranslate('city')}
             fullWidth
             autoComplete="billing address-level2"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField id="state" name="state" label="State/Province/Region" fullWidth />
+          <TextField id="state" name="state"
+            label={textTranslate('stateProvince')}
+            fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             required
             id="zip"
             name="zip"
-            label="Zip / Postal code"
+            label={textTranslate('codeZip')}
             fullWidth
             autoComplete="billing postal-code"
           />
@@ -79,7 +86,7 @@ function AddressForm() {
             required
             id="country"
             name="country"
-            label="Country"
+            label={textTranslate('country')}
             fullWidth
             autoComplete="billing country"
           />
@@ -87,7 +94,7 @@ function AddressForm() {
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-            label="Use this address for payment details"
+            label={textTranslate('useAddress')}
           />
         </Grid>
       </Grid>

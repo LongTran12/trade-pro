@@ -7,7 +7,9 @@ import LandingCorporate from './Landing';
 import LandingCreative from './LandingCreative';
 import ArticleNews from './ArticleNews';
 import ThemeWrapper, { AppContext } from './ThemeWrapper';
+import CryptoDashboard from '../Dashboard/CryptoDashboard';
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
+
 
 class App extends React.Component {
   render() {
@@ -16,10 +18,9 @@ class App extends React.Component {
         <AppContext.Consumer>
           {(changeMode) => (
             <Switch>
-              <Route path="/" exact component={LandingCorporate} />
-              <Route path="/landing-creative" exact component={LandingCreative} />
+              <Route path="/landing-creative" exact component={CryptoDashboard} />
               <Route
-                path="/app"
+                path="/"
                 render={(props) => <Application {...props} changeMode={changeMode} />}
               />
               <Route

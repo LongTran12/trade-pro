@@ -16,6 +16,7 @@ import {
 } from 'recharts';
 import styles from './fluidChart-jss';
 import { AppContext } from '../../../../provider/appContext';
+import { useTranslation } from 'react-i18next';
 
 const theme = createMuiTheme(ThemePallete.orangeTheme);
 const color = ({
@@ -25,14 +26,18 @@ const color = ({
 
 const ChartBarStakedCrypto = ({ classes }) => {
     const { chart } = useContext(AppContext);
-    console.log('chart', chart)
+    // console.log('chart', chart)
+    const { t, i18n } = useTranslation();
+    const textTran = (text) => {
+        return i18n.exists(text)
+            ? t(text) : text;
+    }
     const name = [0.5, 0.75, 1]
     let chartData = chart && chart.order ? chart.order.map((item, index) => ({
         name: name[index],
-        order: item / 10 ** 18,
+        seller: item / 10 ** 18,
         company: chart.company[index] / 10 ** 18
     })) : []
-    console.log('chart data', chartData)
     return (
         <div className={classes.chartFluid}>
             <ResponsiveContainer>
@@ -53,8 +58,8 @@ const ChartBarStakedCrypto = ({ classes }) => {
                     <CartesianAxis vertical={false} />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="company" stackId="a" fillOpacity="0.8" fill={color.secondary} />
-                    <Bar dataKey="order" stackId="a" fillOpacity="0.8" fill={color.primary} />
+                    <Bar dataKey="company" name={textTran('company')} stackId="a" fillOpacity="0.8" fill={color.secondary} />
+                    <Bar dataKey="seller" name={textTran('seller')} stackId="a" fillOpacity="0.8" fill={color.primary} />
                 </BarChart>
             </ResponsiveContainer>
         </div>

@@ -17,9 +17,9 @@ const Toggle = () => {
         'en',
         'vi',
     ];
-    const { changeLang } = useContext(LanguageContext)
-    const [lang, setLang] = useState('vi')
-
+    const { changeLang, lang, setLang } = useContext(LanguageContext)
+    // const [lang, setLang] = useState('en')
+    // console.log('lang', lang)
     const handleChange = (event) => {
         setLang(event.target.value)
         changeLang(event.target.value)
@@ -27,9 +27,7 @@ const Toggle = () => {
     useEffect(() => {
         changeLang(lang)
     }, [lang])
-    console.log('lang chang', lang)
-    let initLang = i18n.languages
-    console.log('lang', initLang)
+
     return (
         <div>
             <FormControl>

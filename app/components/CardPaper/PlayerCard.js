@@ -1,4 +1,6 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -11,6 +13,11 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 import styles from './cardStyle-jss';
 
+const TextTranslate = ({ text }) => {
+  const { t, i18n } = useTranslation();
+  return i18n.exists(text)
+    ? t(text) : text;
+}
 class PlayerCard extends React.Component {
   state = { expanded: false };
 

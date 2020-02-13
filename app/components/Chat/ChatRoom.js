@@ -68,8 +68,8 @@ class ChatRoom extends React.Component {
           {data.get('from') === 'contact' ? (
             <Avatar alt="avatar" src={dataContact.getIn([chatSelected, 'avatar'])} className={classes.avatar} />
           ) : (
-            <Avatar alt="avatar" src={dummyContents.user.avatar} className={classes.avatar} />
-          )}
+              <Avatar alt="avatar" src={dummyContents.user.avatar} className={classes.avatar} />
+            )}
           <div className={classes.talk}>
             <p><span dangerouslySetInnerHTML={renderHTML} /></p>
           </div>

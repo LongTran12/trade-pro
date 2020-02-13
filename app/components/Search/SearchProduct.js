@@ -1,4 +1,6 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -15,6 +17,12 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import Cart from '../Cart/Cart';
 import styles from './search-jss';
+
+const TextTranslate = ({ text }) => {
+  const { t, i18n } = useTranslation();
+  return i18n.exists(text)
+    ? t(text) : text;
+}
 
 class SearchProduct extends React.Component {
   state = {
@@ -72,7 +80,8 @@ class SearchProduct extends React.Component {
             </div>
             <Typography variant="caption" className={classes.result}>
               {getTotalResult(dataProduct)}
-              &nbsp;Results
+              &nbsp;
+              <TextTranslate text="result" />
             </Typography>
             <Hidden mdDown>
               <div className={classes.toggleContainer}>

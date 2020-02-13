@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -17,6 +17,7 @@ import {
   Review,
   SideReview
 } from 'dan-components';
+import { useTranslation } from 'react-i18next';
 
 const styles = theme => ({
   appBar: {
@@ -59,7 +60,6 @@ const styles = theme => ({
   },
 });
 
-const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
 function getStepContent(step) {
   switch (step) {
@@ -74,57 +74,54 @@ function getStepContent(step) {
   }
 }
 
-class Checkout extends React.Component {
-  state = {
-    activeStep: 0,
+const Checkout = ({ classes, width }) => {
+  const { t, i18n } = useTranslation();
+  const textTranslate = (text) => {
+    return i18n.exists(text) ? t(text) : text;
+  }
+  const steps = [`${textTranslate('shippingAddress')}`, `${textTranslate('paymentDetails')}`, `${textTranslate('reviewOrder')}`];
+  const [activeStep, setActiveStep] = useState(0)
+  const handleNext = () => {
+    setActiveStep(activeStep + 1);
   };
 
-  handleNext = () => {
-    this.setState(state => ({
-      activeStep: state.activeStep + 1,
-    }));
+  // handleBack = () => {
+  //   this.setState(state => ({
+  //     activeStep: state.activeStep - 1,
+  //   }));
+  // };
+  const handleBack = () => {
+    setActiveStep(activeStep - 1);
   };
 
-  handleBack = () => {
-    this.setState(state => ({
-      activeStep: state.activeStep - 1,
-    }));
+  const handleReset = () => {
+    setActiveStep(0);
   };
-
-  handleReset = () => {
-    this.setState({
-      activeStep: 0,
-    });
-  };
-
-  render() {
-    const { classes, width } = this.props;
-    const { activeStep } = this.state;
-    return (
-      <Fragment>
-        <CssBaseline />
-        <main className={classes.layout}>
-          <Paper className={classes.paper}>
-            <Fragment>
-              {activeStep === steps.length ? (
-                <div className={classes.finishMessage}>
-                  <Typography variant="h4" gutterBottom>
-                    <span>
-                      <Ionicon icon="ios-checkmark-circle-outline" />
-                    </span>
-                    Thank you for your order.
+  return (
+    <Fragment>
+      <CssBaseline />
+      <main className={classes.layout}>
+        <Paper className={classes.paper}>
+          <Fragment>
+            {activeStep === steps.length ? (
+              <div className={classes.finishMessage}>
+                <Typography variant="h4" gutterBottom>
+                  <span>
+                    <Ionicon icon="ios-checkmark-circle-outline" />
+                  </span>
+                  Thank you for your order.
                   </Typography>
-                  <Typography variant="subtitle1">
-                    Your order number is&nbsp;
+                <Typography variant="subtitle1">
+                  Your order number is&nbsp;
                     <strong>#2001539</strong>
-                    .&nbsp;We have emailed your order confirmation, and will
-                    send you an update when your order has shipped.
+                  .&nbsp;We have emailed your order confirmation, and will
+                  send you an update when your order has shipped.
                   </Typography>
-                  <Button variant="contained" color="primary" href="/app/pages/ecommerce" className={classes.button}>
-                    Shoping Again
+                <Button variant="contained" color="primary" href="/pages/ecommerce" className={classes.button}>
+                  Shoping Again
                   </Button>
-                </div>
-              ) : (
+              </div>
+            ) : (
                 <Fragment>
                   <Grid container spacing={3}>
                     <Grid item xs={12} md={7}>
@@ -145,29 +142,29 @@ class Checkout extends React.Component {
                   </Grid>
                   <div className={classes.buttons}>
                     {activeStep !== 0 && (
-                      <Button onClick={this.handleBack} className={classes.button}>
-                        Back
+                      <Button onClick={handleBack} className={classes.button}>
+                        {textTranslate('back')}
                       </Button>
                     )}
                     <Button
                       variant="contained"
                       color="primary"
-                      onClick={this.handleNext}
+                      onClick={handleNext}
                       className={classes.button}
                       size="large"
                     >
-                      {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                      {activeStep === steps.length - 1 ? `${textTranslate('placeOrder')}` : `${textTranslate('next')}`}
                     </Button>
                   </div>
                 </Fragment>
               )}
-            </Fragment>
-          </Paper>
-        </main>
-      </Fragment>
-    );
-  }
+          </Fragment>
+        </Paper>
+      </main>
+    </Fragment>
+  );
 }
+
 
 Checkout.propTypes = {
   classes: PropTypes.object.isRequired,

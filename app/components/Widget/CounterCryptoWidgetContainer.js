@@ -14,26 +14,21 @@ import { data1 } from 'dan-api/chart/chartMiniData';
 import colorfull from 'dan-api/palette/colorfull';
 import AccountBalanceWallet from '@material-ui/icons/AccountBalanceWallet';
 import CompareArrows from '@material-ui/icons/CompareArrows';
-import bitcoinLogo from 'dan-images/crypto/bitcoin.png';
-import rippleLogo from 'dan-images/crypto/ripple.png';
-import moneroLogo from 'dan-images/crypto/monero.png';
-import iotaLogo from 'dan-images/crypto/iota.png';
 import styles from './widget-jss';
 import CounterWidget from '../Counter/CounterWidget';
-import CounterTrading from '../Counter/CounterTrading';
 import { AppContext } from '../../../provider/appContext';
-import { CHANGE_LOCALE } from '../../containers/LanguageProvider/actions';
-import SelectLanguage from '../../containers/LanguageProvider/languageSelect';
-import { selectLanguage } from '../../containers/LanguageProvider/selectors';
-import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
-import i18n from 'i18next'
-import '../../i18n'
+
+import { useTranslation } from 'react-i18next';
 
 const CounterCryptoWidgetContainer = ({ classes, width, intl }) => {
     const { oteSeller, oteStacking, otePrice, totalMemberStacking } = useContext(
         AppContext
     );
-    let txt = i18n.exists('seller') ? i18n.t("seller") : "text"
+    const { t, i18n } = useTranslation();
+    const textTran = (text) => {
+        return i18n.exists(text)
+            ? t(text) : text;
+    }
     return (
         <div className={classes.rootCounter}>
             <Grid container spacing={2}>
@@ -44,7 +39,7 @@ const CounterCryptoWidgetContainer = ({ classes, width, intl }) => {
                         start={0}
                         end={oteSeller ? oteSeller : 0}
                         duration={3}
-                        title={txt}
+                        title={textTran('sellerOrder')}
                     >
                         <AccountBalanceWallet className={classes.counterIcon} />
                     </CounterWidget>
@@ -56,7 +51,7 @@ const CounterCryptoWidgetContainer = ({ classes, width, intl }) => {
                         start={0}
                         end={oteStacking ? oteStacking : 0}
                         duration={3}
-                        title="Stacking"
+                        title={textTran('stacking')}
                     >
                         <CompareArrows className={classes.counterIcon} />
                     </CounterWidget>
@@ -68,7 +63,7 @@ const CounterCryptoWidgetContainer = ({ classes, width, intl }) => {
                         start={0}
                         end={otePrice ? (otePrice / 10 ** 6) : 0}
                         duration={3}
-                        title="OTE Price"
+                        title={textTran('otePrice')}
                     >
                         <AreaChart width={isWidthDown('xs', width) ? 280 : 100} height={60} data={data1}>
                             <Area type="monotone" dataKey="amt" stroke="#FFFFFF" fill="rgba(255,255,255,.5)" />
@@ -81,7 +76,7 @@ const CounterCryptoWidgetContainer = ({ classes, width, intl }) => {
                         start={0}
                         end={totalMemberStacking ? totalMemberStacking : 0}
                         duration={3}
-                        title="Total Member"
+                        title={textTran('totalMember')}
                     >
                         <AreaChart width={isWidthDown('xs', width) ? 280 : 100} height={60} data={data1}>
                             <Area type="monotone" dataKey="amt" stroke="#FFFFFF" fill="rgba(255,255,255,.5)" />

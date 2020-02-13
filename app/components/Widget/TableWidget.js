@@ -87,7 +87,7 @@ function TableWidget(props) {
                     <div>
                       <Typography variant="caption">{n.id}</Typography>
                       <Typography variant="subtitle1">{n.name}</Typography>
-                      <a href="/app/pages/invoice" className={classes.downloadInvoice}>
+                      <a href="/pages/invoice" className={classes.downloadInvoice}>
                         <ArrowDownward />
                         &nbsp;INVOICE_
                         {n.id}

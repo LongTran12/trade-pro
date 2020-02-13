@@ -24,6 +24,7 @@ import { AppContext } from '../../../provider/appContext';
 import { Web3Context } from "../../../provider/web3";
 import { usdtPublic, usdiPublic } from "../../../provider/web3Public";
 import { config } from "../../../config";
+import { useTranslation } from 'react-i18next';
 
 const TradingFormWidgetSell = ({ classes }) => {
   const { contract, address, ote } = useContext(Web3Context);
@@ -93,12 +94,17 @@ const TradingFormWidgetSell = ({ classes }) => {
       }, 1000);
     }
   };
+  const { t, i18n } = useTranslation();
+  const textTranslate = (text) => {
+    return i18n.exists(text)
+      ? t(text) : text;
+  }
   return (
     <div className={classes.tabContainer}>
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <FormControl className={classes.formControlTrade}>
-            <InputLabel htmlFor="Term-simple">Term</InputLabel>
+            <InputLabel htmlFor="Term-simple">{textTranslate('chooseTerm')}</InputLabel>
             <Select
               value={term}
               onChange={handleChange}
@@ -116,7 +122,7 @@ const TradingFormWidgetSell = ({ classes }) => {
         </Grid>
         <Grid item xs={6}>
           <FormControl fullWidth className={classes.formControlTrade}>
-            <InputLabel htmlFor="adornment-amountn">Amount</InputLabel>
+            <InputLabel htmlFor="adornment-amountn">{textTranslate('selectAmount')}</InputLabel>
             <Input
               id="adornment-amountn"
               value={amount}
@@ -124,7 +130,7 @@ const TradingFormWidgetSell = ({ classes }) => {
               onBlur={e => {
                 if (e.target.value < 100) {
                   setAmount(100);
-                  alert("Must be bigger than 100 OTE");
+                  alert(textTranslate('validateInput'));
                 }
               }}
             />
@@ -137,8 +143,8 @@ const TradingFormWidgetSell = ({ classes }) => {
       <div className={classes.btnArea}>
         <div></div>
         <Button onClick={() => { makeOrder(); }} color="secondary" variant="contained" className={classes.button}>
-          Make Sell Order
-                </Button>
+          {textTranslate('stakingButton')}
+        </Button>
       </div>
     </div>
 

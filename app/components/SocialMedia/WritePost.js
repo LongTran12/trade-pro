@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Dropzone from 'react-dropzone';
@@ -25,7 +26,11 @@ function isImage(file) {
   }
   return false;
 }
-
+const TextTranslate = ({ text }) => {
+  const { t, i18n } = useTranslation();
+  return i18n.exists(text)
+    ? t(text) : text;
+}
 class WritePost extends React.Component {
   constructor(props) {
     super(props);
@@ -151,9 +156,9 @@ class WritePost extends React.Component {
                   name="privacy"
                   className={classes.selectEmpty}
                 >
-                  <MenuItem value="public">Public</MenuItem>
-                  <MenuItem value="friends">Friends</MenuItem>
-                  <MenuItem value="private">Only Me</MenuItem>
+                  <MenuItem value="public"><TextTranslate text="public" /></MenuItem>
+                  <MenuItem value="friends"><TextTranslate text="friends" /></MenuItem>
+                  <MenuItem value="private"><TextTranslate text="onlyMe" /></MenuItem>
                 </Select>
               </FormControl>
             </div>

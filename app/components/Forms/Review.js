@@ -8,6 +8,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
+import { useTranslation } from 'react-i18next';
 
 const products = [
   { name: 'Product 1', desc: 'A nice thing', price: '$9.99' },
@@ -17,12 +18,7 @@ const products = [
   { name: 'Shipping', desc: '', price: 'Free' },
 ];
 const addresses = ['1 Material-UI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
-const payments = [
-  { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Mr John Smith' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-  { name: 'Expiry date', detail: '04/2024' },
-];
+
 
 const styles = theme => ({
   listItem: {
@@ -51,11 +47,24 @@ const styles = theme => ({
 
 function Review(props) {
   const { classes } = props;
+
+  const { t, i18n } = useTranslation();
+  const textTranslate = (text) => {
+    return i18n.exists(text) ? t(text) : text;
+  }
+  const payments = [
+    { name: `${textTranslate('cardType')}`, detail: 'Visa' },
+    { name: `${textTranslate('cardHolder')}`, detail: 'Mr John Smith' },
+    { name: `${textTranslate('cardNumber')}`, detail: 'xxxx-xxxx-xxxx-1234' },
+    { name: `${textTranslate('expiryDate')}`, detail: '04/2024' },
+  ];
+
   return (
     <Fragment>
       <div className={classes.orderSummary}>
         <Typography variant="h6" gutterBottom>
-          Order summary
+
+          {textTranslate('orderSummary')}
         </Typography>
         <List>
           {products.map(product => (
@@ -87,7 +96,7 @@ function Review(props) {
             </Grid>
             <Grid item container direction="column" xs={12} sm={6}>
               <Typography variant="h6" gutterBottom className={classes.title}>
-                Payment details
+                {textTranslate('paymentDetails')}
               </Typography>
               <Grid container>
                 {payments.map(payment => (

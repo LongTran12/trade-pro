@@ -21,65 +21,13 @@ import TableHead from "@material-ui/core/TableHead";
 import PapperBlock from '../PapperBlock/PapperBlock';
 import EnhancedTableToolbar from '../Tables/tableParts/TableToolbar';
 import EnhancedTableHead from '../Tables/tableParts/TableHeader';
-// import TrendingUp from '@material-ui/icons/TrendingUp';
-// import TrendingDown from '@material-ui/icons/TrendingDown';
-// import TrendingFlat from '@material-ui/icons/TrendingFlat';
-// import { cryptoData } from 'dan-api/chart/chartMiniData';
-// import { BarChart, Bar } from 'recharts';
-// import PapperBlock from '../PapperBlock/PapperBlock';
-// import EnhancedTableToolbar from './tableParts/TableToolbar';
-// import EnhancedTableHead from './tableParts/TableHeader';
-
 import styles from '../Tables/tableStyle-jss';
 import { contractPublic } from "../../../provider/web3Public";
 //translate
-import messages from './messages';
-import { LanguageContext } from '../../contexts/LanguageContext';
-import i18n from "i18next";
+import { useTranslation } from 'react-i18next';
+import { Chip } from '@material-ui/core';
+import messageStyles from 'dan-styles/Messages.scss';
 
-const columns = [
-    {
-        id: "tokenIcon",
-        label: "Token",
-        formatImage: "image"
-    },
-    {
-        id: "tokenName",
-        label: "Name",
-        formatNo: "no"
-    },
-    {
-        id: "tokenStatus",
-        label: "Status",
-        formatSTT: "status"
-    },
-    {
-        id: "tokenPrice",
-        label: "Price",
-        align: "right",
-        format: value => value.toFixed(2)
-    },
-    {
-        id: "tokenAmount",
-        label: "Amount",
-        align: "right",
-        format: value => value.toFixed(2)
-    },
-    {
-        id: "historyDate",
-        label: "Block",
-        align: "right",
-        format: value => value,
-        disablePadding: false,
-    },
-    {
-        id: "addressToken",
-        label: "Address",
-        align: "right",
-        formatNo: "no",
-        disablePadding: false,
-    }
-];
 
 
 
@@ -88,6 +36,63 @@ const HistoryTableContainer = ({ classes, intl }) => {
     const [events, setEvents] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const { t, i18n } = useTranslation();
+    const textTranslate = (text) => {
+        return i18n.exists(text)
+            ? t(text) : text;
+    }
+    const getStatus = status => {
+        if (status === false) {
+            return messageStyles.bgError;
+        }
+        if (status === true) {
+            return messageStyles.bgSuccess;
+        }
+    };
+    const columns = [
+        {
+            id: "tokenIcon",
+            label: textTranslate('token'),
+            formatImage: "image"
+        },
+        {
+            id: "tokenName",
+            label: textTranslate('name'),
+            formatNo: "no"
+        },
+        {
+            id: "tokenStatus",
+            label: textTranslate('status'),
+            formatSTT: "status"
+        },
+        {
+            id: "tokenPrice",
+            label: textTranslate('price'),
+            align: "right",
+            format: value => value.toFixed(2)
+        },
+        {
+            id: "tokenAmount",
+            label: textTranslate('amount'),
+            align: "right",
+            format: value => value.toFixed(2)
+        },
+        {
+            id: "historyDate",
+            label: textTranslate('block'),
+            align: "right",
+            format: value => value,
+            disablePadding: false,
+        },
+        {
+            id: "addressToken",
+            label: textTranslate('address'),
+            align: "right",
+            formatNo: "no",
+            disablePadding: false,
+        }
+    ];
+
     useEffect(() => {
         contractPublic &&
             contractPublic.getPastEvents(
@@ -129,14 +134,14 @@ const HistoryTableContainer = ({ classes, intl }) => {
     }
     return (
 
-        <PapperBlock className={classes.root} noMargin title="Trade History" icon="ios-basket-outline" whiteBg >
+        <PapperBlock className={classes.root} noMargin title={textTranslate('tradeHistory')} icon="ios-basket-outline" whiteBg >
             <div className={classes.rootTable}>
 
                 <EnhancedTableToolbar
                     numSelected={0}
                     filterText={filterText}
                     onUserInput={(event) => handleUserInput(event)}
-                    title={'history'}
+                    title={textTranslate('findCoin')}
 
                     // title={i18n.exists('history') ? i18n.t('history') : 'history'}
                     placeholder="Search Coin"
@@ -180,9 +185,9 @@ const HistoryTableContainer = ({ classes, intl }) => {
 
                                                         {column.formatSTT === "status" &&
                                                             (value === true ? (
-                                                                <span style={{ color: "#43a047" }}>Buy</span>
+                                                                <Chip label={textTranslate('buy')} className={classNames(classes.tableChip, getStatus(true))} />
                                                             ) : (
-                                                                    <span style={{ color: "#e53935" }}>Sell</span>
+                                                                    <Chip label={textTranslate('sell')} className={classNames(classes.tableChip, getStatus(false))} />
                                                                 ))}
                                                     </TableCell>
                                                 );
@@ -202,6 +207,7 @@ const HistoryTableContainer = ({ classes, intl }) => {
                     page={page}
                     onChangePage={handleChangePage}
                     onChangeRowsPerPage={handleChangeRowsPerPage}
+                    labelRowsPerPage={<div>{textTranslate('rowsPerPage')}</div>}
                 />
             </div>
         </PapperBlock>

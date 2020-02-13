@@ -16,7 +16,14 @@ import QuestionAnswer from '@material-ui/icons/QuestionAnswer';
 import LabelIcon from '@material-ui/icons/Label';
 import Add from '@material-ui/icons/Add';
 import Divider from '@material-ui/core/Divider';
+import { useTranslation } from 'react-i18next';
 import styles from './email-jss';
+
+const TextTranslate = ({ text }) => {
+  const { t, i18n } = useTranslation();
+  return i18n.exists(text)
+    ? t(text) : text;
+}
 
 class EmailMenu extends React.Component {
   gotoPage = (page) => {
@@ -37,7 +44,8 @@ class EmailMenu extends React.Component {
         <div className={classes.toolbar}>
           <Button variant="contained" onClick={compose} fullWidth color="secondary">
             <Add />
-            &nbsp;Compose
+            &nbsp;
+            <TextTranslate text="compose" />
           </Button>
         </div>
         <List>
@@ -45,25 +53,25 @@ class EmailMenu extends React.Component {
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
-            <ListItemText primary="Inbox" />
+            <ListItemText primary={<TextTranslate text="inbox" />} />
           </ListItem>
           <ListItem button className={selected === 'stared' ? classes.selected : ''} onClick={() => this.gotoPage('stared')}>
             <ListItemIcon>
               <StarIcon />
             </ListItemIcon>
-            <ListItemText primary="Stared" />
+            <ListItemText primary={<TextTranslate text="stared" />} />
           </ListItem>
           <ListItem button className={selected === 'sent' ? classes.selected : ''} onClick={() => this.gotoPage('sent')}>
             <ListItemIcon>
               <SendIcon />
             </ListItemIcon>
-            <ListItemText primary="Sent" />
+            <ListItemText primary={<TextTranslate text="sent" />} />
           </ListItem>
           <ListItem button className={selected === 'spam' ? classes.selected : ''} onClick={() => this.gotoPage('spam')}>
             <ListItemIcon>
               <ReportIcon />
             </ListItemIcon>
-            <ListItemText primary="Spam" />
+            <ListItemText primary={<TextTranslate text="spam" />} />
           </ListItem>
         </List>
         <Divider className={classes.divider} />
@@ -72,25 +80,25 @@ class EmailMenu extends React.Component {
             <ListItemIcon>
               <Flag className={classes.iconOrange} />
             </ListItemIcon>
-            <ListItemText primary="Updates" />
+            <ListItemText primary={<TextTranslate text="updates" />} />
           </ListItem>
           <ListItem button className={selected === 'social' ? classes.selected : ''} onClick={() => this.gotoPage('social')}>
             <ListItemIcon>
               <People className={classes.iconRed} />
             </ListItemIcon>
-            <ListItemText primary="Social" />
+            <ListItemText primary={<TextTranslate text="social" />} />
           </ListItem>
           <ListItem button className={selected === 'promos' ? classes.selected : ''} onClick={() => this.gotoPage('promos')}>
             <ListItemIcon>
               <LabelIcon className={classes.iconBlue} />
             </ListItemIcon>
-            <ListItemText primary="Promos" />
+            <ListItemText primary={<TextTranslate text="promos" />} />
           </ListItem>
           <ListItem button className={selected === 'forums' ? classes.selected : ''} onClick={() => this.gotoPage('forums')}>
             <ListItemIcon>
               <QuestionAnswer className={classes.iconCyan} />
             </ListItemIcon>
-            <ListItemText primary="Forums" />
+            <ListItemText primary={<TextTranslate text="forums" />} />
           </ListItem>
         </List>
       </Fragment>
@@ -107,7 +115,7 @@ EmailMenu.propTypes = {
 };
 
 EmailMenu.defaultProps = {
-  onClose: () => {}
+  onClose: () => { }
 };
 
 export default withStyles(styles)(EmailMenu);

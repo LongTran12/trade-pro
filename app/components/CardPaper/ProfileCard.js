@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -18,6 +19,11 @@ import PhotoLibrary from '@material-ui/icons/PhotoLibrary';
 import Divider from '@material-ui/core/Divider';
 import styles from './cardStyle-jss';
 
+const TextTranslate = ({ text }) => {
+  const { t, i18n } = useTranslation();
+  return i18n.exists(text)
+    ? t(text) : text;
+}
 class ProfileCard extends React.Component {
   render() {
     const {
@@ -61,9 +67,9 @@ class ProfileCard extends React.Component {
             showLabels
             className={classes.bottomLink}
           >
-            <BottomNavigationAction label="20 Connection" icon={<SupervisorAccount />} />
-            <BottomNavigationAction label="10 Favorites" icon={<Favorite />} />
-            <BottomNavigationAction label="5 Albums" icon={<PhotoLibrary />} />
+            <BottomNavigationAction label={<TextTranslate text="connection" />} icon={<SupervisorAccount />} />
+            <BottomNavigationAction label={<TextTranslate text="favorites" />} icon={<Favorite />} />
+            <BottomNavigationAction label={<TextTranslate text="albums" />} icon={<PhotoLibrary />} />
           </BottomNavigation>
         </CardActions>
       </Card>

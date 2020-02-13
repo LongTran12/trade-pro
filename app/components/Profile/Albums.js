@@ -30,7 +30,7 @@ function Albums(props) {
             className={classes.image}
             focusVisibleClassName={classes.focusVisible}
             component={LinkBtn}
-            to="/app/pages/photo-gallery"
+            to="/pages/photo-gallery"
           >
             <GridList cellHeight={160} className={classes.gridList} cols={3}>
               {imgData.map((tile, index) => {
@@ -62,7 +62,7 @@ function Albums(props) {
             className={classes.image}
             focusVisibleClassName={classes.focusVisible}
             component={LinkBtn}
-            to="/app/pages/photo-gallery"
+            to="/pages/photo-gallery"
           >
             <GridList cellHeight={160} className={classes.gridListAlbum} cols={3}>
               {imgData.map((tile, index) => {
@@ -96,7 +96,7 @@ function Albums(props) {
             className={classes.image}
             focusVisibleClassName={classes.focusVisible}
             component={LinkBtn}
-            to="/app/pages/photo-gallery"
+            to="/pages/photo-gallery"
           >
             <GridList cellHeight={160} className={classes.gridList} cols={3}>
               {imgData.map((tile, index) => {
@@ -128,7 +128,7 @@ function Albums(props) {
             className={classes.image}
             focusVisibleClassName={classes.focusVisible}
             component={LinkBtn}
-            to="/app/pages/photo-gallery"
+            to="/pages/photo-gallery"
           >
             <GridList cellHeight={160} className={classes.gridList} cols={3}>
               {imgData.map((tile, index) => {

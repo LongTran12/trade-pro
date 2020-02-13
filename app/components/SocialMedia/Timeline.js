@@ -89,7 +89,7 @@ class Timeline extends React.Component {
             title={data.get('name')}
             subheader={data.get('date')}
           />
-          { data.get('image') !== '' && (
+          {data.get('image') !== '' && (
             <CardMedia
               className={classes.media}
               image={data.get('image')}
@@ -165,8 +165,8 @@ Timeline.propTypes = {
 
 Timeline.defaultProps = {
   onlike: () => (false),
-  fetchComment: () => {},
-  submitComment: () => {},
+  fetchComment: () => { },
+  submitComment: () => { },
   commentIndex: 0,
 };
 

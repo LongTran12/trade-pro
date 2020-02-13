@@ -27,7 +27,13 @@ import {
   Notification
 } from 'dan-components';
 import styles from 'dan-components/Contact/contact-jss';
+import { useTranslation } from 'react-i18next';
 
+// const { t, i18n } = useTranslation();
+// const textTranslate = (text) => {
+//   return i18n.exists(text)
+//     ? t(text) : text;
+// }
 class Contact extends React.Component {
   componentDidMount() {
     const { fetchData } = this.props;
@@ -42,7 +48,8 @@ class Contact extends React.Component {
   }
 
   render() {
-    const title = brand.name + ' - Contact';
+
+    const title = brand.name + ' - Contactss';
     const description = brand.desc;
     const {
       classes,

@@ -93,7 +93,7 @@ class Dashboard extends React.Component {
               titleException={titleException}
               handleOpenGuide={this.handleOpenGuide}
             >
-              { children }
+              {children}
             </LeftSidebarLayout>
           )
         }
@@ -114,7 +114,7 @@ class Dashboard extends React.Component {
               titleException={titleException}
               handleOpenGuide={this.handleOpenGuide}
             >
-              { children }
+              {children}
             </LeftSidebarBigLayout>
           )
         }
@@ -135,7 +135,7 @@ class Dashboard extends React.Component {
               titleException={titleException}
               handleOpenGuide={this.handleOpenGuide}
             >
-              { children }
+              {children}
             </RightSidebarLayout>
           )
         }
@@ -156,7 +156,7 @@ class Dashboard extends React.Component {
               titleException={titleException}
               handleOpenGuide={this.handleOpenGuide}
             >
-              { children }
+              {children}
             </DropMenuLayout>
           )
         }
@@ -177,7 +177,7 @@ class Dashboard extends React.Component {
               titleException={titleException}
               handleOpenGuide={this.handleOpenGuide}
             >
-              { children }
+              {children}
             </MegaMenuLayout>
           )
         }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -20,6 +21,7 @@ import avatarApi from 'dan-api/images/avatars';
 import PapperBlock from '../PapperBlock/PapperBlock';
 import NewsCard from '../CardPaper/NewsCard';
 import ProfileCard from '../CardPaper/ProfileCard';
+
 import styles from './jss/socialMedia-jss';
 
 const slideData = [
@@ -44,6 +46,11 @@ const slideData = [
     imgPath: imgApi[40]
   },
 ];
+const TextTranslate = ({ text }) => {
+  const { t, i18n } = useTranslation();
+  return i18n.exists(text)
+    ? t(text) : text;
+}
 
 class SideSection extends React.Component {
   state = {
@@ -80,7 +87,7 @@ class SideSection extends React.Component {
           name="John Doe"
           title="UX designer"
           connection={10}
-          btnText="My Profile"
+          btnText={<TextTranslate text="myProfile" />}
           isVerified
         />
         <Divider className={classes.divider} />
@@ -130,7 +137,7 @@ class SideSection extends React.Component {
         </Paper>
         {/* ----------------------------------------------------------------------*/}
         {/* People */}
-        <PapperBlock title="People You may know" icon="ios-people-outline" whiteBg noMargin desc="">
+        <PapperBlock title={<TextTranslate text="peopleYouKnow" />} icon="ios-people-outline" whiteBg noMargin desc="">
           <List component="nav" dense className={classes.profileList}>
             <ListItem button className={classes.listPeople}>
               <Avatar className={classNames(classes.avatar, classes.orangeAvatar)}>H</Avatar>
@@ -156,14 +163,14 @@ class SideSection extends React.Component {
           <Divider className={classes.divider} />
           <Grid container justify="center">
             <Button color="secondary" className={classes.button}>
-              See All
+              {<TextTranslate text="seeAll" />}
             </Button>
           </Grid>
         </PapperBlock>
         <Divider className={classes.divider} />
         {/* ----------------------------------------------------------------------*/}
         {/* Trending */}
-        <PapperBlock title="Trends for You" icon="ios-flame-outline" whiteBg desc="">
+        <PapperBlock title={<TextTranslate text="trendForYou" />} icon="ios-flame-outline" whiteBg desc="">
           <List dense className={classes.trendingList}>
             <ListItem className={classes.noPadding}>
               <a href="#" className={classes.link}>#Lorem ipsum dolor</a>
