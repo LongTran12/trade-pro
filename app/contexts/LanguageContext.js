@@ -9,7 +9,7 @@ const WrapLangContext = ({ children }) => {
     const changeLang = lng => {
         i18next.changeLanguage(lng);
     };
-    const [lang, setLang] = useState('en')
+    const [lang, setLang] = useState('vi')
     return (
         <LanguageContext.Provider value={{
             changeLang,

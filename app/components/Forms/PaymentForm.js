@@ -31,7 +31,7 @@ function PaymentForm() {
             required
             id="cvv"
             label={textTranslate('cvv')}
-            helperText="Last three digits on signature strip"
+            helperText={textTranslate('lastThree')}
             fullWidth
           />
         </Grid>

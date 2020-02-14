@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
 import Dashboard from '../Templates/Dashboard';
 import {
-  PersonalDashboard, CrmDashboard, CryptoDashboard,
+  CrmDashboard, CryptoDashboard, NetWork,
   Infographics, MiniApps, Analytics,
   InfoUpdates, Status,
   Parent, AppLayout, Responsive, Grid,
@@ -41,6 +41,7 @@ class Application extends React.Component {
         <Switch>
           { /* Home */}
           <Route exact path="/" component={CryptoDashboard} />
+          <Route exact path="/network" component={NetWork} />
           {/* <Route exact path="/" component={PersonalDashboard} /> */}
           <Route path="/crm-dashboard" component={CrmDashboard} />
           { /* Widgets */}

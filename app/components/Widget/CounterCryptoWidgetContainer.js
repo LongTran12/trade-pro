@@ -13,6 +13,8 @@ import {
 import { data1 } from 'dan-api/chart/chartMiniData';
 import colorfull from 'dan-api/palette/colorfull';
 import AccountBalanceWallet from '@material-ui/icons/AccountBalanceWallet';
+import PeopleAlt from '@material-ui/icons/PeopleAlt';
+import MonetizationOn from '@material-ui/icons/MonetizationOn';
 import CompareArrows from '@material-ui/icons/CompareArrows';
 import styles from './widget-jss';
 import CounterWidget from '../Counter/CounterWidget';
@@ -65,9 +67,7 @@ const CounterCryptoWidgetContainer = ({ classes, width, intl }) => {
                         duration={3}
                         title={textTran('otePrice')}
                     >
-                        <AreaChart width={isWidthDown('xs', width) ? 280 : 100} height={60} data={data1}>
-                            <Area type="monotone" dataKey="amt" stroke="#FFFFFF" fill="rgba(255,255,255,.5)" />
-                        </AreaChart>
+                        <MonetizationOn className={classes.counterIcon} />
                     </CounterWidget>
                 </Grid>
                 <Grid item sm={3} xs={6}>
@@ -78,9 +78,7 @@ const CounterCryptoWidgetContainer = ({ classes, width, intl }) => {
                         duration={3}
                         title={textTran('totalMember')}
                     >
-                        <AreaChart width={isWidthDown('xs', width) ? 280 : 100} height={60} data={data1}>
-                            <Area type="monotone" dataKey="amt" stroke="#FFFFFF" fill="rgba(255,255,255,.5)" />
-                        </AreaChart>
+                        <PeopleAlt className={classes.counterIcon} />
                     </CounterWidget>
                 </Grid>
             </Grid>

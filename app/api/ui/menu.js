@@ -2,7 +2,7 @@
 module.exports = [
   {
     key: 'home',
-    name: 'Home',
+    name: 'home',
     icon: 'ios-home-outline',
     child: [
       {
@@ -11,21 +11,27 @@ module.exports = [
         link: '/',
         icon: 'ios-medal-outline'
       },
+      {
+        key: 'network',
+        name: 'network',
+        link: '/network',
+        icon: 'ios-medal-outline'
+      },
     ]
   },
   {
     key: 'apps',
-    name: 'Applications',
+    name: 'applications',
     icon: 'ios-appstore-outline',
     child: [
       {
         key: 'communication_apps',
-        name: 'Communication',
+        name: 'communication',
         title: true,
       },
       {
         key: 'contact',
-        name: 'Contact',
+        name: 'contact',
         link: '/pages/contact',
         icon: 'ios-contact-outline'
       },
@@ -38,7 +44,7 @@ module.exports = [
       },
       {
         key: 'social_apps',
-        name: 'Social',
+        name: 'social',
         title: true,
       },
       {
@@ -61,25 +67,25 @@ module.exports = [
       },
       {
         key: 'Itemlist',
-        name: 'Product Catalogues',
+        name: 'productCatalogues',
         link: '/pages/ecommerce',
         icon: 'ios-apps-outline'
       },
       {
         key: 'item_detail',
-        name: 'Product Detail',
+        name: 'productDetail',
         link: '/pages/product-detail',
         icon: 'ios-card'
       },
       {
         key: 'checkout',
-        name: 'Checkout Page',
+        name: 'checkoutPage',
         link: '/pages/checkout',
         icon: 'ios-cart-outline'
       },
       {
         key: 'dynamic_invoice',
-        name: 'Dynamic Invoice',
+        name: 'dynamicInvoice',
         link: '/pages/invoice',
         icon: 'ios-document-outline'
       },
@@ -96,7 +102,7 @@ module.exports = [
       },
       {
         key: 'task',
-        name: 'Task Board',
+        name: 'taskBoard',
         link: '/pages/taskboard',
         icon: 'ios-checkmark-circle-outline'
       },

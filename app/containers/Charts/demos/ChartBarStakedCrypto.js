@@ -32,7 +32,7 @@ const ChartBarStakedCrypto = ({ classes }) => {
         return i18n.exists(text)
             ? t(text) : text;
     }
-    const name = [0.5, 0.75, 1]
+    const name = ['0.5$', '0.75$', '1$']
     let chartData = chart && chart.order ? chart.order.map((item, index) => ({
         name: name[index],
         seller: item / 10 ** 18,

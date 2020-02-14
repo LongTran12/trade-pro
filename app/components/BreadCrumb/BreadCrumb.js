@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { Link, Route } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 import styles from './breadCrumb-jss';
 
 const Breadcrumbs = (props) => {
@@ -12,6 +14,11 @@ const Breadcrumbs = (props) => {
     separator,
     location
   } = props;
+  const { t, i18n } = useTranslation();
+  const textTranslate = (text) => {
+    return i18n.exists(text)
+      ? t(text) : text;
+  }
   return (
     <section className={classNames(theme === 'dark' ? classes.dark : classes.light, classes.breadcrumbs)}>
       <Route
@@ -22,7 +29,7 @@ const Breadcrumbs = (props) => {
           parts = parts.slice(1, parts.length - 1);
           return (
             <p>
-              You are here:
+              {textTranslate('youAreHere')}
               <span>
                 {
                   parts.map((part, partIndex) => {
@@ -30,13 +37,13 @@ const Breadcrumbs = (props) => {
                     return (
                       <Fragment key={path}>
                         <Link to={path}>{part}</Link>
-                        { separator }
+                        {separator}
                       </Fragment>
                     );
                   })
                 }
                 &nbsp;
-                {place}
+                {textTranslate(place)}
               </span>
             </p>
           );

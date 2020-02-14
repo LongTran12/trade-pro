@@ -1,11 +1,10 @@
 import React from 'react';
-
-import LocaleToggle from './LocaleToggle';
+import Toggle from './Toggle';
 
 function SelectLanguage() {
     return (
         <div>
-            <LocaleToggle />
+            <Toggle />
         </div>
     );
 }

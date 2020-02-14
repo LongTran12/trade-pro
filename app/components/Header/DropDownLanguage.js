@@ -9,7 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { LanguageContext } from '../../contexts/LanguageContext';
-import imgLangDefault from 'dan-images/download.svg';
+import imgLangDefault from 'dan-images/vietnam.svg';
 import '../../i18n';
 // import { withStyles } from '@material-ui/core/styles';
 // import styles from 'enl-components/Header/header-jss.js';

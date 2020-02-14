@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import PrintIcon from '@material-ui/icons/Print';
 import ReactToPrint from 'react-to-print';
 import { PapperBlock, CommercialInvoice } from 'dan-components';
+import { useTranslation } from 'react-i18next';
 
 const styles = theme => ({
   button: {
@@ -25,6 +26,11 @@ const styles = theme => ({
   }
 });
 
+const TextTranslate = ({ text }) => {
+  const { t, i18n } = useTranslation();
+  return i18n.exists(text)
+    ? t(text) : text;
+}
 class Invoice extends React.Component {
   render() {
     const { classes } = this.props;
@@ -40,13 +46,13 @@ class Invoice extends React.Component {
           <meta property="twitter:title" content={title} />
           <meta property="twitter:description" content={description} />
         </Helmet>
-        <PapperBlock title="Editable Invoice" icon="ios-document-outline" desc="An Editable/Printable HTML Invoice">
+        <PapperBlock title={<TextTranslate text="editInvoice" />} icon="ios-document-outline" desc={<TextTranslate text="anEdit" />}>
           <div className={classes.btnArea}>
             <ReactToPrint
               trigger={() => (
                 <Button className={classes.button} size="small" variant="contained" color="secondary">
                   <PrintIcon className={classes.extendedIcon} />
-                  Print this out!
+                  {<TextTranslate text="printInvoice" />}
                 </Button>
               )}
               content={() => this.componentRef}

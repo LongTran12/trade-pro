@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react';
+/* eslint-disable */
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -17,95 +18,95 @@ import Add from '@material-ui/icons/Add';
 import Star from '@material-ui/icons/Star';
 import IconButton from '@material-ui/core/IconButton';
 import styles from './contact-jss';
+import { useTranslation } from 'react-i18next';
 
-class ContactList extends React.Component {
-  state = {
-    filter: 'all',
-  };
-
-  handleChange = (event, value) => {
-    this.setState({ filter: value });
-  };
-
-  render() {
-    const {
-      classes,
-      dataContact,
-      itemSelected,
-      showDetail,
-      search,
-      keyword,
-      clippedRight,
-      addContact,
-      addFn, total
-    } = this.props;
-    const { filter } = this.state;
-    const favoriteData = dataContact.filter(item => item.get('favorited') === true);
-    const getItem = dataArray => dataArray.map(data => {
-      const index = dataContact.indexOf(data);
-      if (data.get('name').toLowerCase().indexOf(keyword) === -1) {
-        return false;
-      }
-      return (
-        <ListItem
-          button
-          key={data.get('id')}
-          className={index === itemSelected ? classes.selected : ''}
-          onClick={() => showDetail(data)}
-        >
-          <ListItemAvatar>
-            <Avatar alt={data.get('name')} src={data.get('avatar')} className={classes.avatar} />
-          </ListItemAvatar>
-          <ListItemText primary={data.get('name')} secondary={data.get('title')} />
-        </ListItem>
-      );
-    });
-    return (
-      <Fragment>
-        <Drawer
-          variant="permanent"
-          anchor="left"
-          open
-          classes={{
-            paper: classes.drawerPaper,
-          }}
-        >
-          <div>
-            <div className={classNames(classes.toolbar, clippedRight && classes.clippedRight)}>
-              <div className={classes.flex}>
-                <div className={classes.searchWrapper}>
-                  <div className={classes.search}>
-                    <SearchIcon />
-                  </div>
-                  <input className={classes.input} onChange={(event) => search(event)} placeholder="Search" />
-                </div>
-                {addFn && (
-                  <Tooltip title="Add New Contact">
-                    <IconButton className={classes.buttonAdd} onClick={() => addContact()} color="secondary" aria-label="Delete">
-                      <Add />
-                    </IconButton>
-                  </Tooltip>
-                )}
-              </div>
-            </div>
-            <div className={classes.total}>
-              {total}
-              &nbsp;
-              Contacts
-            </div>
-            <List>
-              {filter === 'all' ? getItem(dataContact) : getItem(favoriteData)}
-            </List>
-          </div>
-        </Drawer>
-        <BottomNavigation value={filter} onChange={this.handleChange} className={classes.bottomFilter}>
-          <BottomNavigationAction label="All" value="all" icon={<PermContactCalendar />} />
-          <BottomNavigationAction label="Favorites" value="favorites" icon={<Star />} />
-        </BottomNavigation>
-      </Fragment>
-    );
+const ContactList = ({
+  classes,
+  dataContact,
+  itemSelected,
+  showDetail,
+  search,
+  keyword,
+  clippedRight,
+  addContact,
+  addFn, total
+}) => {
+  const { t, i18n } = useTranslation();
+  const textTranslate = (text) => {
+    return i18n.exists(text)
+      ? t(text) : text;
   }
+  const [filter, setFilter] = useState('all')
+  const handleChange = (event, value) => {
+    setFilter(value);
+  };
+
+  const favoriteData = dataContact.filter(item => item.get('favorited') === true);
+  const getItem = dataArray => dataArray.map(data => {
+    const index = dataContact.indexOf(data);
+    if (data.get('name').toLowerCase().indexOf(keyword) === -1) {
+      return false;
+    }
+    return (
+      <ListItem
+        button
+        key={data.get('id')}
+        className={index === itemSelected ? classes.selected : ''}
+        onClick={() => showDetail(data)}
+      >
+        <ListItemAvatar>
+          <Avatar alt={data.get('name')} src={data.get('avatar')} className={classes.avatar} />
+        </ListItemAvatar>
+        <ListItemText primary={data.get('name')} secondary={data.get('title')} />
+      </ListItem>
+    );
+  });
+  return (
+    <Fragment>
+      <Drawer
+        variant="permanent"
+        anchor="left"
+        open
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+      >
+        <div>
+          <div className={classNames(classes.toolbar, clippedRight && classes.clippedRight)}>
+            <div className={classes.flex}>
+              <div className={classes.searchWrapper}>
+                <div className={classes.search}>
+                  <SearchIcon />
+                </div>
+                <input className={classes.input} onChange={(event) => search(event)} placeholder="Search" />
+              </div>
+              {addFn && (
+                <Tooltip title={textTranslate('addContact')}>
+                  <IconButton className={classes.buttonAdd} onClick={() => addContact()} color="secondary" aria-label="Delete">
+                    <Add />
+                  </IconButton>
+                </Tooltip>
+              )}
+            </div>
+          </div>
+          <div className={classes.total}>
+            {total}
+            &nbsp;
+            {textTranslate('contactS')}
+          </div>
+          <List>
+            {filter === 'all' ? getItem(dataContact) : getItem(favoriteData)}
+          </List>
+        </div>
+      </Drawer>
+      <BottomNavigation value={filter} onChange={handleChange} className={classes.bottomFilter}>
+        <BottomNavigationAction label={textTranslate('All')} value="all" icon={<PermContactCalendar />} />
+        <BottomNavigationAction label={textTranslate('favorites')} value="favorites" icon={<Star />} />
+      </BottomNavigation>
+    </Fragment>
+  );
 }
+
 
 ContactList.propTypes = {
   classes: PropTypes.object.isRequired,
@@ -122,7 +123,7 @@ ContactList.propTypes = {
 
 ContactList.defaultProps = {
   clippedRight: false,
-  addContact: () => {},
+  addContact: () => { },
   addFn: false,
 };
 

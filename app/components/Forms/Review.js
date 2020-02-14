@@ -15,7 +15,7 @@ const products = [
   { name: 'Product 2', desc: 'Another thing', price: '$3.45' },
   { name: 'Product 3', desc: 'Something else', price: '$6.51' },
   { name: 'Product 4', desc: 'Best thing of all', price: '$14.11' },
-  { name: 'Shipping', desc: '', price: 'Free' },
+  // { name: 'Shipping', desc: '', price: 'Free' },
 ];
 const addresses = ['1 Material-UI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
 
@@ -78,8 +78,17 @@ function Review(props) {
               </li>
             </Fragment>
           ))}
+          <Fragment key='shiping-fee'>
+            <ListItem className={classes.listItem}>
+              <ListItemText primary={textTranslate('shippingFee')} secondary="" />
+              <Typography variant="body2">{textTranslate('free')}</Typography>
+            </ListItem>
+            <li>
+              <Divider />
+            </li>
+          </Fragment>
           <ListItem className={classNames(classes.listItem, classes.totalRow)}>
-            <ListItemText primary="Total" />
+            <ListItemText primary={textTranslate('total')} />
             <Typography variant="subtitle1" className={classes.total}>
               $34.06
             </Typography>
@@ -89,7 +98,7 @@ function Review(props) {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <Typography variant="h6" gutterBottom className={classes.title}>
-                Shipping
+                {textTranslate('shippingDetail')}
               </Typography>
               <Typography gutterBottom>John Smith</Typography>
               <Typography gutterBottom>{addresses.join(', ')}</Typography>

@@ -3,6 +3,7 @@
 import CounterCryptoWidgetContainer from "./Widget/CounterCryptoWidgetContainer";
 export HistoryTrade from './Widget/HistoryTrade';
 export TradingFormWidgetContainer from './Widget/TradingFormWidgetContainer';
+export NetworkWidgetContainer from './Widget/NetworkWidgetContainer';
 
 // Main Components
 export Header from './Header/Header';

@@ -4,14 +4,13 @@
  *
  */
 /* eslint-disable */
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import Toggle from './Toggle';
 
 const LocaleToggle = () => {
 
     return (
-        <Toggle
-        />
+        <Toggle />
     );
 }
 

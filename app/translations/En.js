@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 export default {
     sellerOrder: 'Seller Order',
     stacking: "Stacking",
@@ -39,6 +39,12 @@ export default {
     currency: "Currency",
     total: "Total",
     home: 'Home',
+    //contact
+    contactS: "Contacts",
+    youAreHere: "You Are Here:",
+    Pages: "Pages",
+    addContact: "Add New Contact",
+    fullScreen: "Full Screen",
     //Email
     inbox: "Inbox",
     stared: "Stared",
@@ -99,4 +105,41 @@ export default {
     cardType: "Card type",
     cardHolder: "Card Holder",
     cardNumber: "Card number",
+    shippingFee: "Shipping",
+    free: "Free",
+    shippingDetail: "Shipping",
+    //invoice
+    invoice: "INVOICE",
+    editInvoice: "Editable Invoice",
+    anEdit: "An Editable/Printable HTML Invoice",
+    printInvoice: "Print This Out!",
+    item: "Item",
+    unitCost: "Unit Cost",
+    descriptionInvoice: "Description",
+    amountPaid: "Amount Paid",
+    balanceDue: "Balance Due",
+    subTotal: "Subtotal",
+    addRow: "Add a row",
+    amountDue: "Amount due",
+    date: "Date",
+    invoiceC: "Invoice",
+    terms: "Terms",
+    termNet: "NET 30 Days. Finance Charge of 1.5% will be made on unpaid balances after 30 days.",
+    //menu
+    Home: 'Home',
+    network: "Network",
+    applications: "Applications",
+    communication: "Communication",
+    contact: "Contact",
+    social: "Social",
+    Ecommerce: "Ecommerce",
+    productCatalogues: "Product Catalogues",
+    productDetail: "Product Detail",
+    checkoutPage: "Checkout Page",
+    dynamicInvoice: "Dynamic Invoice",
+    Productivity: "Productivity",
+    Calendar: "Calendar",
+    taskBoard: "Task Board",
+    addTask: "Add Task",
+    //
 };

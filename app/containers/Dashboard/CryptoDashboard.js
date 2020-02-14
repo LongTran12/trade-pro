@@ -48,10 +48,8 @@ const CryptoDahboard = ({ classes }) => {
       <CounterCryptoWidgetContainer />
       <Divider className={classes.divider} />
 
-      <PapperBlock title={textTran('oteBuySell')} icon="ios-stats-outline" noMargin whiteBg>
-        <div>
-          <ChartBarStakedCrypto />
-        </div>
+      <PapperBlock title={textTran('oteBuySell')} icon="ios-stats-outline" whiteBg overflowX>
+        <ChartBarStakedCrypto />
       </PapperBlock>
       <Divider className={classes.divider} />
       {/* <MarketPlaceWIdget /> */}

@@ -1,9 +1,11 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { contractPublic } from './web3Public';
+import { contractPublic, web3Public } from './web3Public';
+
 
 const AppContext = React.createContext();
+
 const AppWrap = ({ children }) => {
     const [appState, setAppState] = useState({
         oteSeller: 0,
@@ -31,7 +33,9 @@ const AppWrap = ({ children }) => {
         };
         getDetail();
     }, []);
-    return <AppContext.Provider value={appState}>{children}</AppContext.Provider>;
+    return <AppContext.Provider value={
+        appState
+    }> {children}</AppContext.Provider >;
 };
 AppWrap.propTypes = {
     children: PropTypes.element.isRequired

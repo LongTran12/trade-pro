@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import withWidth, { isWidthDown } from '@material-ui/core/withWidth';
@@ -8,68 +8,73 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import ExpandIcon from '@material-ui/icons/CallMade';
 import MinimizeIcon from '@material-ui/icons/CallReceived';
+import { useTranslation } from 'react-i18next';
+
 import styles from './panel-jss';
 
-class FloatingPanel extends React.Component {
-  state = {
-    expanded: false
+const FloatingPanel = (props) => {
+  // state = {
+  //   expanded: false
+  // }
+  const [expanded, setexpanded] = useState(false)
+  const toggleExpand = () => {
+    // const { expanded } = this.state;
+    setexpanded(!expanded);
   }
 
-  toggleExpand() {
-    const { expanded } = this.state;
-    this.setState({ expanded: !expanded });
+  const { t, i18n } = useTranslation();
+  const textTranslate = (text) => {
+    return i18n.exists(text)
+      ? t(text) : text;
   }
-
-  render() {
-    const {
-      classes,
-      openForm,
-      closeForm,
-      children,
-      branch,
-      title,
-      extraSize,
-      width
-    } = this.props;
-    const { expanded } = this.state;
-    return (
-      <div>
-        <div className={
-          classNames(
-            classes.formOverlay,
-            openForm && (isWidthDown('sm', width) || expanded) ? classes.showForm : classes.hideForm
-          )}
-        />
-        <section className={
-          classNames(
-            !openForm ? classes.hideForm : classes.showForm,
-            expanded ? classes.expanded : '',
-            classes.floatingForm,
-            classes.formTheme,
-            extraSize && classes.large
-          )}
-        >
-          <header>
-            { title }
-            <div className={classes.btnOpt}>
-              <Tooltip title={expanded ? 'Exit Full Screen' : 'Full Screen'}>
-                <IconButton className={classes.expandButton} onClick={() => this.toggleExpand()} aria-label="Expand">
-                  {expanded ? <MinimizeIcon /> : <ExpandIcon />}
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Close">
-                <IconButton className={classes.closeButton} onClick={() => closeForm(branch)} aria-label="Close">
-                  <CloseIcon />
-                </IconButton>
-              </Tooltip>
-            </div>
-          </header>
-          {children}
-        </section>
-      </div>
-    );
-  }
+  const {
+    classes,
+    openForm,
+    closeForm,
+    children,
+    branch,
+    title,
+    extraSize,
+    width
+  } = props;
+  return (
+    <div>
+      <div className={
+        classNames(
+          classes.formOverlay,
+          openForm && (isWidthDown('sm', width) || expanded) ? classes.showForm : classes.hideForm
+        )}
+      />
+      <section className={
+        classNames(
+          !openForm ? classes.hideForm : classes.showForm,
+          expanded ? classes.expanded : '',
+          classes.floatingForm,
+          classes.formTheme,
+          extraSize && classes.large
+        )}
+      >
+        <header>
+          {title}
+          <div className={classes.btnOpt}>
+            <Tooltip title={expanded ? 'Exit Full Screen' : `${textTranslate('fullScreen')}`}>
+              <IconButton className={classes.expandButton} onClick={() => toggleExpand()} aria-label="Expand">
+                {expanded ? <MinimizeIcon /> : <ExpandIcon />}
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Close">
+              <IconButton className={classes.closeButton} onClick={() => closeForm(branch)} aria-label="Close">
+                <CloseIcon />
+              </IconButton>
+            </Tooltip>
+          </div>
+        </header>
+        {children}
+      </section>
+    </div>
+  );
 }
+
 
 FloatingPanel.propTypes = {
   classes: PropTypes.object.isRequired,

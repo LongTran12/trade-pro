@@ -121,7 +121,8 @@ function SideReview(props) {
         {getCartItem(dataCart)}
         <ListItem className={classes.totalPrice}>
           <Typography variant="h6">
-            Total :&nbsp;
+            {textTranslate('total')}
+            :&nbsp;
             <span>
               <small>$</small>
               <strong className={Type.bold}>34.06</strong>

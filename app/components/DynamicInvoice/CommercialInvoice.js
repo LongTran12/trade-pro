@@ -9,6 +9,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import 'dan-styles/vendors/invoice/style.css';
+import { useTranslation } from 'react-i18next';
+
 import { getDate } from '../../redux/helpers/dateTimeHelper';
 
 const styles = {
@@ -27,7 +29,11 @@ const newDataTemplate = (id) => ({
   price: 0,
   qty: 0,
 });
-
+const TextTranslate = ({ text }) => {
+  const { t, i18n } = useTranslation();
+  return i18n.exists(text)
+    ? t(text) : text;
+}
 class CommercialInvoice extends React.Component {
   state = {
     header: 'INVOICE',
@@ -161,7 +167,7 @@ c/o Steve Widget
         </td>
         <td>
           <span className="price">
-            { data.qty * data.price }
+            {data.qty * data.price}
           </span>
         </td>
       </tr>
@@ -170,7 +176,9 @@ c/o Steve Widget
     return (
       <div className={classes.whitePaper}>
         <div id="page-wrap">
-          <textarea id="header" value={header} onChange={this.handleChange('header')} />
+          {/* <textarea id="header" value={header} onChange={this.handleChange('header')} /> */}
+          <div id="header"><TextTranslate text='invoice' /></div>
+          {/* <textarea id="header" value={header} onChange={this.handleChange('header')} /> */}
           <div id="identity">
             <textarea id="address" value={address} onChange={this.handleChange('address')} />
             <div id="logo">
@@ -186,15 +194,15 @@ c/o Steve Widget
             <table id="meta">
               <tbody>
                 <tr>
-                  <td className="meta-head">Invoice #</td>
+                  <td className="meta-head"><TextTranslate text='invoiceC' /> #</td>
                   <td><textarea onChange={this.handleChange('number')} value={number} /></td>
                 </tr>
                 <tr>
-                  <td className="meta-head">Date</td>
+                  <td className="meta-head"><TextTranslate text='date' /></td>
                   <td><textarea onChange={this.handleChange('date')} value={date} /></td>
                 </tr>
                 <tr>
-                  <td className="meta-head">Amount Due</td>
+                  <td className="meta-head"><TextTranslate text='subTotal' /></td>
                   <td>
                     <div className="due">
                       $
@@ -210,22 +218,22 @@ c/o Steve Widget
           <table id="items">
             <thead>
               <tr>
-                <th>Item</th>
-                <th>Description</th>
-                <th>Unit Cost</th>
-                <th>Quantity</th>
-                <th>Price</th>
+                <th><TextTranslate text='item' /></th>
+                <th><TextTranslate text='descriptionInvoice' /></th>
+                <th><TextTranslate text='unitCost' /></th>
+                <th><TextTranslate text='quantity' /></th>
+                <th><TextTranslate text='price' /></th>
               </tr>
             </thead>
             <tbody>
-              { getRow(dataTable) }
+              {getRow(dataTable)}
               <tr id="hiderow">
-                <td colSpan="5"><a id="addrow" onClick={() => this.handleAddRow()} href="javascript:;" title="Add a row">[+] Add a row</a></td>
+                <td colSpan="5"><a id="addrow" onClick={() => this.handleAddRow()} href="javascript:;" title="Add a row">[+] <TextTranslate text='addRow' /></a></td>
               </tr>
 
               <tr>
                 <td colSpan="2" className="blank">&nbsp;</td>
-                <td colSpan="2" className="total-line">Subtotal</td>
+                <td colSpan="2" className="total-line"><TextTranslate text='subTotal' /></td>
                 <td className="total-value">
                   <div id="subtotal">
                     $
@@ -237,7 +245,7 @@ c/o Steve Widget
 
               <tr>
                 <td colSpan="2" className="blank">&nbsp;</td>
-                <td colSpan="2" className="total-line">Total</td>
+                <td colSpan="2" className="total-line"><TextTranslate text='total' /></td>
                 <td className="total-value">
                   <div id="total">
                     $
@@ -249,13 +257,13 @@ c/o Steve Widget
 
               <tr>
                 <td colSpan="2" className="blank">&nbsp;</td>
-                <td colSpan="2" className="total-line">Amount Paid</td>
+                <td colSpan="2" className="total-line"><TextTranslate text='amountPaid' /></td>
                 <td className="total-value"><textarea onChange={this.handleChange('paid')} value={paid} /></td>
               </tr>
 
               <tr>
                 <td colSpan="2" className="blank-last">&nbsp;</td>
-                <td colSpan="2" className="total-line balance">Balance Due</td>
+                <td colSpan="2" className="total-line balance"><TextTranslate text='balanceDue' /></td>
                 <td className="total-value balance">
                   <div className="due">
                     $
@@ -267,8 +275,9 @@ c/o Steve Widget
           </table>
 
           <div id="terms">
-            <h5>Terms</h5>
-            <textarea onChange={this.handleChange('note')} value={note} />
+            <h5><TextTranslate text='terms' /></h5>
+            {/* <textarea onChange={this.handleChange('note')} value={note} /> */}
+            <div><TextTranslate text='termNet' /></div>
           </div>
         </div>
       </div>
