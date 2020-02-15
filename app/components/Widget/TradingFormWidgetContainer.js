@@ -1,32 +1,32 @@
 /* eslint-disable */
-import React, { PureComponent, useState, useContext } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
-import SwipeableViews from 'react-swipeable-views';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Grid from '@material-ui/core/Grid';
-import Tab from '@material-ui/core/Tab';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Input from '@material-ui/core/Input';
-import TrendingUp from '@material-ui/icons/TrendingUp';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import styles from './widget-jss';
-import PapperBlock from '../PapperBlock/PapperBlock';
-import { AppContext } from '../../../provider/appContext';
+import React, { PureComponent, useState, useContext } from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import Divider from "@material-ui/core/Divider";
+import SwipeableViews from "react-swipeable-views";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Grid from "@material-ui/core/Grid";
+import Tab from "@material-ui/core/Tab";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Input from "@material-ui/core/Input";
+import TrendingUp from "@material-ui/icons/TrendingUp";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import styles from "./widget-jss";
+import PapperBlock from "../PapperBlock/PapperBlock";
+import { AppContext } from "../../../provider/appContext";
 import { Web3Context } from "../../../provider/web3";
 import { usdtPublic, usdiPublic } from "../../../provider/web3Public";
 import { config } from "../../../config";
-import TradingFormWidgetSell from './TradingFormWidgetSell';
-import TradingFormWidgetStacking from './TradingFormWidgetStacking';
-import { useTranslation } from 'react-i18next';
+import TradingFormWidgetSell from "./TradingFormWidgetSell";
+import TradingFormWidgetStacking from "./TradingFormWidgetStacking";
+import { useTranslation } from "react-i18next";
 
 function TabContainer({ children, dir }) {
   return (
@@ -38,17 +38,16 @@ function TabContainer({ children, dir }) {
 
 TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
-  dir: PropTypes.string.isRequired,
+  dir: PropTypes.string.isRequired
 };
 
 const TradingFormWidgetContainer = ({ classes }) => {
-
-  const [value, setValue] = useState(0)
+  const [value, setValue] = useState(0);
 
   const handleChangeIndex = (event, newValue) => {
     setValue(newValue);
   };
-  const { otePrice } = useContext(AppContext);
+  const { otePrice, ref } = useContext(AppContext);
   const { contract, address, usdt, usdi } = useContext(Web3Context);
   const dataCoin = [
     {
@@ -75,7 +74,7 @@ const TradingFormWidgetContainer = ({ classes }) => {
     }
     console.log("check", allow, otePrice * amount);
     if (allow >= otePrice * amount) {
-      contract.buyOTE(amount * 10 ** 18, coin, { value: 0 }, err => {
+      contract.buyOTE(amount * 10 ** 18, coin, ref, { value: 0 }, err => {
         if (err) {
           console.log(err.message);
           message.error(err.message);
@@ -124,7 +123,7 @@ const TradingFormWidgetContainer = ({ classes }) => {
     console.log("check", allow, otePrice * amount);
     if (allow >= otePrice * amount) {
       hide && hide();
-      contract.buyOTE(amount * 10 ** 18, coin, { value: 0 }, err => {
+      contract.buyOTE(amount * 10 ** 18, coin, ref, { value: 0 }, err => {
         if (err) {
           console.log(err.message);
           message.error(err.message);
@@ -140,12 +139,17 @@ const TradingFormWidgetContainer = ({ classes }) => {
     }
   };
   const { t, i18n } = useTranslation();
-  const textTranslate = (text) => {
-    return i18n.exists(text)
-      ? t(text) : text;
-  }
+  const textTranslate = text => {
+    return i18n.exists(text) ? t(text) : text;
+  };
   return (
-    <PapperBlock whiteBg noMargin title={textTranslate('quickTrade')} icon="ios-swap" desc="">
+    <PapperBlock
+      whiteBg
+      noMargin
+      title={textTranslate("quickTrade")}
+      icon="ios-swap"
+      desc=""
+    >
       <AppBar position="static" color="default">
         <Tabs
           value={value}
@@ -154,56 +158,61 @@ const TradingFormWidgetContainer = ({ classes }) => {
           textColor="primary"
           variant="fullWidth"
         >
-          <Tab label={textTranslate('buy')} />
-          <Tab label={textTranslate('sell')} />
-          <Tab label={textTranslate('stakingTrade')} />
+          <Tab label={textTranslate("buy")} />
+          <Tab label={textTranslate("sell")} />
+          <Tab label={textTranslate("stakingTrade")} />
         </Tabs>
       </AppBar>
-      <SwipeableViews
-        index={value}
-        onChangeIndex={handleChangeIndex}
-      >
-
+      <SwipeableViews index={value} onChangeIndex={handleChangeIndex}>
         <TabContainer value={value} index={0} dir="ltr">
           <div className={classes.tabContainer}>
             <Grid container spacing={2}>
               <Grid item xs={6}>
                 <FormControl className={classes.formControlTrade}>
-                  <InputLabel htmlFor="coin-simple">{textTranslate('chooseCurrency')}</InputLabel>
+                  <InputLabel htmlFor="coin-simple">
+                    {textTranslate("chooseCurrency")}
+                  </InputLabel>
                   <Select
                     value={coin}
                     onChange={handleChange}
                     inputProps={{
-                      name: 'coin',
-                      id: 'coin-simple',
+                      name: "coin",
+                      id: "coin-simple"
                     }}
                   >
-                    {dataCoin.map((index, i) =>
-                      <MenuItem key={i} value={index.value}>{index.name}</MenuItem>
-                    )}
-
+                    {dataCoin.map((index, i) => (
+                      <MenuItem key={i} value={index.value}>
+                        {index.name}
+                      </MenuItem>
+                    ))}
                   </Select>
                 </FormControl>
               </Grid>
               <Grid item xs={6}>
                 <FormControl fullWidth className={classes.formControlTrade}>
-                  <InputLabel htmlFor="adornment-amount4">{textTranslate('selectAmount')}</InputLabel>
+                  <InputLabel htmlFor="adornment-amount4">
+                    {textTranslate("selectAmount")}
+                  </InputLabel>
                   <Input
                     id="adornment-amount4"
                     value={amount}
                     onChange={e => setAmount(e.target.value)}
-                    startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                    startAdornment={
+                      <InputAdornment position="start">$</InputAdornment>
+                    }
                     onBlur={e => {
                       if (e.target.value < 100) {
                         setAmount(100);
-                        alert(textTranslate('validateInput'));
+                        alert(textTranslate("validateInput"));
                       }
                     }}
                   />
-                  <FormHelperText>{textTranslate('totalPurchase')} ${(otePrice / 10 ** 6) * amount}</FormHelperText>
+                  <FormHelperText>
+                    {textTranslate("totalPurchase")} $
+                    {(otePrice / 10 ** 6) * amount}
+                  </FormHelperText>
                 </FormControl>
               </Grid>
-
             </Grid>
             <Divider className={classes.divider} />
             <div className={classes.btnArea}>
@@ -213,8 +222,11 @@ const TradingFormWidgetContainer = ({ classes }) => {
                 onClick={() => {
                   buyOTE();
                 }}
-                color="secondary" variant="contained" className={classes.button}>
-                {textTranslate('purchase')}
+                color="secondary"
+                variant="contained"
+                className={classes.button}
+              >
+                {textTranslate("purchase")}
               </Button>
             </div>
           </div>
@@ -228,11 +240,10 @@ const TradingFormWidgetContainer = ({ classes }) => {
       </SwipeableViews>
     </PapperBlock>
   );
-}
-
+};
 
 TradingFormWidgetContainer.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(TradingFormWidgetContainer);

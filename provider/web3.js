@@ -1,8 +1,8 @@
 /* eslint-disable */
-import React, { useState, useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
-import Web3 from 'web3';
-import { config } from '../config';
+import React, { useState, useEffect, useContext } from "react";
+import PropTypes from "prop-types";
+import Web3 from "web3";
+import { config } from "../config";
 const Web3Context = React.createContext();
 const WrapWeb3 = ({ children }) => {
   const [web3State, setState] = useState({
@@ -24,7 +24,7 @@ const WrapWeb3 = ({ children }) => {
         try {
           window.ethereum
             .enable()
-            .then(function (accounts) {
+            .then(function(accounts) {
               // User has allowed account access to DApp...
               let w3contract = window.web3.eth
                 .contract(config.oteexAbi)

@@ -1,36 +1,36 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import CountUp from 'react-countup';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
+import CountUp from "react-countup";
+import { withStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import Paper from "@material-ui/core/Paper";
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    justifyContent: "space-between",
+    alignItems: "flex-start",
     padding: 10,
     height: 190,
     marginBottom: 6,
-    display: 'flex',
-    [theme.breakpoints.up('sm')]: {
+    display: "flex",
+    [theme.breakpoints.up("sm")]: {
       height: 126,
       marginBottom: -1,
-      alignItems: 'flex-end',
+      alignItems: "flex-end"
     },
-    [theme.breakpoints.down('xs')]: {
-      flexDirection: 'column',
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "column"
     },
-    '& > *': {
-      padding: '0 5px'
+    "& > *": {
+      padding: "0 5px"
     }
   },
   title: {
     color: theme.palette.common.white,
     fontSize: 14,
-    [theme.breakpoints.up('sm')]: {
-      fontSize: 16,
+    [theme.breakpoints.up("sm")]: {
+      fontSize: 16
     },
     fontWeight: 400
   },
@@ -40,7 +40,7 @@ const styles = theme => ({
     fontWeight: 500
   },
   customContent: {
-    textAlign: 'right'
+    textAlign: "right"
   }
 });
 
@@ -55,21 +55,30 @@ class CounterWidget extends PureComponent {
       title,
       children,
       unitBefore,
-      unitAfter
+      unitAfter,
+      decimals,
+      decimal
     } = this.props;
     return (
       <Paper className={classes.root} style={{ backgroundColor: color }}>
         <div>
           <Typography className={classes.counter}>
-            { unitBefore }
-            <CountUp start={start} end={end} duration={duration} useEasing />
-            { unitAfter }
+            {unitBefore}
+            <CountUp
+              start={start}
+              end={end}
+              duration={duration}
+              useEasing
+              decimals={decimals}
+              decimal={decimal}
+            />
+            {unitAfter}
           </Typography>
-          <Typography className={classes.title} variant="subtitle1">{title}</Typography>
+          <Typography className={classes.title} variant="subtitle1">
+            {title}
+          </Typography>
         </div>
-        <div className={classes.customContent}>
-          {children}
-        </div>
+        <div className={classes.customContent}>{children}</div>
       </Paper>
     );
   }
@@ -84,12 +93,12 @@ CounterWidget.propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   unitBefore: PropTypes.string,
-  unitAfter: PropTypes.string,
+  unitAfter: PropTypes.string
 };
 
 CounterWidget.defaultProps = {
-  unitBefore: '',
-  unitAfter: '',
+  unitBefore: "",
+  unitAfter: ""
 };
 
 export default withStyles(styles)(CounterWidget);

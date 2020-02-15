@@ -1,16 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import imgApi from 'dan-api/images/photos';
-import avatarApi from 'dan-api/images/avatars';
-import { ProfileCard, PostCard } from 'dan-components';
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import imgApi from "dan-api/images/photos";
+import avatarApi from "dan-api/images/avatars";
+import { ProfileCard, PostCard } from "dan-components";
 
 const styles = theme => ({
   divider: {
-    margin: `${theme.spacing(3)}px 0`,
-  },
+    margin: `${theme.spacing(3)}px 0`
+  }
 });
 
 class StandardCard extends React.Component {
@@ -26,11 +26,13 @@ class StandardCard extends React.Component {
         spacing={2}
       >
         <Grid item md={4}>
-          <Typography variant="button" className={classes.divider}>Profile Card</Typography>
+          <Typography variant="button" className={classes.divider}>
+            Profile Card
+          </Typography>
           <ProfileCard
             cover={imgApi[42]}
             avatar={avatarApi[6]}
-            name="John Doe"
+            name="OTE User"
             title="UX designer"
             connection={10}
             btnText="Connect"
@@ -38,7 +40,9 @@ class StandardCard extends React.Component {
           />
         </Grid>
         <Grid item md={4}>
-          <Typography variant="button" className={classes.divider}>Post Card</Typography>
+          <Typography variant="button" className={classes.divider}>
+            Post Card
+          </Typography>
           <PostCard
             liked={1}
             shared={20}
@@ -51,7 +55,9 @@ class StandardCard extends React.Component {
           />
         </Grid>
         <Grid item md={4}>
-          <Typography variant="button" className={classes.divider}>Post Card (Without Image)</Typography>
+          <Typography variant="button" className={classes.divider}>
+            Post Card (Without Image)
+          </Typography>
           <PostCard
             liked={90}
             shared={10}
@@ -68,7 +74,7 @@ class StandardCard extends React.Component {
 }
 
 StandardCard.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(StandardCard);

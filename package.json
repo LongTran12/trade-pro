@@ -56,7 +56,6 @@
       "git add --force"
     ]
   },
-  "pre-commit": "lint:staged",
   "resolutions": {
     "babel-core": "7.0.0-bridge.0"
   },
@@ -114,6 +113,7 @@
     "chalk": "^2.4.2",
     "chart.js": "^2.7.3",
     "classnames": "^2.2.6",
+    "coin-address-validator": "^1.0.4-1",
     "compression": "1.7.4",
     "connected-react-router": "6.6.1",
     "cross-env": "5.2.0",

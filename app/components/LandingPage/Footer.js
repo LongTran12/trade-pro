@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Ionicon from 'react-ionicons';
-import IconButton from '@material-ui/core/IconButton';
-import logo from 'dan-images/logo.svg';
-import brand from 'dan-api/dummy/brand';
-import link from 'dan-api/ui/link';
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import Ionicon from "react-ionicons";
+import IconButton from "@material-ui/core/IconButton";
+import logo from "dan-images/logo.svg";
+import brand from "dan-api/dummy/brand";
+import link from "dan-api/ui/link";
 
-import styles from './landingStyle-jss';
+import styles from "./landingStyle-jss";
 
 let counter = 0;
 function createData(name, url) {
@@ -16,7 +16,7 @@ function createData(name, url) {
   return {
     id: counter,
     name,
-    url,
+    url
   };
 }
 
@@ -32,7 +32,7 @@ function Decoration(props) {
 }
 
 Decoration.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 const DecorationStyled = withStyles(styles)(Decoration);
@@ -40,14 +40,14 @@ const DecorationStyled = withStyles(styles)(Decoration);
 class Footer extends React.Component {
   state = {
     menuList: [
-      createData('feature', '#feature'),
-      createData('showcase', '#showcase'),
-      createData('terstimonials', '#testi'),
-      createData('technology', '#tech'),
-      createData('pricing', '#pricing'),
-      createData('contact', '#contact'),
+      createData("feature", "#feature"),
+      createData("showcase", "#showcase"),
+      createData("terstimonials", "#testi"),
+      createData("technology", "#tech"),
+      createData("pricing", "#pricing"),
+      createData("contact", "#contact")
     ]
-  }
+  };
 
   render() {
     const { menuList } = this.state;
@@ -63,22 +63,45 @@ class Footer extends React.Component {
             </div>
             <nav>
               <ul>
-                { menuList.map(item => (
+                {menuList.map(item => (
                   <li key={item.id.toString()}>
-                    <Button size="small" href={item.url}>{item.name}</Button>
+                    <Button size="small" href={item.url}>
+                      {item.name}
+                    </Button>
                   </li>
-                )) }
+                ))}
               </ul>
             </nav>
           </div>
         </div>
         <div className={classes.copyright}>
           <div className={classes.container}>
-            <p>&copy; 2019 Dandelion Designs. All Right Reserved </p>
+            <p>&copy; OTE Exchange. All Right Reserved </p>
             <span>
-              <IconButton color="primary" className={classes.button} href={link.twitter} target="_blank"><Ionicon icon="logo-twitter" /></IconButton>
-              <IconButton color="primary" className={classes.button} href={link.pinterest} target="_blank"><Ionicon icon="logo-pinterest" /></IconButton>
-              <IconButton color="primary" className={classes.button} href={link.github} target="_blank"><Ionicon icon="logo-github" /></IconButton>
+              <IconButton
+                color="primary"
+                className={classes.button}
+                href={link.twitter}
+                target="_blank"
+              >
+                <Ionicon icon="logo-twitter" />
+              </IconButton>
+              <IconButton
+                color="primary"
+                className={classes.button}
+                href={link.pinterest}
+                target="_blank"
+              >
+                <Ionicon icon="logo-pinterest" />
+              </IconButton>
+              <IconButton
+                color="primary"
+                className={classes.button}
+                href={link.github}
+                target="_blank"
+              >
+                <Ionicon icon="logo-github" />
+              </IconButton>
             </span>
           </div>
         </div>
@@ -88,7 +111,7 @@ class Footer extends React.Component {
 }
 
 Footer.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(Footer);
