@@ -17,16 +17,14 @@ const NetworkWidgetContainer = () => {
         config.memberAddress
       );
       let memberInfo = await member.methods.infoMember(address).call();
-      let linaData = new web3Public.eth.Contract(
-        config.linaDataAbi,
-        config.linaData
-      );
+
       let refs = [];
-      console.log("membetr", memberInfo);
       for (let i = 0; i < memberInfo.refs.length; i++) {
-        let agencyInfo = await linaData.methods
-          .getUserInfo(memberInfo.refs[i])
-          .call();
+        //TODO
+        let agencyInfo = {
+          totalInvest: 0,
+          totalSales: 0
+        };
         refs.push({
           name: memberInfo.refs[i],
           title: (
@@ -41,8 +39,7 @@ const NetworkWidgetContainer = () => {
                 </span>
                 <span className="hidden-mobile">|</span>
                 <span className="ref_commission">
-                  Total Token: <span>{agencyInfo.totalToken / 10 ** 18}</span>{" "}
-                  LINA| Sale: {agencyInfo.totalSales / 10 ** 18}
+                  Total Sales: <span>{agencyInfo.totalSales / 10 ** 18}</span>
                   <span className="hidden-mobile">]</span>
                 </span>
               </div>
@@ -70,14 +67,12 @@ const NetworkWidgetContainer = () => {
       .infoMember(treeNode.props.name)
       .call();
     treeNode.props.dataRef.children = [];
-    let linaData = new web3Public.eth.Contract(
-      config.linaDataAbi,
-      config.linaData
-    );
     for (let i = 0; i < memberInfo.refs.length; i++) {
-      let agencyInfo = await linaData.methods
-        .getUserInfo(memberInfo.refs[i])
-        .call();
+      //TODO
+      let agencyInfo = {
+        totalInvest: 0,
+        totalSales: 0
+      };
       treeNode.props.dataRef.children.push({
         name: memberInfo.refs[i],
         title: (
@@ -94,8 +89,7 @@ const NetworkWidgetContainer = () => {
               </span>
               <span className="hidden-mobile">|</span>
               <span className="ref_commission">
-                Total Token: <span>{agencyInfo.totalToken / 10 ** 18}</span>{" "}
-                LINA| Sale: {agencyInfo.totalSales / 10 ** 18}
+                Total Sales: <span>{agencyInfo.totalSales / 10 ** 18}</span>
                 <span className="hidden-mobile">]</span>
               </span>
             </div>
