@@ -1,23 +1,24 @@
 /* eslint-disable */
-import React, { useState, useContext, useEffect } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
-import Grid from '@material-ui/core/Grid';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Input from '@material-ui/core/Input';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import styles from './widget-jss';
-import { AppContext } from '../../../provider/appContext';
+import React, { useState, useContext, useEffect } from "react";
+import { withStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import Divider from "@material-ui/core/Divider";
+import Grid from "@material-ui/core/Grid";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Input from "@material-ui/core/Input";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import styles from "./widget-jss";
+import { AppContext } from "../../../provider/appContext";
 import { Web3Context } from "../../../provider/web3";
 import { usdtPublic, usdiPublic } from "../../../provider/web3Public";
 import { config } from "../../../config";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
+import { message } from "antd";
 
 const TradingFormWidgetSell = ({ classes }) => {
   const { otePrice } = useContext(AppContext);
@@ -59,8 +60,8 @@ const TradingFormWidgetSell = ({ classes }) => {
 
   const [price, setPrice] = useState(`${dataPrice[0].value}`);
   useEffect(() => {
-    setPrice(`${dataPrice[1].value}`)
-  }, [])
+    setPrice(`${dataPrice[1].value}`);
+  }, []);
   const handleChange = event => {
     setPrice(event.target.value);
   };
@@ -113,35 +114,42 @@ const TradingFormWidgetSell = ({ classes }) => {
     }
   };
   const { t, i18n } = useTranslation();
-  const textTranslate = (text) => {
-    return i18n.exists(text)
-      ? t(text) : text;
-  }
+  const textTranslate = text => {
+    return i18n.exists(text) ? t(text) : text;
+  };
   return (
     <div className={classes.tabContainer}>
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <FormControl className={classes.formControlTrade}>
-            <InputLabel htmlFor="price-simple">   {textTranslate('choosePrice')}</InputLabel>
+            <InputLabel htmlFor="price-simple">
+              {" "}
+              {textTranslate("choosePrice")}
+            </InputLabel>
             <Select
               value={price}
               onChange={handleChange}
-              startAdornment={<InputAdornment position="start">$</InputAdornment>}
+              startAdornment={
+                <InputAdornment position="start">$</InputAdornment>
+              }
               inputProps={{
-                name: 'price',
-                id: 'price-simple',
+                name: "price",
+                id: "price-simple"
               }}
             >
-              {dataPrice.map((index, i) =>
-                <MenuItem key={i} value={index.value}>{index.name}</MenuItem>
-              )}
-
+              {dataPrice.map((index, i) => (
+                <MenuItem key={i} value={index.value}>
+                  {index.name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </Grid>
         <Grid item xs={6}>
           <FormControl fullWidth className={classes.formControlTrade}>
-            <InputLabel htmlFor="adornment-amountn">{textTranslate('selectAmount')}</InputLabel>
+            <InputLabel htmlFor="adornment-amountn">
+              {textTranslate("selectAmount")}
+            </InputLabel>
             <Input
               id="adornment-amountn"
               value={amount}
@@ -149,28 +157,33 @@ const TradingFormWidgetSell = ({ classes }) => {
               onBlur={e => {
                 if (e.target.value < 100) {
                   setAmount(100);
-                  alert(textTranslate('validateInput'));
+                  alert(textTranslate("validateInput"));
                 }
               }}
             />
-            <FormHelperText>{textTranslate('totalPurchase')} ${(otePrice / 10 ** 6) * amount}</FormHelperText>
+            <FormHelperText>
+              {textTranslate("totalPurchase")} ${(otePrice / 10 ** 6) * amount}
+            </FormHelperText>
           </FormControl>
         </Grid>
-
       </Grid>
       <Divider className={classes.divider} />
       <div className={classes.btnArea}>
         {/* <Typography variant="subtitle1">Estimation: 0.02 BTC</Typography> */}
         <div />
-        <Button onClick={() => { makeOrder(); }} color="secondary" variant="contained" className={classes.button}>
-          {textTranslate('makeSellOrder')}
+        <Button
+          onClick={() => {
+            makeOrder();
+          }}
+          color="secondary"
+          variant="contained"
+          className={classes.button}
+        >
+          {textTranslate("makeSellOrder")}
         </Button>
       </div>
     </div>
-
-
   );
-}
-
+};
 
 export default withStyles(styles)(TradingFormWidgetSell);

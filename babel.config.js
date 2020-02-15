@@ -1,34 +1,34 @@
 module.exports = {
   presets: [
     [
-      '@babel/preset-env',
+      "@babel/preset-env",
       {
-        modules: false,
-      },
+        modules: false
+      }
     ],
-    '@babel/preset-react',
+    "@babel/preset-react"
   ],
   plugins: [
-    'styled-components',
-    '@babel/plugin-proposal-class-properties',
-    '@babel/plugin-syntax-dynamic-import',
-    '@babel/plugin-proposal-export-default-from'
+    "styled-components",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-proposal-export-default-from"
   ],
   env: {
     production: {
-      only: ['app'],
+      only: ["app"],
       plugins: [
-        'lodash',
-        'transform-react-remove-prop-types',
-        '@babel/plugin-transform-react-inline-elements',
-        '@babel/plugin-transform-react-constant-elements',
-      ],
+        "lodash",
+        "transform-react-remove-prop-types",
+        "@babel/plugin-transform-react-inline-elements",
+        "@babel/plugin-transform-react-constant-elements"
+      ]
     },
     test: {
       plugins: [
-        '@babel/plugin-transform-modules-commonjs',
-        'dynamic-import-node',
-      ],
-    },
-  },
+        "@babel/plugin-transform-modules-commonjs",
+        "dynamic-import-node"
+      ]
+    }
+  }
 };

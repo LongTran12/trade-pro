@@ -27,6 +27,7 @@ import { config } from "../../../config";
 import TradingFormWidgetSell from "./TradingFormWidgetSell";
 import TradingFormWidgetStacking from "./TradingFormWidgetStacking";
 import { useTranslation } from "react-i18next";
+import { message } from "antd";
 
 function TabContainer({ children, dir }) {
   return (
@@ -72,7 +73,7 @@ const TradingFormWidgetContainer = ({ classes }) => {
     } else {
       allow = await usdtPublic.methods.allowance(address, config.oteex).call();
     }
-    console.log("check", allow, otePrice * amount);
+    console.log("ref", ref);
     if (allow >= otePrice * amount) {
       contract.buyOTE(amount * 10 ** 18, coin, ref, { value: 0 }, err => {
         if (err) {
@@ -123,6 +124,7 @@ const TradingFormWidgetContainer = ({ classes }) => {
     console.log("check", allow, otePrice * amount);
     if (allow >= otePrice * amount) {
       hide && hide();
+      console.log("ref", ref);
       contract.buyOTE(amount * 10 ** 18, coin, ref, { value: 0 }, err => {
         if (err) {
           console.log(err.message);
