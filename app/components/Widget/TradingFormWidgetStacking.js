@@ -13,6 +13,7 @@ import { Web3Context } from "../../../provider/web3";
 import { config } from "../../../config";
 import { useTranslation } from "react-i18next";
 import { message } from "antd";
+import { otePublic } from "../../../provider/web3Public";
 
 const TradingFormWidgetSell = ({ classes }) => {
   const { contract, address, ote } = useContext(Web3Context);
@@ -135,7 +136,7 @@ const TradingFormWidgetSell = ({ classes }) => {
         <div />
         <Button
           onClick={() => {
-            makeOrder();
+            stackingOTE();
           }}
           color="secondary"
           variant="contained"

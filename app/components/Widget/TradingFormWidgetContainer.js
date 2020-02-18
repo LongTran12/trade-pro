@@ -67,6 +67,7 @@ const TradingFormWidgetContainer = ({ classes }) => {
 
   const [amount, setAmount] = useState(100);
   const buyOTE = async () => {
+    console.log(ref);
     let allow = 0;
     if (Number(coin) === 1) {
       allow = await usdiPublic.methods.allowance(address, config.oteex).call();

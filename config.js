@@ -1,12 +1,11 @@
 /* eslint-disable */
 const config = {
-  web3Provider:
-    "wss://ropsten.infura.io/ws/v3/2526c65276fd4134a550212871a550fd",
-  oteex: "0x4811b2EE52B5257Fd6dDa5E9c4A04381BcF84FdF",
-  ote: "0x4BbE3390F5E0310736ee72aDE8De799161d878e8",
-  usdt: "0x94afE8262559b62aF15603859Ccf044894B85FC3",
-  usdi: "0xfBC3F05D5042e63C0F732DD48B25161ac10D8602",
-  memberAddress: "0x580e3605124e4fBD722EA070e14f6DfABEd18F51",
+  web3Provider: "wss://kovan.infura.io/ws/v3/2526c65276fd4134a550212871a550fd",
+  oteex: "0xbFb242cEDa4252350B89f8FE14106113a8b9e858",
+  ote: "0x53F50374136860c0B3F2AF5Fc7698486CeB69bBB",
+  usdt: "0xfad6E014456f6D34E2e6625c7F67e9a67CBe6523",
+  usdi: "0xBA1c44F7efEee9A8C21d26f4aaF2dfd608741422",
+  memberAddress: "0xD8E9447976ab85b8e811A541e618A648F293cb6b",
   linaData: "0xeA48B06a1e60CabaF1e601141c138fd79197fEB1",
   linaDataAbi: [
     {
@@ -1323,83 +1322,6 @@ const config = {
       type: "event"
     },
     {
-      anonymous: false,
-      inputs: [
-        {
-          indexed: true,
-          internalType: "address",
-          name: "owner",
-          type: "address"
-        },
-        {
-          indexed: false,
-          internalType: "uint256",
-          name: "amount",
-          type: "uint256"
-        },
-        {
-          indexed: false,
-          internalType: "uint256",
-          name: "price",
-          type: "uint256"
-        }
-      ],
-      name: "OrderMake",
-      type: "event"
-    },
-    {
-      anonymous: false,
-      inputs: [
-        {
-          indexed: true,
-          internalType: "address",
-          name: "seller",
-          type: "address"
-        },
-        {
-          indexed: false,
-          internalType: "uint256",
-          name: "amount",
-          type: "uint256"
-        },
-        {
-          indexed: false,
-          internalType: "uint256",
-          name: "price",
-          type: "uint256"
-        },
-        {
-          indexed: false,
-          internalType: "uint256",
-          name: "currency",
-          type: "uint256"
-        }
-      ],
-      name: "Sell",
-      type: "event"
-    },
-    {
-      constant: true,
-      inputs: [
-        {
-          internalType: "uint256",
-          name: "",
-          type: "uint256"
-        }
-      ],
-      name: "activeStack",
-      outputs: [
-        {
-          internalType: "uint256",
-          name: "",
-          type: "uint256"
-        }
-      ],
-      payable: false,
-      stateMutability: "view",
-      type: "function"
-    },
-    {
       constant: false,
       inputs: [
         {
@@ -1499,6 +1421,159 @@ const config = {
       outputs: [],
       payable: false,
       stateMutability: "nonpayable",
+      type: "function"
+    },
+    {
+      constant: false,
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "amount",
+          type: "uint256"
+        },
+        {
+          internalType: "uint256",
+          name: "step",
+          type: "uint256"
+        }
+      ],
+      name: "makeOrder",
+      outputs: [
+        {
+          internalType: "bool",
+          name: "",
+          type: "bool"
+        }
+      ],
+      payable: false,
+      stateMutability: "nonpayable",
+      type: "function"
+    },
+    {
+      constant: false,
+      inputs: [],
+      name: "nextMonth",
+      outputs: [],
+      payable: false,
+      stateMutability: "nonpayable",
+      type: "function"
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
+          internalType: "address",
+          name: "owner",
+          type: "address"
+        },
+        {
+          indexed: false,
+          internalType: "uint256",
+          name: "amount",
+          type: "uint256"
+        },
+        {
+          indexed: false,
+          internalType: "uint256",
+          name: "price",
+          type: "uint256"
+        }
+      ],
+      name: "OrderMake",
+      type: "event"
+    },
+    {
+      constant: false,
+      inputs: [],
+      name: "payStacking",
+      outputs: [
+        {
+          internalType: "bool",
+          name: "",
+          type: "bool"
+        }
+      ],
+      payable: false,
+      stateMutability: "nonpayable",
+      type: "function"
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
+          internalType: "address",
+          name: "seller",
+          type: "address"
+        },
+        {
+          indexed: false,
+          internalType: "uint256",
+          name: "amount",
+          type: "uint256"
+        },
+        {
+          indexed: false,
+          internalType: "uint256",
+          name: "price",
+          type: "uint256"
+        },
+        {
+          indexed: false,
+          internalType: "uint256",
+          name: "currency",
+          type: "uint256"
+        }
+      ],
+      name: "Sell",
+      type: "event"
+    },
+    {
+      constant: false,
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "amount",
+          type: "uint256"
+        },
+        {
+          internalType: "uint256",
+          name: "term",
+          type: "uint256"
+        }
+      ],
+      name: "stackingOTE",
+      outputs: [
+        {
+          internalType: "bool",
+          name: "",
+          type: "bool"
+        }
+      ],
+      payable: false,
+      stateMutability: "nonpayable",
+      type: "function"
+    },
+    {
+      constant: true,
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256"
+        }
+      ],
+      name: "activeStack",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256"
+        }
+      ],
+      payable: false,
+      stateMutability: "view",
       type: "function"
     },
     {
@@ -1794,32 +1869,6 @@ const config = {
       type: "function"
     },
     {
-      constant: false,
-      inputs: [
-        {
-          internalType: "uint256",
-          name: "amount",
-          type: "uint256"
-        },
-        {
-          internalType: "uint256",
-          name: "step",
-          type: "uint256"
-        }
-      ],
-      name: "makeOrder",
-      outputs: [
-        {
-          internalType: "bool",
-          name: "",
-          type: "bool"
-        }
-      ],
-      payable: false,
-      stateMutability: "nonpayable",
-      type: "function"
-    },
-    {
       constant: true,
       inputs: [
         {
@@ -1884,56 +1933,6 @@ const config = {
       ],
       payable: false,
       stateMutability: "view",
-      type: "function"
-    },
-    {
-      constant: false,
-      inputs: [],
-      name: "nextMonth",
-      outputs: [],
-      payable: false,
-      stateMutability: "nonpayable",
-      type: "function"
-    },
-    {
-      constant: false,
-      inputs: [],
-      name: "payStacking",
-      outputs: [
-        {
-          internalType: "bool",
-          name: "",
-          type: "bool"
-        }
-      ],
-      payable: false,
-      stateMutability: "nonpayable",
-      type: "function"
-    },
-    {
-      constant: false,
-      inputs: [
-        {
-          internalType: "uint256",
-          name: "amount",
-          type: "uint256"
-        },
-        {
-          internalType: "uint256",
-          name: "term",
-          type: "uint256"
-        }
-      ],
-      name: "stackingOTE",
-      outputs: [
-        {
-          internalType: "bool",
-          name: "",
-          type: "bool"
-        }
-      ],
-      payable: false,
-      stateMutability: "nonpayable",
       type: "function"
     }
   ]
