@@ -15,10 +15,10 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import styles from "./widget-jss";
 import { AppContext } from "../../../provider/appContext";
 import { Web3Context } from "../../../provider/web3";
-import { usdtPublic, usdiPublic } from "../../../provider/web3Public";
 import { config } from "../../../config";
 import { useTranslation } from "react-i18next";
 import { message } from "antd";
+import { otePublic } from "../../../provider/web3Public";
 
 const TradingFormWidgetSell = ({ classes }) => {
   const { otePrice } = useContext(AppContext);
@@ -67,6 +67,7 @@ const TradingFormWidgetSell = ({ classes }) => {
   };
   const [amount, setAmount] = useState(100);
   const makeOrder = async () => {
+    console.log(amount);
     let allow = await otePublic.methods.allowance(address, config.oteex).call();
     if (allow >= amount * 10 ** 18) {
       contract.makeOrder(amount * 10 ** 18, price, { value: 0 }, err => {
@@ -147,11 +148,11 @@ const TradingFormWidgetSell = ({ classes }) => {
         </Grid>
         <Grid item xs={6}>
           <FormControl fullWidth className={classes.formControlTrade}>
-            <InputLabel htmlFor="adornment-amount5">
+            <InputLabel htmlFor="adornment-amountn">
               {textTranslate("selectAmount")}
             </InputLabel>
             <Input
-              id="adornment-amount5"
+              id="adornment-amountn"
               value={amount}
               onChange={e => setAmount(e.target.value)}
               onBlur={e => {

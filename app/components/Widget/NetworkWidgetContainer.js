@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useContext, useState, useEffect, memo } from "react";
-import { web3Public } from "../../../provider/web3Public";
+import { web3Public, contractPublic } from "../../../provider/web3Public";
 import { config } from "../../../config";
 import { Web3Context } from "../../../provider/web3";
 import NetWorkWidgetTree from "./NetworkWidgetTree";
@@ -17,13 +17,20 @@ const NetworkWidgetContainer = () => {
         config.memberAddress
       );
       let memberInfo = await member.methods.infoMember(address).call();
-
+      let currentSales = await contractPublic.methods
+        .getCurrentSales(memberInfo.refs)
+        .call();
       let refs = [];
       for (let i = 0; i < memberInfo.refs.length; i++) {
         //TODO
+        let totalInvest = 0;
+        // let totalInvest = await contractPublic.methods
+        //   .getMemberActiveStacking(memberInfo.refs[i])
+        //   .call();
+        let totalSales = currentSales[i];
         let agencyInfo = {
-          totalInvest: 0,
-          totalSales: 0
+          totalInvest,
+          totalSales
         };
         refs.push({
           name: memberInfo.refs[i],
@@ -34,9 +41,9 @@ const NetworkWidgetContainer = () => {
                 <span className="address__ref">{memberInfo.refs[i]}</span>
               </div>
               <div className="ref_stat">
-                <span className="ref_user hidden-mobile">
+                {/* <span className="ref_user hidden-mobile">
                   [Total Invest: {agencyInfo.totalInvest / 10 ** 18}
-                </span>
+                </span> */}
                 <span className="hidden-mobile">|</span>
                 <span className="ref_commission">
                   Total Sales: <span>{agencyInfo.totalSales / 10 ** 18}</span>
@@ -63,15 +70,25 @@ const NetworkWidgetContainer = () => {
       config.memberAbi,
       config.memberAddress
     );
+    let oteEX = new web3Public.eth.Contract(config.oteexAbi, config.oteex);
+    console.log(oteEX);
     let memberInfo = await member.methods
       .infoMember(treeNode.props.name)
+      .call();
+    let currentSales = await contractPublic.methods
+      .getCurrentSales(memberInfo.refs)
       .call();
     treeNode.props.dataRef.children = [];
     for (let i = 0; i < memberInfo.refs.length; i++) {
       //TODO
+      let totalInvest = 0;
+      // let totalInvest = await contractPublic.methods
+      //   .getMemberActiveStacking(memberInfo.refs[i])
+      //   .call();
+      let totalSales = currentSales[i];
       let agencyInfo = {
-        totalInvest: 0,
-        totalSales: 0
+        totalInvest,
+        totalSales
       };
       treeNode.props.dataRef.children.push({
         name: memberInfo.refs[i],
@@ -84,9 +101,9 @@ const NetworkWidgetContainer = () => {
               <span className="address__ref">{memberInfo.refs[i]}</span>
             </div>
             <div className="ref_stat">
-              <span className="ref_user hidden-mobile">
+              {/* <span className="ref_user hidden-mobile">
                 [Total Invest: {agencyInfo.totalInvest / 10 ** 18}
-              </span>
+              </span> */}
               <span className="hidden-mobile">|</span>
               <span className="ref_commission">
                 Total Sales: <span>{agencyInfo.totalSales / 10 ** 18}</span>
