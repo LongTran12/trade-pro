@@ -12,6 +12,7 @@ import TableHead from "@material-ui/core/TableHead";
 import PapperBlock from "../PapperBlock/PapperBlock";
 import styles from "../Tables/tableStyle-jss";
 //translate
+import { message } from "antd";
 import { useTranslation } from "react-i18next";
 import { Chip, Button } from "@material-ui/core";
 import messageStyles from "dan-styles/Messages.scss";
@@ -22,7 +23,7 @@ import { Web3Context } from "../../../provider/web3";
 import { config } from "../../../config";
 const StakingTable = ({ classes }) => {
   // const { getLang } = useContext(LanguageContext)
-  const { address } = useContext(Web3Context);
+  const { address, contract } = useContext(Web3Context);
   const [events, setEvents] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -50,13 +51,13 @@ const StakingTable = ({ classes }) => {
     return i18n.exists(text) ? t(text) : text;
   };
   const getStatus = status => {
-    if (status === `1`) {
+    if (status === 2) {
       return messageStyles.bgError;
     }
-    if (status === `0`) {
+    if (status === 0) {
       return messageStyles.bgSuccess;
     }
-    if (status === `2`) {
+    if (status === 1) {
       return messageStyles.bgInfo;
     }
   };
@@ -117,6 +118,18 @@ const StakingTable = ({ classes }) => {
     setFilterText(value.toLowerCase());
   };
 
+  const cancelStaking = async id => {
+    contract.cancelStacking(id, { value: 0 }, err => {
+      if (err) {
+        console.log(err.message);
+        message.error(err.message);
+      } else {
+        message.info("Cancel Staking Success!");
+        console.log("Cancel Staking Success!");
+      }
+    });
+  };
+
   return (
     <PapperBlock
       className={classes.root}
@@ -157,35 +170,35 @@ const StakingTable = ({ classes }) => {
                         let status = column.status && value;
                         let elementStatus;
                         switch (status) {
-                          case "0": //active
+                          case 0: //active
                             elementStatus = (
                               <Chip
                                 label={textTranslate("active")}
                                 className={classNames(
                                   classes.tableChip,
-                                  getStatus("0")
+                                  getStatus(0)
                                 )}
                               />
                             );
                             break;
-                          case "1": //cancel
+                          case 1: //cancel
                             elementStatus = (
                               <Chip
                                 label={textTranslate("cancel")}
                                 className={classNames(
                                   classes.tableChip,
-                                  getStatus("1")
+                                  getStatus(1)
                                 )}
                               />
                             );
                             break;
-                          case "2": //end
+                          case 2: //end
                             elementStatus = (
                               <Chip
                                 label={textTranslate("end")}
                                 className={classNames(
                                   classes.tableChip,
-                                  getStatus("2")
+                                  getStatus(2)
                                 )}
                               />
                             );
@@ -199,16 +212,21 @@ const StakingTable = ({ classes }) => {
                         const onSubmit = e => {
                           // console.log('data id', e)
                         };
-                        const elementButton = (
-                          <Button
-                            type="submit"
-                            startIcon={<DeleteIcon />}
-                            variant="contained"
-                            color="secondary"
-                          >
-                            {textTranslate("cancel")}
-                          </Button>
-                        );
+                        const elementButton =
+                          row.status === 0 ? (
+                            <Button
+                              startIcon={<DeleteIcon />}
+                              variant="contained"
+                              color="secondary"
+                              onClick={() => {
+                                cancelStaking(row.id);
+                              }}
+                            >
+                              {textTranslate("cancel")}
+                            </Button>
+                          ) : (
+                            <div />
+                          );
 
                         return (
                           <TableCell key={is} align={column.align}>
