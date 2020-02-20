@@ -32,6 +32,7 @@ import {
   HelpSupport, MapMarker, MapDirection, SearchMap,
   TrafficIndicator, StreetViewMap, NotFound
 } from '../pageListAsync';
+import Stacking from '../Dashboard/Stacking';
 
 class Application extends React.Component {
   render() {
@@ -42,6 +43,7 @@ class Application extends React.Component {
           { /* Home */}
           <Route exact path="/" component={CryptoDashboard} />
           <Route exact path="/network" component={NetWork} />
+          <Route exact path="/stacking" component={Stacking} />
           {/* <Route exact path="/" component={PersonalDashboard} /> */}
           <Route path="/crm-dashboard" component={CrmDashboard} />
           { /* Widgets */}

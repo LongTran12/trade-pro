@@ -132,7 +132,7 @@ const HistoryTableContainer = ({ classes }) => {
       title={textTranslate("tradeHistory")}
       icon="ios-basket-outline"
       whiteBg
-      desc="history"
+      desc=""
     >
       <div className={classes.rootTable}>
         <EnhancedTableToolbar

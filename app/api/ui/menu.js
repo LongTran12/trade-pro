@@ -17,6 +17,12 @@ module.exports = [
         link: '/network',
         icon: 'ios-medal-outline'
       },
+      {
+        key: 'stackingMenu',
+        name: 'stakingMenu',
+        link: '/stacking',
+        icon: 'ios-medal-outline'
+      },
     ]
   },
   {
@@ -66,7 +72,7 @@ module.exports = [
         title: true,
       },
       {
-        key: 'Itemlist',
+        key: 'productCatalogues',
         name: 'productCatalogues',
         link: '/pages/ecommerce',
         icon: 'ios-apps-outline'
@@ -78,7 +84,7 @@ module.exports = [
         icon: 'ios-card'
       },
       {
-        key: 'checkout',
+        key: 'checkoutPage',
         name: 'checkoutPage',
         link: '/pages/checkout',
         icon: 'ios-cart-outline'

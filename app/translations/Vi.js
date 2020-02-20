@@ -144,4 +144,11 @@ export default {
     Calendar: "Lịch",
     taskBoard: "Bảng Công Việc",
     addTask: "Thêm Hoạt Động",
+    stakingMenu: "Cổ phiếu kí gửi",
+    stakingTable: "Cổ Phiếu kí gửi",
+    term: "Kì hạn",
+    timeStart: "Thời gian bắt đầu",
+    lastDay: "Thời gian kết thúc",
+    action: "Hành động",
+    cancel: "Cancel"
 }   

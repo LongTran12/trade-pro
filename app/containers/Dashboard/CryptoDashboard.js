@@ -25,6 +25,7 @@ import ChartBarStakedCrypto from '../Charts/demos/ChartBarStakedCrypto';
 import HistoryTableContainer from '../../components/Widget/HistoryTableContainer';
 
 import LatestTransactionWidgetContainer from '../../components/Widget/LatestTransactionWidgetContainer';
+import InputCopyAddress from '../../components/Widget/InputCopyAddress';
 
 const CryptoDahboard = ({ classes }) => {
 
@@ -45,10 +46,12 @@ const CryptoDahboard = ({ classes }) => {
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
       </Helmet>
+      <InputCopyAddress />
+      <Divider className={classes.divider} />
       <CounterCryptoWidgetContainer />
       <Divider className={classes.divider} />
 
-      <PapperBlock title={textTran('oteBuySell')} icon="ios-stats-outline" whiteBg overflowX desc="ote Buy Sell">
+      <PapperBlock title={textTran('oteBuySell')} icon="ios-stats-outline" whiteBg overflowX desc="">
         <ChartBarStakedCrypto />
       </PapperBlock>
       <Divider className={classes.divider} />

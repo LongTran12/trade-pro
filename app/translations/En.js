@@ -143,5 +143,12 @@ export default {
     Calendar: "Calendar",
     taskBoard: "Task Board",
     addTask: "Add Task",
-    //
+    //staking table
+    stakingMenu: "Staking",
+    stakingTable: "Staking Table",
+    term: "Term",
+    timeStart: "Time Start",
+    lastDay: "Last Day",
+    action: "Action",
+    cancel: "Cancel"
 };
