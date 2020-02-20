@@ -998,6 +998,83 @@ const config = {
       type: "event"
     },
     {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
+          internalType: "address",
+          name: "owner",
+          type: "address"
+        },
+        {
+          indexed: false,
+          internalType: "uint256",
+          name: "amount",
+          type: "uint256"
+        },
+        {
+          indexed: false,
+          internalType: "uint256",
+          name: "price",
+          type: "uint256"
+        }
+      ],
+      name: "OrderMake",
+      type: "event"
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
+          internalType: "address",
+          name: "seller",
+          type: "address"
+        },
+        {
+          indexed: false,
+          internalType: "uint256",
+          name: "amount",
+          type: "uint256"
+        },
+        {
+          indexed: false,
+          internalType: "uint256",
+          name: "price",
+          type: "uint256"
+        },
+        {
+          indexed: false,
+          internalType: "uint256",
+          name: "currency",
+          type: "uint256"
+        }
+      ],
+      name: "Sell",
+      type: "event"
+    },
+    {
+      constant: true,
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256"
+        }
+      ],
+      name: "activeStack",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256"
+        }
+      ],
+      payable: false,
+      stateMutability: "view",
+      type: "function"
+    },
+    {
       constant: false,
       inputs: [
         {
@@ -1091,156 +1168,9 @@ const config = {
       type: "function"
     },
     {
-      constant: false,
-      inputs: [],
-      name: "deleteContract",
-      outputs: [],
-      payable: false,
-      stateMutability: "nonpayable",
-      type: "function"
-    },
-    {
-      constant: false,
-      inputs: [
-        {
-          internalType: "uint256",
-          name: "amount",
-          type: "uint256"
-        },
-        {
-          internalType: "uint256",
-          name: "step",
-          type: "uint256"
-        }
-      ],
-      name: "makeOrder",
-      outputs: [
-        {
-          internalType: "bool",
-          name: "",
-          type: "bool"
-        }
-      ],
-      payable: false,
-      stateMutability: "nonpayable",
-      type: "function"
-    },
-    {
-      constant: false,
-      inputs: [],
-      name: "nextMonth",
-      outputs: [],
-      payable: false,
-      stateMutability: "nonpayable",
-      type: "function"
-    },
-    {
-      anonymous: false,
-      inputs: [
-        {
-          indexed: true,
-          internalType: "address",
-          name: "owner",
-          type: "address"
-        },
-        {
-          indexed: false,
-          internalType: "uint256",
-          name: "amount",
-          type: "uint256"
-        },
-        {
-          indexed: false,
-          internalType: "uint256",
-          name: "price",
-          type: "uint256"
-        }
-      ],
-      name: "OrderMake",
-      type: "event"
-    },
-    {
-      constant: false,
-      inputs: [],
-      name: "payStacking",
-      outputs: [
-        {
-          internalType: "bool",
-          name: "",
-          type: "bool"
-        }
-      ],
-      payable: false,
-      stateMutability: "nonpayable",
-      type: "function"
-    },
-    {
-      anonymous: false,
-      inputs: [
-        {
-          indexed: true,
-          internalType: "address",
-          name: "seller",
-          type: "address"
-        },
-        {
-          indexed: false,
-          internalType: "uint256",
-          name: "amount",
-          type: "uint256"
-        },
-        {
-          indexed: false,
-          internalType: "uint256",
-          name: "price",
-          type: "uint256"
-        },
-        {
-          indexed: false,
-          internalType: "uint256",
-          name: "currency",
-          type: "uint256"
-        }
-      ],
-      name: "Sell",
-      type: "event"
-    },
-    {
-      constant: false,
-      inputs: [
-        {
-          internalType: "uint256",
-          name: "amount",
-          type: "uint256"
-        },
-        {
-          internalType: "uint256",
-          name: "term",
-          type: "uint256"
-        }
-      ],
-      name: "stackingOTE",
-      outputs: [
-        {
-          internalType: "bool",
-          name: "",
-          type: "bool"
-        }
-      ],
-      payable: false,
-      stateMutability: "nonpayable",
-      type: "function"
-    },
-    {
       constant: true,
-      inputs: [
-        {
-          internalType: "uint256",
-          name: "",
-          type: "uint256"
-        }
-      ],
-      name: "activeStack",
+      inputs: [],
+      name: "currentMonth",
       outputs: [
         {
           internalType: "uint256",
@@ -1250,6 +1180,15 @@ const config = {
       ],
       payable: false,
       stateMutability: "view",
+      type: "function"
+    },
+    {
+      constant: false,
+      inputs: [],
+      name: "deleteContract",
+      outputs: [],
+      payable: false,
+      stateMutability: "nonpayable",
       type: "function"
     },
     {
@@ -1531,6 +1470,47 @@ const config = {
     },
     {
       constant: true,
+      inputs: [
+        {
+          internalType: "address",
+          name: "_investor",
+          type: "address"
+        }
+      ],
+      name: "getStakingList",
+      outputs: [
+        {
+          internalType: "uint256[]",
+          name: "amount",
+          type: "uint256[]"
+        },
+        {
+          internalType: "uint256[]",
+          name: "term",
+          type: "uint256[]"
+        },
+        {
+          internalType: "uint256[]",
+          name: "timeStart",
+          type: "uint256[]"
+        },
+        {
+          internalType: "uint256[]",
+          name: "timePayed",
+          type: "uint256[]"
+        },
+        {
+          internalType: "uint256[]",
+          name: "status",
+          type: "uint256[]"
+        }
+      ],
+      payable: false,
+      stateMutability: "view",
+      type: "function"
+    },
+    {
+      constant: true,
       inputs: [],
       name: "logs",
       outputs: [
@@ -1542,6 +1522,32 @@ const config = {
       ],
       payable: false,
       stateMutability: "view",
+      type: "function"
+    },
+    {
+      constant: false,
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "amount",
+          type: "uint256"
+        },
+        {
+          internalType: "uint256",
+          name: "step",
+          type: "uint256"
+        }
+      ],
+      name: "makeOrder",
+      outputs: [
+        {
+          internalType: "bool",
+          name: "",
+          type: "bool"
+        }
+      ],
+      payable: false,
+      stateMutability: "nonpayable",
       type: "function"
     },
     {
@@ -1609,6 +1615,56 @@ const config = {
       ],
       payable: false,
       stateMutability: "view",
+      type: "function"
+    },
+    {
+      constant: false,
+      inputs: [],
+      name: "nextMonth",
+      outputs: [],
+      payable: false,
+      stateMutability: "nonpayable",
+      type: "function"
+    },
+    {
+      constant: false,
+      inputs: [],
+      name: "payStacking",
+      outputs: [
+        {
+          internalType: "bool",
+          name: "",
+          type: "bool"
+        }
+      ],
+      payable: false,
+      stateMutability: "nonpayable",
+      type: "function"
+    },
+    {
+      constant: false,
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "amount",
+          type: "uint256"
+        },
+        {
+          internalType: "uint256",
+          name: "term",
+          type: "uint256"
+        }
+      ],
+      name: "stackingOTE",
+      outputs: [
+        {
+          internalType: "bool",
+          name: "",
+          type: "bool"
+        }
+      ],
+      payable: false,
+      stateMutability: "nonpayable",
       type: "function"
     }
   ]
