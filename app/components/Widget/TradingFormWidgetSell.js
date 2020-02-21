@@ -58,10 +58,18 @@ const TradingFormWidgetSell = ({ classes }) => {
     ];
   }
 
-  const [price, setPrice] = useState(`${dataPrice[0].value}`);
-  useEffect(() => {
-    setPrice(`${dataPrice[1].value}`);
-  }, []);
+  const [price, setPrice] = useState(() => {
+    if (otePrice / 10 ** 6 === 0.5) {
+      return `${dataPrice[0].value}`;
+    }
+    if (otePrice / 10 ** 6 === 0.75) {
+      return `${dataPrice[1].value}`;
+    }
+    if (otePrice / 10 ** 6 === 1) {
+      return `${dataPrice[2].value}`;
+    }
+    return `${dataPrice[0].value}`;
+  });
   const handleChange = event => {
     setPrice(event.target.value);
   };

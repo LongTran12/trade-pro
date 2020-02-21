@@ -60,7 +60,7 @@ const TradingFormWidgetContainer = ({ classes }) => {
       value: 2
     }
   ];
-  const [coin, setCoin] = useState(`${dataCoin[0].value}`);
+  const [coin, setCoin] = useState(`${dataCoin[1].value}`);
   const handleChange = event => {
     setCoin(event.target.value);
   };

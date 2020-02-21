@@ -21,42 +21,37 @@ import avatarApi from "dan-api/images/avatars";
 import PapperBlock from "../PapperBlock/PapperBlock";
 import NewsCard from "../CardPaper/NewsCard";
 import ProfileCard from "../CardPaper/ProfileCard";
-import avatar_user from 'dan-images/intro/avatar_user.jpg';
-import slide1 from 'dan-images/slide/slide1.jpg';
-import slide2 from 'dan-images/slide/slide2.jpg';
-import slide3 from 'dan-images/slide/slide3.jpg';
-import slide4 from 'dan-images/slide/slide4.jpg';
-import slide5 from 'dan-images/slide/slide5.jpg';
-import slide6 from 'dan-images/slide/slide6.jpg';
-import slide7 from 'dan-images/slide/slide7.jpg';
-import slide8 from 'dan-images/slide/slide8.jpg';
-import slide9 from 'dan-images/slide/slide9.jpg';
-import slide10 from 'dan-images/slide/slide10.jpg';
-import slide11 from 'dan-images/slide/slide11.jpg';
-import slide12 from 'dan-images/slide/slide12.jpg';
-import slide13 from 'dan-images/slide/slide13.jpg';
-import slide15 from 'dan-images/slide/slide15.jpg';
+import avatar_user from "dan-images/intro/avatar_user.jpg";
+import slide1 from "dan-images/slide/slide1.jpg";
+import slide2 from "dan-images/slide/slide2.jpg";
+import slide3 from "dan-images/slide/slide3.jpg";
+import slide4 from "dan-images/slide/slide4.jpg";
+import slide5 from "dan-images/slide/slide5.jpg";
+import slide6 from "dan-images/slide/slide6.jpg";
+import slide7 from "dan-images/slide/slide7.jpg";
+import slide8 from "dan-images/slide/slide8.jpg";
+import slide9 from "dan-images/slide/slide9.jpg";
+import slide10 from "dan-images/slide/slide10.jpg";
+import slide11 from "dan-images/slide/slide11.jpg";
+import slide12 from "dan-images/slide/slide12.jpg";
+import slide13 from "dan-images/slide/slide13.jpg";
+import slide15 from "dan-images/slide/slide15.jpg";
 import styles from "./jss/socialMedia-jss";
 
 const slideData = [
   {
-    label: "How to be happy :)",
     imgPath: slide1
   },
   {
-    label: "1. Work with something that you like, like…",
     imgPath: slide2
   },
   {
-    label: "2. Keep your friends close to you and hangout with them",
     imgPath: slide3
   },
   {
-    label: "3. Travel everytime that you have a chance",
     imgPath: slide4
   },
   {
-    label: "4. And contribute to Material-UI :D",
     imgPath: slide5
   },
   {
@@ -85,7 +80,7 @@ const slideData = [
   },
   {
     imgPath: slide15
-  },
+  }
 ];
 const TextTranslate = ({ text }) => {
   const { t, i18n } = useTranslation();
@@ -176,8 +171,8 @@ class SideSection extends React.Component {
                 {theme.direction === "rtl" ? (
                   <KeyboardArrowLeft />
                 ) : (
-                    <KeyboardArrowRight />
-                  )}
+                  <KeyboardArrowRight />
+                )}
               </Button>
             }
             backButton={
@@ -189,8 +184,8 @@ class SideSection extends React.Component {
                 {theme.direction === "rtl" ? (
                   <KeyboardArrowRight />
                 ) : (
-                    <KeyboardArrowLeft />
-                  )}
+                  <KeyboardArrowLeft />
+                )}
                 <TextTranslate text="back" />
               </Button>
             }
