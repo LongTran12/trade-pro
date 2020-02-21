@@ -1,41 +1,30 @@
-import React, { PureComponent } from 'react';
-import { useTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
-import brand from 'dan-api/dummy/brand';
-import { Helmet } from 'react-helmet';
-import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Divider from '@material-ui/core/Divider';
+import React from "react";
+import { useTranslation } from "react-i18next";
+import PropTypes from "prop-types";
+import brand from "dan-api/dummy/brand";
+import { Helmet } from "react-helmet";
+import { withStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import Divider from "@material-ui/core/Divider";
 import {
-  CounterCryptoWidget,
-  CryptoChartWidget,
-  MarketPlaceWIdget,
-  TradingFormWidget,
-  LatestTransactionWidget,
-  CryptoWalletWidget,
-  TransferCryptoWidget,
-  HistoryWidget,
-  NewsListWidget,
   CounterCryptoWidgetContainer,
   PapperBlock,
   TradingFormWidgetContainer
-} from 'dan-components';
-import styles from './dashboard-jss';
-import ChartBarStakedCrypto from '../Charts/demos/ChartBarStakedCrypto';
-import HistoryTableContainer from '../../components/Widget/HistoryTableContainer';
+} from "dan-components";
+import styles from "./dashboard-jss";
+import ChartBarStakedCrypto from "../Charts/demos/ChartBarStakedCrypto";
+import HistoryTableContainer from "../../components/Widget/HistoryTableContainer";
 
-import LatestTransactionWidgetContainer from '../../components/Widget/LatestTransactionWidgetContainer';
-import InputCopyAddress from '../../components/Widget/InputCopyAddress';
+import LatestTransactionWidgetContainer from "../../components/Widget/LatestTransactionWidgetContainer";
+import InputCopyAddress from "../../components/Widget/InputCopyAddress";
 
 const CryptoDahboard = ({ classes }) => {
-
-  const title = brand.name + ' - Cryptocurrency Dashboard';
+  const title = brand.name + " - Cryptocurrency Dashboard";
   const description = brand.desc;
   const { t, i18n } = useTranslation();
-  const textTran = (text) => {
-    return i18n.exists(text)
-      ? t(text) : text;
-  }
+  const textTran = text => {
+    return i18n.exists(text) ? t(text) : text;
+  };
   return (
     <div>
       <Helmet>
@@ -51,7 +40,13 @@ const CryptoDahboard = ({ classes }) => {
       <CounterCryptoWidgetContainer />
       <Divider className={classes.divider} />
 
-      <PapperBlock title={textTran('oteBuySell')} icon="ios-stats-outline" whiteBg overflowX desc="">
+      <PapperBlock
+        title={textTran("oteBuySell")}
+        icon="ios-stats-outline"
+        whiteBg
+        overflowX
+        desc=""
+      >
         <ChartBarStakedCrypto />
       </PapperBlock>
       <Divider className={classes.divider} />
@@ -74,14 +69,12 @@ const CryptoDahboard = ({ classes }) => {
           <LatestTransactionWidgetContainer />
         </Grid>
       </Grid>
-
     </div>
   );
-
-}
+};
 
 CryptoDahboard.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(CryptoDahboard);

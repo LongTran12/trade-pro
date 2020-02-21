@@ -1,34 +1,35 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import NotFound from 'containers/Pages/Standalone/NotFoundDedicated';
-import Auth from './Auth';
-import Application from './Application';
-import LandingCorporate from './Landing';
-import LandingCreative from './LandingCreative';
-import ArticleNews from './ArticleNews';
-import ThemeWrapper, { AppContext } from './ThemeWrapper';
-import CryptoDashboard from '../Dashboard/CryptoDashboard';
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+import Application from "./Application";
+import ThemeWrapper, { AppContext } from "./ThemeWrapper";
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
-
 
 class App extends React.Component {
   render() {
     return (
       <ThemeWrapper>
         <AppContext.Consumer>
-          {(changeMode) => (
+          {changeMode => (
             <Switch>
-              <Route path="/landing-creative" exact component={CryptoDashboard} />
+              {/* <Route
+                path="/landing-creative"
+                exact
+                component={CryptoDashboard}
+              /> */}
               <Route
                 path="/"
-                render={(props) => <Application {...props} changeMode={changeMode} />}
+                render={props => (
+                  <Application {...props} changeMode={changeMode} />
+                )}
               />
-              <Route
+              {/* <Route
                 path="/blog"
-                render={(props) => <ArticleNews {...props} changeMode={changeMode} />}
-              />
-              <Route component={Auth} />
-              <Route component={NotFound} />
+                render={props => (
+                  <ArticleNews {...props} changeMode={changeMode} />
+                )}
+              /> */}
+              {/* <Route component={Auth} /> */}
+              {/* <Route component={NotFound} /> */}
             </Switch>
           )}
         </AppContext.Consumer>

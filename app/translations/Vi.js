@@ -148,6 +148,8 @@ export default {
   addTask: "Thêm Hoạt Động",
   stakingMenu: "Cổ phiếu kí gửi",
   stakingTable: "Cổ Phiếu kí gửi",
+  Cryptocurrency: "Cổ phiếu OTE",
+  network: "Hội viên OTFUND",
   term: "Kì hạn",
   timeStart: "Thời gian bắt đầu",
   lastDay: "Thời gian kết thúc",

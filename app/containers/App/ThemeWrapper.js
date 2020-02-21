@@ -1,13 +1,17 @@
-import React from 'react';
-import { PropTypes } from 'prop-types';
-import { connect } from 'react-redux';
-import Loading from 'react-loading-bar';
-import { create } from 'jss';
-import rtl from 'jss-rtl';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
-import { bindActionCreators } from 'redux';
-import { withStyles, createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import 'dan-styles/vendors/react-loading-bar/index.css';
+import React from "react";
+import { PropTypes } from "prop-types";
+import { connect } from "react-redux";
+import Loading from "react-loading-bar";
+import { create } from "jss";
+import rtl from "jss-rtl";
+import { StylesProvider, jssPreset } from "@material-ui/styles";
+import { bindActionCreators } from "redux";
+import {
+  withStyles,
+  createMuiTheme,
+  MuiThemeProvider
+} from "@material-ui/core/styles";
+import "dan-styles/vendors/react-loading-bar/index.css";
 import {
   changeThemeAction,
   changeRandomThemeAction,
@@ -17,17 +21,17 @@ import {
   changeBgPositionAction,
   changeLayoutAction,
   changeDirectionAction
-} from 'dan-actions/UiActions';
-import { TemplateSettings } from 'dan-components';
-import applicationTheme from '../../styles/theme/applicationTheme';
+} from "dan-actions/UiActions";
+import { TemplateSettings } from "dan-components";
+import applicationTheme from "../../styles/theme/applicationTheme";
 
 const styles = {
   root: {
-    width: '100%',
-    minHeight: '100%',
+    width: "100%",
+    minHeight: "100%",
     marginTop: 0,
-    zIndex: 1,
-  },
+    zIndex: 1
+  }
 };
 
 // Configure JSS
@@ -40,20 +44,22 @@ class ThemeWrapper extends React.Component {
     super(props);
     this.state = {
       pageLoaded: true,
-      theme: createMuiTheme(applicationTheme(props.color, props.mode, props.direction)),
-      palette: undefined,
+      theme: createMuiTheme(
+        applicationTheme(props.color, props.mode, props.direction)
+      ),
+      palette: undefined
     };
   }
 
   componentWillMount = () => {
     this.onProgressShow();
-  }
+  };
 
   componentDidMount = () => {
     const { palette } = this.props;
     this.playProgress();
     this.setState({ palette });
-  }
+  };
 
   componentWillUnmount() {
     this.onProgressShow();
@@ -61,22 +67,26 @@ class ThemeWrapper extends React.Component {
 
   onProgressShow = () => {
     this.setState({ pageLoaded: true });
-  }
+  };
 
   onProgressHide = () => {
     this.setState({ pageLoaded: false });
-  }
+  };
 
   playProgress = () => {
     this.onProgressShow();
     setTimeout(() => {
       this.onProgressHide();
     }, 500);
-  }
+  };
 
   handleChangeTheme = event => {
     const { mode, changeTheme, direction } = this.props;
-    this.setState({ theme: createMuiTheme(applicationTheme(event.target.value, mode, direction)) });
+    this.setState({
+      theme: createMuiTheme(
+        applicationTheme(event.target.value, mode, direction)
+      )
+    });
     changeTheme(event.target.value);
   };
 
@@ -84,40 +94,48 @@ class ThemeWrapper extends React.Component {
     const { mode, direction } = this.props;
     this.props.changeRandomTheme(); // eslint-disable-line
     setTimeout(() => {
-      this.setState({ theme: createMuiTheme(applicationTheme(this.props.color, mode, direction)) }); // eslint-disable-line
+      this.setState({
+        theme: createMuiTheme(
+          applicationTheme(this.props.color, mode, direction)
+        )
+      }); // eslint-disable-line
     }, 500);
   };
 
   handleChangeMode = mode => {
     const { color, changeMode, direction } = this.props;
-    this.setState({ theme: createMuiTheme(applicationTheme(color, mode, direction)) });
+    this.setState({
+      theme: createMuiTheme(applicationTheme(color, mode, direction))
+    });
     changeMode(mode);
   };
 
   handleChangeGradient = value => {
     const { changeGradient } = this.props;
     changeGradient(value);
-  }
+  };
 
   handleChangeDecoration = value => {
     const { changeDecoration } = this.props;
     changeDecoration(value);
-  }
+  };
 
   handleChangeBgPosition = value => {
     const { changeBgPosition } = this.props;
     changeBgPosition(value);
-  }
+  };
 
   handleChangeLayout = value => {
     const { changeLayout } = this.props;
     changeLayout(value);
-  }
+  };
 
   handleChangeDirection = dirVal => {
     // Set reducer state direction
     const { changeDirection, color, mode } = this.props;
-    this.setState({ theme: createMuiTheme(applicationTheme(color, mode, dirVal)) });
+    this.setState({
+      theme: createMuiTheme(applicationTheme(color, mode, dirVal))
+    });
     changeDirection(dirVal);
 
     // Set HTML root direction attribute
@@ -146,7 +164,7 @@ class ThemeWrapper extends React.Component {
               color="rgba(255,255,255,.9)"
               showSpinner={false}
             />
-            <TemplateSettings
+            {/* <TemplateSettings
               palette={palette}
               selectedValue={color}
               mode={mode}
@@ -163,7 +181,7 @@ class ThemeWrapper extends React.Component {
               changeBgPosition={this.handleChangeBgPosition}
               changeLayout={this.handleChangeLayout}
               changeDirection={this.handleChangeDirection}
-            />
+            /> */}
             <AppContext.Provider value={this.handleChangeMode}>
               {children}
             </AppContext.Provider>
@@ -192,20 +210,20 @@ ThemeWrapper.propTypes = {
   changeDecoration: PropTypes.func.isRequired,
   changeBgPosition: PropTypes.func.isRequired,
   changeLayout: PropTypes.func.isRequired,
-  changeDirection: PropTypes.func.isRequired,
+  changeDirection: PropTypes.func.isRequired
 };
 
-const reducer = 'ui';
+const reducer = "ui";
 const mapStateToProps = state => ({
   force: state, // force state from reducer
-  color: state.getIn([reducer, 'theme']),
-  palette: state.getIn([reducer, 'palette']),
-  mode: state.getIn([reducer, 'type']),
-  gradient: state.getIn([reducer, 'gradient']),
-  decoration: state.getIn([reducer, 'decoration']),
-  bgPosition: state.getIn([reducer, 'bgPosition']),
-  layout: state.getIn([reducer, 'layout']),
-  direction: state.getIn([reducer, 'direction']),
+  color: state.getIn([reducer, "theme"]),
+  palette: state.getIn([reducer, "palette"]),
+  mode: state.getIn([reducer, "type"]),
+  gradient: state.getIn([reducer, "gradient"]),
+  decoration: state.getIn([reducer, "decoration"]),
+  bgPosition: state.getIn([reducer, "bgPosition"]),
+  layout: state.getIn([reducer, "layout"]),
+  direction: state.getIn([reducer, "direction"])
 });
 
 const dispatchToProps = dispatch => ({
@@ -216,7 +234,7 @@ const dispatchToProps = dispatch => ({
   changeDecoration: bindActionCreators(changeDecoAction, dispatch),
   changeBgPosition: bindActionCreators(changeBgPositionAction, dispatch),
   changeLayout: bindActionCreators(changeLayoutAction, dispatch),
-  changeDirection: bindActionCreators(changeDirectionAction, dispatch),
+  changeDirection: bindActionCreators(changeDirectionAction, dispatch)
 });
 
 const ThemeWrapperMapped = connect(
