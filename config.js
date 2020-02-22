@@ -3,7 +3,7 @@ const config = {
   web3Provider:
     "wss://mainnet.infura.io/ws/v3/2526c65276fd4134a550212871a550fd",
   oteex: "0x9faB0db87893EC3F83c3e98f62eD66Ef1Ff772b8",
-  ote: "0x46864929A371620aB4213FBF305a70d53EDf9C37",
+  ote: "0x7Fa7Ee339b26C35cA5F642cE940c8c1E8639E66e",
   usdt: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
   usdi: "0xdC1F5E7f20691b33E4cdD872f815E066d221C29D",
   memberAddress: "0xaBD619c44d1867880CFe0Ae2D4E45999C11D786E",
@@ -1348,7 +1348,7 @@ const config = {
         },
         {
           internalType: "address[]",
-          name: "owner",
+          name: "ownerOrder",
           type: "address[]"
         }
       ],
@@ -1410,7 +1410,7 @@ const config = {
       outputs: [
         {
           internalType: "address",
-          name: "owner",
+          name: "ownerStaking",
           type: "address"
         },
         {

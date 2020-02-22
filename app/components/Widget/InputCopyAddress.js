@@ -58,7 +58,7 @@ const InputCopyAddress = ({ classes }) => {
         <WrapCopy>
           <Button
             onClick={() => {
-              navigator.clipboard.writeText(domain + address);
+              // navigator.clipboard.writeText(domain + address);
               setCopy(true);
             }}
           >

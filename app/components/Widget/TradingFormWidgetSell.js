@@ -77,7 +77,9 @@ const TradingFormWidgetSell = ({ classes }) => {
   const makeOrder = async () => {
     console.log(amount);
     let allow = await otePublic.methods.allowance(address, config.oteex).call();
+    console.log("allow", allow);
     if (allow >= amount * 10 ** 18) {
+      console.log("hello");
       contract.makeOrder(amount * 10 ** 18, price, { value: 0 }, err => {
         if (err) {
           console.log(err.message);
@@ -107,6 +109,7 @@ const TradingFormWidgetSell = ({ classes }) => {
     let allow = await otePublic.methods.allowance(address, config.oteex).call();
     if (allow >= amount * 10 ** 18) {
       hide && hide();
+      console.log("hello");
       contract.makeOrder(amount * 10 ** 18, price, { value: 0 }, err => {
         if (err) {
           console.log(err.message);
