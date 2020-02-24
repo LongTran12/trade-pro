@@ -17,9 +17,10 @@ import styled from "styled-components";
 import FileCopyOutlinedIcon from "@material-ui/icons/FileCopyOutlined";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import ImportContactsIcon from "@material-ui/icons/ImportContacts";
+import copy from 'copy-to-clipboard';
 
 const InputCopyAddress = ({ classes }) => {
-  const [copy, setCopy] = useState(false);
+  const [copys, setCopy] = useState(false);
   const { t, i18n } = useTranslation();
   const textTranslate = text => {
     return i18n.exists(text) ? t(text) : text;
@@ -30,8 +31,8 @@ const InputCopyAddress = ({ classes }) => {
       setCopy(false);
     }, 1500);
     return () => clearTimeout(time);
-  }, [copy]);
-  const domain = window.location.href + "?ref=";
+  }, [copys]);
+  const domain = window.location.origin + "/?ref=" + address;
   return (
     <PapperBlock
       className={classes.root}
@@ -46,7 +47,7 @@ const InputCopyAddress = ({ classes }) => {
         <FormControl fullWidth className={classes.formControlTrade}>
           <Input
             id="adornment-amount1"
-            value={domain + address}
+            value={domain}
             disabled
             startAdornment={
               <InputAdornment position="start">
@@ -58,7 +59,7 @@ const InputCopyAddress = ({ classes }) => {
         <WrapCopy>
           <Button
             onClick={() => {
-              // navigator.clipboard.writeText(domain + address);
+              copy(domain);
               setCopy(true);
             }}
           >
@@ -66,7 +67,7 @@ const InputCopyAddress = ({ classes }) => {
               <FileCopyOutlinedIcon />
             </Tooltip>
           </Button>
-          {copy && <Copied>Copied!</Copied>}
+          {copys && <Copied>Copied!</Copied>}
         </WrapCopy>
       </Wrap>
     </PapperBlock>
