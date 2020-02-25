@@ -35,11 +35,11 @@ const StakingTable = ({ classes }) => {
     dataContract.amount.forEach((item, index) => {
       data.push({
         id: index,
-        amount: item,
+        amount: item / 10 ** 18,
         term: dataContract.term[index],
-        timeStart: dataContract.timeStart[index],
-        lastDay: dataContract.timePayed[index],
-        status: dataContract.status[index]
+        timeStart: Number(dataContract.timeStart[index]) * 1000,
+        lastDay: Number(dataContract.timePayed[index]) * 1000,
+        status: Number(dataContract.status[index])
       });
     });
     setEvents(data);
@@ -71,7 +71,7 @@ const StakingTable = ({ classes }) => {
     {
       id: "amount",
       label: textTranslate("amount"),
-      format: value => value.toFixed(2),
+      format: value => value,
       align: "center"
     },
     {
