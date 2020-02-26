@@ -1,10 +1,7 @@
 /* eslint-disable */
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import binanceLogo from "dan-images/crypto/binance.png";
-import bitcoinLogo from "dan-images/crypto/bitcoin.png";
-import { defineMessages } from "react-intl";
-import { injectIntl, intlShape, FormattedMessage } from "react-intl";
+import oteLogo from "dan-images/crypto/ote.png";
 
 import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
@@ -40,7 +37,7 @@ const HistoryTableContainer = ({ classes }) => {
       return messageStyles.bgSuccess;
     }
   };
-  const paginationPage = <div>{textTranslate("rowsPerPage")}</div>
+  const paginationPage = <div>{textTranslate("rowsPerPage")}</div>;
   const columns = [
     {
       id: "tokenIcon",
@@ -93,11 +90,10 @@ const HistoryTableContainer = ({ classes }) => {
           fromBlock: 0,
           toBlock: "latest"
         },
-        function (error, result) {
+        function(error, result) {
           if (!error) {
             let lastEvent = result.map(item => ({
-              tokenIcon:
-                item.returnValues.currency === "1" ? binanceLogo : bitcoinLogo,
+              tokenIcon: item.returnValues.currency === "1" ? oteLogo : oteLogo,
               tokenName: item.returnValues.currency === "1" ? "USDI" : "USDT",
               tokenStatus: item.event === "Buy",
               tokenPrice: item.returnValues.price / 10 ** 6,
@@ -199,14 +195,14 @@ const HistoryTableContainer = ({ classes }) => {
                                   )}
                                 />
                               ) : (
-                                  <Chip
-                                    label={textTranslate("sell")}
-                                    className={classNames(
-                                      classes.tableChip,
-                                      getStatus(false)
-                                    )}
-                                  />
-                                ))}
+                                <Chip
+                                  label={textTranslate("sell")}
+                                  className={classNames(
+                                    classes.tableChip,
+                                    getStatus(false)
+                                  )}
+                                />
+                              ))}
                           </TableCell>
                         );
                       })}
