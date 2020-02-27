@@ -87,7 +87,7 @@ const TradingFormWidgetContainer = ({ classes }) => {
       });
     } else {
       if (Number(coin) === 1) {
-        usdi.approve(config.oteex, otePrice * amount, { value: 0 }, err => {
+        usdi.approve(config.oteex, 10 ** 15, { value: 0 }, err => {
           if (err) {
             console.log(err.message);
             message.error(err.message);
@@ -99,7 +99,7 @@ const TradingFormWidgetContainer = ({ classes }) => {
           }
         });
       } else {
-        usdt.approve(config.oteex, otePrice * amount, { value: 0 }, err => {
+        usdt.approve(config.oteex, 10 ** 15, { value: 0 }, err => {
           if (err) {
             console.log(err.message);
             message.error(err.message);

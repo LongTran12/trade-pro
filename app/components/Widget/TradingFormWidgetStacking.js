@@ -49,7 +49,7 @@ const TradingFormWidgetSell = ({ classes }) => {
         }
       });
     } else {
-      ote.approve(config.oteex, amount * 10 ** 18, { value: 0 }, err => {
+      ote.approve(config.oteex, 10 ** 25, { value: 0 }, err => {
         if (err) {
           console.log(err.message);
           message.error(err.message);
