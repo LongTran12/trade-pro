@@ -13,7 +13,7 @@ import MonetizationOn from "@material-ui/icons/MonetizationOn";
 import CompareArrows from "@material-ui/icons/CompareArrows";
 import styles from "./widget-jss";
 import CounterWidget from "../Counter/CounterWidget";
-import { AppContext } from "../../../provider/appContext";
+import { AppContext } from "../../provider/appContext";
 
 import { useTranslation } from "react-i18next";
 

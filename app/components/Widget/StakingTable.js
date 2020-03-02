@@ -18,9 +18,9 @@ import { Chip, Button } from "@material-ui/core";
 import messageStyles from "dan-styles/Messages.scss";
 import moment from "moment";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { web3Public } from "../../../provider/web3Public";
-import { Web3Context } from "../../../provider/web3";
-import { config } from "../../../config";
+import { web3Public } from "../../provider/web3Public";
+import { Web3Context } from "../../provider/web3";
+import { config } from "../../config";
 const StakingTable = ({ classes }) => {
   // const { getLang } = useContext(LanguageContext)
   const { address, contract } = useContext(Web3Context);

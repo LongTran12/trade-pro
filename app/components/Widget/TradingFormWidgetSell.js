@@ -13,12 +13,12 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Input from "@material-ui/core/Input";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import styles from "./widget-jss";
-import { AppContext } from "../../../provider/appContext";
-import { Web3Context } from "../../../provider/web3";
-import { config } from "../../../config";
+import { AppContext } from "../../provider/appContext";
+import { Web3Context } from "../../provider/web3";
+import { config } from "../../config";
 import { useTranslation } from "react-i18next";
 import { message } from "antd";
-import { otePublic } from "../../../provider/web3Public";
+import { otePublic } from "../../provider/web3Public";
 
 const TradingFormWidgetSell = ({ classes }) => {
   const { otePrice } = useContext(AppContext);

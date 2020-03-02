@@ -14,7 +14,7 @@ import TableHead from "@material-ui/core/TableHead";
 import PapperBlock from "../PapperBlock/PapperBlock";
 import EnhancedTableToolbar from "../Tables/tableParts/TableToolbar";
 import styles from "../Tables/tableStyle-jss";
-import { contractPublic } from "../../../provider/web3Public";
+import { contractPublic } from "../../provider/web3Public";
 //translate
 import { useTranslation } from "react-i18next";
 import { Chip } from "@material-ui/core";

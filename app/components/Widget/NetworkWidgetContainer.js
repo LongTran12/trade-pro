@@ -1,8 +1,8 @@
 /* eslint-disable */
 import React, { useContext, useState, useEffect, memo } from "react";
-import { web3Public, contractPublic } from "../../../provider/web3Public";
-import { config } from "../../../config";
-import { Web3Context } from "../../../provider/web3";
+import { web3Public, contractPublic } from "../../provider/web3Public";
+import { config } from "../../config";
+import { Web3Context } from "../../provider/web3";
 import NetWorkWidgetTree from "./NetworkWidgetTree";
 import styled from "styled-components";
 

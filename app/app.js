@@ -23,8 +23,8 @@ import "./styles/layout/base.scss";
 
 // Import Language Provider
 // import LanguageProvider from 'containers/LanguageProvider';
-import Web3Provider from "../provider/web3";
-import AppWrap from "../provider/appContext";
+import Web3Provider from "./provider/web3";
+import AppWrap from "./provider/appContext";
 // Load the favicon and the .htaccess file
 import "!file-loader?name=[name].[ext]!../public/favicons/favicon.ico"; // eslint-disable-line
 import "file-loader?name=.htaccess!./.htaccess"; // eslint-disable-line
@@ -73,7 +73,7 @@ if (module.hot) {
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
   module.hot.accept(
-    ["./i18n", "containers/App", "../provider/web3", "../provider/appContext"],
+    ["./i18n", "containers/App", "./provider/web3", "./provider/appContext"],
     () => {
       ReactDOM.unmountComponentAtNode(MOUNT_NODE);
       render(translationMessages);

@@ -15,8 +15,8 @@ import Chip from "@material-ui/core/Chip";
 import styles from "dan-components/Tables/tableStyle-jss";
 import messageStyles from "dan-styles/Messages.scss";
 import PapperBlock from "../PapperBlock/PapperBlock";
-import { contractPublic } from "../../../provider/web3Public";
-import { Web3Context } from "../../../provider/web3";
+import { contractPublic } from "../../provider/web3Public";
+import { Web3Context } from "../../provider/web3";
 
 function LatestTransactionWidgetContainer({ classes }) {
   const getStatus = status => {

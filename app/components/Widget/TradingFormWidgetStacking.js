@@ -9,11 +9,11 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Input from "@material-ui/core/Input";
 import styles from "./widget-jss";
-import { Web3Context } from "../../../provider/web3";
-import { config } from "../../../config";
+import { Web3Context } from "../../provider/web3";
+import { config } from "../../config";
 import { useTranslation } from "react-i18next";
 import { message } from "antd";
-import { otePublic } from "../../../provider/web3Public";
+import { otePublic } from "../../provider/web3Public";
 
 const TradingFormWidgetSell = ({ classes }) => {
   const { contract, address, ote } = useContext(Web3Context);

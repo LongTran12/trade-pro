@@ -12,12 +12,12 @@ import {
 } from "@material-ui/core";
 import styles from "../Tables/tableStyle-jss";
 import { useTranslation } from "react-i18next";
-import { Web3Context } from "../../../provider/web3";
+import { Web3Context } from "../../provider/web3";
 import styled from "styled-components";
 import FileCopyOutlinedIcon from "@material-ui/icons/FileCopyOutlined";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import ImportContactsIcon from "@material-ui/icons/ImportContacts";
-import copy from 'copy-to-clipboard';
+import copy from "copy-to-clipboard";
 
 const InputCopyAddress = ({ classes }) => {
   const [copys, setCopy] = useState(false);
