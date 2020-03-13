@@ -18,9 +18,13 @@ import FileCopyOutlinedIcon from "@material-ui/icons/FileCopyOutlined";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import ImportContactsIcon from "@material-ui/icons/ImportContacts";
 import copy from "copy-to-clipboard";
+import InputLabel from '@material-ui/core/InputLabel';
+// import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
 
 const InputCopyAddress = ({ classes }) => {
   const [copys, setCopy] = useState(false);
+  const [copyUser, setCopyUser] = useState(false);
   const { t, i18n } = useTranslation();
   const textTranslate = text => {
     return i18n.exists(text) ? t(text) : text;
@@ -29,10 +33,27 @@ const InputCopyAddress = ({ classes }) => {
   useEffect(() => {
     const time = setTimeout(() => {
       setCopy(false);
+      setCopyUser(false);
     }, 1500);
     return () => clearTimeout(time);
-  }, [copys]);
+  }, [copys, copyUser]);
   const domain = window.location.origin + "/?ref=" + address;
+
+  //user
+  const refUser = window.location.origin + "/?user=" + '';
+  const [isUser] = useState(false)
+  const [userName, setUserName] = useState('')
+  const [phone, setPhone] = useState('')
+  const changeUser = (e) => {
+    setUserName(e.target.value)
+  }
+  const changePhone = (e) => {
+    setPhone(e.target.value)
+  }
+  const onRegister = () => {
+    console.log('submit', userName)
+  }
+  //end user
   return (
     <PapperBlock
       className={classes.root}
@@ -42,8 +63,51 @@ const InputCopyAddress = ({ classes }) => {
       whiteBg
       desc=""
     >
+      {
+        isUser ?
+          <Wrap className="user">
+            <FormControl fullWidth className={classes.formControlTrade}>
+              <Input
+                id="adornment-amount1"
+                value={refUser}
+                disabled
+                startAdornment={
+                  <InputAdornment position="start">
+                    <ImportContactsIcon />
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+            <WrapCopy>
+              <Button
+                onClick={() => {
+                  copy(refUser);
+                  setCopyUser(true);
+                }}
+              >
+                <Tooltip title="copy">
+                  <FileCopyOutlinedIcon />
+                </Tooltip>
+              </Button>
+              {copyUser && <Copied>Copied!</Copied>}
+            </WrapCopy>
+          </Wrap>
+          :
+          <WrapRegister >
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="name-simple">{textTranslate("user")}</InputLabel>
+              <Input id="name-simple" value={userName} onChange={changeUser} />
+            </FormControl>
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="name-simple">{textTranslate("phone")}</InputLabel>
+              <Input id="name-simple" value={phone} onChange={changePhone} />
+            </FormControl>
+            <Button variant="contained" size="large" color="primary" className={classes.margin} onClick={onRegister}>
+              {textTranslate("register")}
+            </Button>
+          </WrapRegister>
+      }
       <Wrap>
-        {/* <Input value={value} fullWidth readOnly /> */}
         <FormControl fullWidth className={classes.formControlTrade}>
           <Input
             id="adornment-amount1"
@@ -82,12 +146,15 @@ const Wrap = styled.div`
   align-items: center;
   position: relative;
   input {
-    width: 100%;
+     width: 100%;
   }
   .MuiInputAdornment-positionStart {
     margin-right: 10px;
     margin-left: 10px;
     margin-bottom: 7px;
+  }
+  &.user{
+    margin-bottom:1.5em;
   }
 `;
 const WrapCopy = styled.div`
@@ -101,3 +168,27 @@ const Copied = styled.div`
   text-align: center;
   width: 100%;
 `;
+const WrapRegister = styled.div`
+  margin-bottom:1.5em;
+  display:flex;
+  align-items:flex-end;
+  input{
+    width:100%;
+  }
+  .MuiFormControl-root{
+    flex-basis:45%;
+    margin-right:2em;
+  }
+  @media(max-width:480px){
+    flex-wrap:wrap;
+    margin-bottom:2em;
+    justify-content:center;
+    .MuiFormControl-root{
+    flex-basis:100%;
+    margin-right:0;
+    }
+    button{
+      margin-top:1em;
+    }
+  }
+`

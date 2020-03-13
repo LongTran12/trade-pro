@@ -9,6 +9,9 @@ import {
     NetworkWidgetContainer
 } from 'dan-components';
 import styles from './dashboard-jss';
+import InputCopyAddress from '../../components/Widget/InputCopyAddress';
+import Divider from "@material-ui/core/Divider";
+import InfoUserReference from '../../components/Widget/InfoUserReference';
 
 const NetWork = ({ classes }) => {
 
@@ -21,10 +24,15 @@ const NetWork = ({ classes }) => {
     }
     return (
         <div>
-            <PapperBlock title={textTran('Network')} icon="ios-stats-outline" noMargin whiteBg>
+            <InputCopyAddress />
+            <Divider className={classes.divider} />
+            <PapperBlock title={textTran('userInfo')} desc="" icon="ios-stats-outline" noMargin whiteBg>
+                <InfoUserReference />
+            </PapperBlock>
+            <Divider className={classes.divider} />
+            <PapperBlock title={textTran('Network')} desc="" icon="ios-stats-outline" noMargin whiteBg>
                 <NetworkWidgetContainer />
             </PapperBlock>
-
         </div>
     );
 

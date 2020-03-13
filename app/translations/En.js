@@ -152,5 +152,14 @@ export default {
   timeStart: "Time Start",
   lastDay: "Last Day",
   action: "Action",
-  cancel: "Cancel"
+  cancel: "Cancel",
+  //network
+  level: "Level",
+  members: "Members",
+  sales: "Sales",
+  totalSales: "Total Sales",
+  userInfo: "User Info",
+  user: "Username",
+  phone: "Phone Number",
+  register: "Rigster"
 };

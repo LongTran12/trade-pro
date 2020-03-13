@@ -154,5 +154,14 @@ export default {
   timeStart: "Thời gian bắt đầu",
   lastDay: "Thời gian kết thúc",
   action: "Hành động",
-  cancel: "Cancel"
+  cancel: "Cancel",
+  //network
+  level: "Cấp Độ",
+  members: "Số Thành Viên",
+  sales: "Doanh Số",
+  totalSales: "Tổng doanh số",
+  userInfo: "Thông tin User",
+  user: "Tài Khoản",
+  phone: "Số điện thoại",
+  register: "Đăng kí"
 };
