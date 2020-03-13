@@ -164,6 +164,7 @@ const HistoryTableContainer = ({ classes }) => {
             </TableHead>
             <TableBody>
               {events
+                .sort((a, b) => b.historyDate - a.historyDate)
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, i) => {
                   if (row.tokenName.toLowerCase().indexOf(filterText) === -1) {
