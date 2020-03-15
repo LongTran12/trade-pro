@@ -26,15 +26,18 @@ const TradingFormWidgetSell = ({ classes }) => {
   let dataPrice = [
     {
       name: "0.5$",
-      value: 0
+      value: 0,
+      number: 0.5
     },
     {
       name: "0.75$",
-      value: 1
+      value: 1,
+      number: 0.75
     },
     {
       name: "1$",
-      value: 2
+      value: 2,
+      number: 1
     }
   ];
   if (otePrice / 10 ** 6 === 0.75) {
@@ -174,7 +177,8 @@ const TradingFormWidgetSell = ({ classes }) => {
               }}
             />
             <FormHelperText>
-              {textTranslate("totalPurchase")} ${(otePrice / 10 ** 6) * amount}
+              {textTranslate("totalPurchase")} $
+              {dataPrice[price].number * amount}
             </FormHelperText>
           </FormControl>
         </Grid>

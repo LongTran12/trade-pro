@@ -8,6 +8,17 @@ const contractPublic = new web3Public.eth.Contract(
 const otePublic = new web3Public.eth.Contract(config.usdiAbi, config.ote);
 const usdtPublic = new web3Public.eth.Contract(config.usdtAbi, config.usdt);
 const usdiPublic = new web3Public.eth.Contract(config.usdiAbi, config.usdi);
+const memberPublic = new web3Public.eth.Contract(
+  config.memberAbi,
+  config.memberAddress
+);
 export default web3Public;
 
-export { web3Public, contractPublic, usdtPublic, usdiPublic, otePublic };
+export {
+  web3Public,
+  contractPublic,
+  usdtPublic,
+  usdiPublic,
+  otePublic,
+  memberPublic
+};

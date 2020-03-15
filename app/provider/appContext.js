@@ -5,7 +5,7 @@ import { contractPublic } from "./web3Public";
 import coinAddressValidator from "coin-address-validator";
 import * as qs from "query-string";
 import { config } from "../config";
-
+import { memberPublic } from "../provider/web3Public";
 const AppContext = React.createContext();
 
 const AppWrap = ({ children }) => {
@@ -17,6 +17,10 @@ const AppWrap = ({ children }) => {
   });
   const [ref, setRef] = useState(config.oteex);
   useEffect(() => {
+    const getUser = async username => {
+      let getAddress = await memberPublic.methods.getAddress(username).call();
+      setRef(getAddress);
+    };
     const parsed = qs.parse(window.location.search);
     if (
       parsed.ref &&
@@ -27,6 +31,9 @@ const AppWrap = ({ children }) => {
       if (window.localStorage) {
         window.localStorage.setItem("ref", parsed.ref);
       }
+    }
+    if (parsed.user && parsed.user !== "") {
+      getUser(parsed.user);
     }
   }, []);
   useEffect(() => {

@@ -32,6 +32,9 @@ const WrapWeb3 = ({ children }) => {
               let usdi = window.web3.eth
                 .contract(config.usdiAbi)
                 .at(config.usdi);
+              let member = window.web3.eth
+                .contract(config.memberAbi)
+                .at(config.memberAddress);
               let usdt = window.web3.eth
                 .contract(config.usdtAbi)
                 .at(config.usdt);
@@ -45,7 +48,8 @@ const WrapWeb3 = ({ children }) => {
                 contract: w3contract,
                 usdt,
                 usdi,
-                ote
+                ote,
+                member
               });
             })
             .catch(e => {
@@ -81,6 +85,9 @@ const WrapWeb3 = ({ children }) => {
         let usdi = window.web3.eth.contract(config.usdi).at(config.usdiAbi);
         let usdt = window.web3.eth.contract(config.usdt).at(config.usdtAbi);
         let ote = window.web3.eth.contract(config.usdiAbi).at(config.ote);
+        let member = window.web3.eth
+          .contract(config.memberAbi)
+          .at(config.memberAddress);
         setState({
           loading: false,
           installed: true,
@@ -90,7 +97,8 @@ const WrapWeb3 = ({ children }) => {
           contract: w3contract,
           usdi,
           usdt,
-          ote
+          ote,
+          member
         });
       }
       // Non-DApp Browsers
