@@ -140,6 +140,11 @@ const NetworkWrap = memo(styled.div`
       border-bottom-left-radius: 25px;
       padding: 12px 40px 12px 16px !important;
       height: inherit !important;
+      background: #3d7cb3;
+      color: #fff;
+      :hover{
+        background: #3d7cb3;
+      }
       .ant-tree-title {
         width: 100%;
         .ref_title {
@@ -176,6 +181,9 @@ const NetworkWrap = memo(styled.div`
         position: absolute;
         top: 15px;
         right: 10px;
+        i{
+          font-size:1.2em !important;
+        }
       }
     }
     & > li {
@@ -257,6 +265,42 @@ const NetworkWrap = memo(styled.div`
                                 .address__ref,
                                 .ref_stat span {
                                   color: #fff;
+                                }
+                              }
+                              & > ul {
+                                & > li {
+                                  & > .ant-tree-node-content-wrapper {
+                                    background-color: #b16cbd !important;
+                                    .level__ref,
+                                    .address__ref,
+                                    .ref_stat span {
+                                      color: #fff;
+                                    }
+                                  }
+                                  & > ul {
+                                    & > li {
+                                      & > .ant-tree-node-content-wrapper {
+                                        background-color: #92691a !important;
+                                        .level__ref,
+                                        .address__ref,
+                                        .ref_stat span {
+                                          color: #fff;
+                                        }
+                                      }
+                                      & > ul {
+                                        & > li {
+                                          & > .ant-tree-node-content-wrapper {
+                                            background-color: #0d273c !important;
+                                            .level__ref,
+                                            .address__ref,
+                                            .ref_stat span {
+                                              color: #fff;
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
                                 }
                               }
                             }

@@ -235,13 +235,9 @@ const StakingTable = ({ classes }) => {
                             confirmButtonText: 'Yes, delete it!'
                           }).then((result) => {
                             if (result.value) {
-                              Swal.fire(
-                                'Deleted!',
-                                'Your file has been deleted.',
-                                'success'
-                              ).then(function () {
-                                cancelStaking(idFire);
-                              });
+                              cancelStaking(idFire);
+                              console.log('fire id', idFire)
+
                             }
                           })
                         }
