@@ -14,7 +14,7 @@ export default {
   price: "Giá",
   status: "Tình Trạng",
   amount: "Số Lượng",
-  block: "Số Hoá Đơn",
+  block: "Số Block",
   address: "Địa Chỉ Ví",
   refLink: "Link giới thiệu",
   rowsPerPage: "Số hàng trên một trang: ",

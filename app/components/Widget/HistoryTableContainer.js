@@ -93,6 +93,7 @@ const HistoryTableContainer = ({ classes }) => {
         },
         function(error, result) {
           if (!error) {
+            console.log(result);
             let lastEvent = result.map(item => ({
               tokenIcon: item.returnValues.currency === "1" ? oteLogo : oteLogo,
               tokenName: item.returnValues.currency === "1" ? "USDI" : "USDT",
@@ -104,7 +105,8 @@ const HistoryTableContainer = ({ classes }) => {
                 .dividedBy(new BigNumber(10).pow(18))
                 .toNumber(),
               historyDate: item.blockNumber,
-              addressToken: item.returnValues["0"]
+              addressToken: item.returnValues["0"],
+              tx: item.transactionHash
             }));
             setEvents(lastEvent);
           } else {

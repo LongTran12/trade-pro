@@ -40,7 +40,10 @@ const StakingTable = ({ classes }) => {
         amount: new BigNumber(item).dividedBy(10 ** 18).toNumber(),
         term: dataContract.term[index],
         timeStart: Number(dataContract.timeStart[index]) * 1000,
-        lastDay: Number(dataContract.timePayed[index]) * 1000,
+        lastDay:
+          (Number(dataContract.timeStart[index]) +
+            dataContract.term[index] * 30 * 24 * 60 * 60) *
+          1000,
         status: Number(dataContract.status[index])
       });
     });
@@ -138,9 +141,9 @@ const StakingTable = ({ classes }) => {
       term: 6,
       timeStart: 1579487117000,
       lastDay: 1584671117000,
-      status: 0,
-    },
-  ]
+      status: 0
+    }
+  ];
 
   return (
     <PapperBlock
@@ -224,23 +227,28 @@ const StakingTable = ({ classes }) => {
                         const onSubmit = e => {
                           // console.log('data id', e)
                         };
-                        const buttonFire = (idFire) => {
+                        const buttonFire = (idFire, term) => {
+                          const percent = {
+                            "6": 10,
+                            "12": 15,
+                            "18": 30
+                          };
                           Swal.fire({
-                            title: 'Are you sure?',
-                            text: "You won't be able to revert this!",
-                            icon: 'warning',
+                            title: "Are you sure?",
+                            text: `If you cancel your staking you will lost ${
+                              percent[term]
+                            }% amount!`,
+                            icon: "warning",
                             showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Yes, delete it!'
-                          }).then((result) => {
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Yes, delete it!"
+                          }).then(result => {
                             if (result.value) {
                               cancelStaking(idFire);
-                              console.log('fire id', idFire)
-
                             }
-                          })
-                        }
+                          });
+                        };
                         const elementButton =
                           row.status === 0 ? (
                             <Button
@@ -248,15 +256,14 @@ const StakingTable = ({ classes }) => {
                               variant="contained"
                               color="secondary"
                               onClick={() => {
-                                // cancelStaking(row.id);
-                                buttonFire(row.id);
+                                buttonFire(row.id, row.term);
                               }}
                             >
                               {textTranslate("cancel")}
                             </Button>
                           ) : (
-                              <div />
-                            );
+                            <div />
+                          );
 
                         return (
                           <TableCell key={is} align={column.align}>
@@ -269,10 +276,10 @@ const StakingTable = ({ classes }) => {
                               {column.action
                                 ? elementButton
                                 : column.format
-                                  ? column.format(value)
-                                  : column.status
-                                    ? elementStatus
-                                    : value}
+                                ? column.format(value)
+                                : column.status
+                                ? elementStatus
+                                : value}
                             </form>
                           </TableCell>
                         );

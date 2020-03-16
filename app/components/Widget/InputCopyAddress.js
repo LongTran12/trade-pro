@@ -151,13 +151,13 @@ const InputCopyAddress = ({ classes }) => {
             <InputLabel htmlFor="name-simple">
               {textTranslate("user")}
             </InputLabel>
-            <Input id="name-simple" value={userName} onChange={changeUser} />
+            <Input id="name-simple34" value={userName} onChange={changeUser} />
           </FormControl>
           <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="name-simple">
+            <InputLabel htmlFor="name-simple2">
               {textTranslate("phone")}
             </InputLabel>
-            <Input id="name-simple" value={phone} onChange={changePhone} />
+            <Input id="name-simple2" value={phone} onChange={changePhone} />
           </FormControl>
           <Button
             variant="contained"
