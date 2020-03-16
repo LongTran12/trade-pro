@@ -10,7 +10,7 @@ export default {
   tradeHistory: "Trade History",
   findCoin: "Find Token Name",
   token: "Token",
-  name: "Name",
+  name: "Cryptocurry",
   price: "Price",
   status: "Status",
   amount: "Amount",

@@ -10,7 +10,7 @@ export default {
   tradeHistory: "Lịch sử giao dịch",
   findCoin: "Tìm kiếm Token",
   token: "Token",
-  name: "Tên",
+  name: "Đơn vị tiền tệ",
   price: "Giá",
   status: "Tình Trạng",
   amount: "Số Lượng",

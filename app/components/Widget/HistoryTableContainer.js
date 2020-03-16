@@ -46,6 +46,12 @@ const HistoryTableContainer = ({ classes }) => {
       formatImage: "image"
     },
     {
+      id: "historyDate",
+      label: textTranslate("block"),
+      align: "right",
+      format: value => value
+    },
+    {
       id: "tokenName",
       label: textTranslate("name"),
       formatNo: "no"
@@ -66,13 +72,6 @@ const HistoryTableContainer = ({ classes }) => {
       label: textTranslate("amount"),
       align: "right",
       format: value => value.toFixed(2)
-    },
-    {
-      id: "historyDate",
-      label: textTranslate("block"),
-      align: "right",
-      format: value => value,
-      disablePadding: false
     },
     {
       id: "addressToken",

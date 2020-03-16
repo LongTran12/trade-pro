@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -12,8 +12,26 @@ import colorfull from "dan-api/palette/colorfull";
 import { CounterWidget } from "dan-components";
 import styles from "dan-components/Widget/widget-jss";
 import CounterMember from "../Counter/CounterMember";
-
+import { contractPublic } from "../../provider/web3Public";
 const InfoUserReference = ({ classes }) => {
+  const [info, setInfo] = useState({
+    level: "",
+    members: 0,
+    staking: 0,
+    totalStaking: 0
+  });
+  useEffect(() => {
+    const getInfo = async () => {
+      let userInfo = await contractPublic.methods.getUserStats(address).call();
+      setInfo({
+        level: userInfo.staking,
+        members: userInfo.totalMembers,
+        staking: userInfo.currentSales,
+        totalStaking: userInfo.totalSales
+      });
+    };
+    getInfo();
+  }, []);
   return (
     <div className={classes.rootCounterFull}>
       <Grid container spacing={2}>
@@ -32,7 +50,7 @@ const InfoUserReference = ({ classes }) => {
           <CounterMember
             color={colorfull[1]}
             start={0}
-            end={300}
+            end={info.members}
             duration={3}
             title="members"
           >
@@ -43,7 +61,7 @@ const InfoUserReference = ({ classes }) => {
           <CounterMember
             color={colorfull[2]}
             start={0}
-            end={67}
+            end={info.staking}
             duration={3}
             title="sales"
           >
@@ -54,7 +72,7 @@ const InfoUserReference = ({ classes }) => {
           <CounterMember
             color={colorfull[3]}
             start={0}
-            end={70}
+            end={info.totalStaking}
             duration={3}
             title="totalSales"
           >
