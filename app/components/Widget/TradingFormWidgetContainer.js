@@ -215,7 +215,8 @@ const TradingFormWidgetContainer = ({ classes }) => {
                     {textTranslate("totalPurchase")} $
                     {new BigNumber(otePrice)
                       .dividedBy(10 ** 6)
-                      .multipliedBy(amount)}
+                      .multipliedBy(amount)
+                      .toNumber()}
                   </FormHelperText>
                 </FormControl>
               </Grid>
