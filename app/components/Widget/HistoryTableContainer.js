@@ -19,6 +19,7 @@ import { contractPublic } from "../../provider/web3Public";
 import { useTranslation } from "react-i18next";
 import { Chip } from "@material-ui/core";
 import messageStyles from "dan-styles/Messages.scss";
+import BigNumber from "bignumber.js";
 
 const HistoryTableContainer = ({ classes }) => {
   // const { getLang } = useContext(LanguageContext)
@@ -96,8 +97,12 @@ const HistoryTableContainer = ({ classes }) => {
               tokenIcon: item.returnValues.currency === "1" ? oteLogo : oteLogo,
               tokenName: item.returnValues.currency === "1" ? "USDI" : "USDT",
               tokenStatus: item.event === "Buy",
-              tokenPrice: item.returnValues.price / 10 ** 6,
-              tokenAmount: item.returnValues.amount / 10 ** 18,
+              tokenPrice: new BigNumber(item.returnValues.price)
+                .dividedBy(10 ** 6)
+                .toNumber(),
+              tokenAmount: new BigNumber(item.returnValues.amount)
+                .dividedBy(new BigNumber(10).pow(18))
+                .toNumber(),
               historyDate: item.blockNumber,
               addressToken: item.returnValues["0"]
             }));

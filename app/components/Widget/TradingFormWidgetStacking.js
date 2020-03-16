@@ -127,7 +127,6 @@ const TradingFormWidgetSell = ({ classes }) => {
                 }
               }}
             />
-            {/* <FormHelperText>Total Amount: ${(otePrice / 10 ** 6) * amount}</FormHelperText> */}
           </FormControl>
         </Grid>
       </Grid>

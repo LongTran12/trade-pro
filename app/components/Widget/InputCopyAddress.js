@@ -22,6 +22,8 @@ import InputLabel from "@material-ui/core/InputLabel";
 // import Button from '@material-ui/core/Button';
 import { memberPublic } from "../../provider/web3Public";
 import { member } from "../../provider/web3";
+import { AppContext } from "../../provider/appContext";
+import { message } from "antd";
 
 const InputCopyAddress = ({ classes }) => {
   const [copys, setCopy] = useState(false);
@@ -41,7 +43,7 @@ const InputCopyAddress = ({ classes }) => {
   const domain = window.location.origin + "/?ref=" + address;
 
   //user
-
+  const { ref } = useContext(AppContext);
   const [isUser, setIsUser] = useState(false);
   const [userName, setUserName] = useState("");
   const [phone, setPhone] = useState("");
@@ -53,15 +55,44 @@ const InputCopyAddress = ({ classes }) => {
     setPhone(e.target.value);
   };
   const onRegister = async () => {
-    member.registerUser(userName, phone, { value: 0 }, err => {
-      if (err) {
-        console.log(err.message);
-        message.error(err.message);
-      } else {
-        console.log("Register success!");
-        message.info("Register success!");
+    let valid = await memberPublic.methods.validRegisterUser(
+      userName,
+      phone,
+      ref
+    );
+    valid = Number(valid);
+    if (valid === 0) {
+      member.registerUser(userName, phone, ref, { value: 0 }, err => {
+        if (err) {
+          console.log(err.message);
+          message.error(err.message);
+        } else {
+          console.log("Register success!");
+          message.info("Register success!");
+        }
+      });
+    } else {
+      //TODO
+      switch (valid) {
+        case 1:
+          message.error("User in use!");
+          break;
+        case 2:
+          message.error("Address already set username!");
+          break;
+        case 3:
+          message.error("Phone in use!");
+          break;
+        case 4:
+          message.error("Address already set phone!");
+          break;
+        case 5:
+          message.error("Reference is not valid, please contact sponsor!");
+          break;
+        default:
+          break;
       }
-    });
+    }
   };
 
   useEffect(() => {

@@ -17,6 +17,7 @@ import messageStyles from "dan-styles/Messages.scss";
 import PapperBlock from "../PapperBlock/PapperBlock";
 import { contractPublic } from "../../provider/web3Public";
 import { Web3Context } from "../../provider/web3";
+import BigNumber from "bignumber.js";
 
 function LatestTransactionWidgetContainer({ classes }) {
   const getStatus = status => {
@@ -77,11 +78,17 @@ function LatestTransactionWidgetContainer({ classes }) {
                   item.returnValues.currency === "1" ? oteLogo : oteLogo,
                 tokenName: item.returnValues.currency === "1" ? "USDI" : "USDT",
                 tokenStatus: item.event === "Buy",
-                tokenPrice: item.returnValues.price / 10 ** 6,
-                tokenAmount: item.returnValues.amount / 10 ** 18,
-                total:
-                  (item.returnValues.price / 10 ** 6) *
-                  (item.returnValues.amount / 10 ** 18)
+                tokenPrice: new BigNumber(item.returnValues.price)
+                  .dividedBy(10 ** 6)
+                  .toNumber(),
+                tokenAmount: new BigNumber(item.returnValues.amount)
+                  .dividedBy(10 ** 18)
+                  .toNumber(),
+                total: new BigNumber(item.returnValues.price)
+                  .dividedBy(10 ** 6)
+                  .multipliedBy(item.returnValues.amount)
+                  .dividedBy(10 ** 18)
+                  .toNumber()
               }));
             setEvents(lastEvent);
           } else {

@@ -21,6 +21,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { web3Public } from "../../provider/web3Public";
 import { Web3Context } from "../../provider/web3";
 import { config } from "../../config";
+import BigNumber from "bignumber.js";
 const StakingTable = ({ classes }) => {
   // const { getLang } = useContext(LanguageContext)
   const { address, contract } = useContext(Web3Context);
@@ -35,7 +36,7 @@ const StakingTable = ({ classes }) => {
     dataContract.amount.forEach((item, index) => {
       data.push({
         id: index,
-        amount: item / 10 ** 18,
+        amount: new BigNumber(item).dividedBy(10 ** 18).toNumber(),
         term: dataContract.term[index],
         timeStart: Number(dataContract.timeStart[index]) * 1000,
         lastDay: Number(dataContract.timePayed[index]) * 1000,

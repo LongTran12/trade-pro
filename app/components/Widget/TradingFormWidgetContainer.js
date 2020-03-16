@@ -28,6 +28,7 @@ import TradingFormWidgetSell from "./TradingFormWidgetSell";
 import TradingFormWidgetStacking from "./TradingFormWidgetStacking";
 import { useTranslation } from "react-i18next";
 import { message } from "antd";
+import BigNumber from "bignumber.js";
 
 function TabContainer({ children, dir }) {
   return (
@@ -212,7 +213,9 @@ const TradingFormWidgetContainer = ({ classes }) => {
                   />
                   <FormHelperText>
                     {textTranslate("totalPurchase")} $
-                    {(otePrice / 10 ** 6) * amount}
+                    {new BigNumber(otePrice)
+                      .dividedBy(10 ** 6)
+                      .multipliedBy(amount)}
                   </FormHelperText>
                 </FormControl>
               </Grid>

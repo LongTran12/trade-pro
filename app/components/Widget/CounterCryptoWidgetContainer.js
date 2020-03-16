@@ -14,8 +14,8 @@ import CompareArrows from "@material-ui/icons/CompareArrows";
 import styles from "./widget-jss";
 import CounterWidget from "../Counter/CounterWidget";
 import { AppContext } from "../../provider/appContext";
-
 import { useTranslation } from "react-i18next";
+import BigNumber from "bignumber.js";
 
 const CounterCryptoWidgetContainer = ({ classes, width, intl }) => {
   const { oteSeller, oteStacking, otePrice, totalMemberStacking } = useContext(
@@ -58,7 +58,11 @@ const CounterCryptoWidgetContainer = ({ classes, width, intl }) => {
             unitBefore="$ "
             color={colorfull[0]}
             start={0}
-            end={otePrice ? otePrice / 10 ** 6 : 0}
+            end={
+              otePrice
+                ? new BigNumber(otePrice).dividedBy(10 ** 6).toNumber()
+                : 0
+            }
             duration={3}
             decimals={2}
             decimal=","

@@ -5,6 +5,7 @@ import { config } from "../../config";
 import { Web3Context } from "../../provider/web3";
 import NetWorkWidgetTree from "./NetworkWidgetTree";
 import styled from "styled-components";
+import BigNumber from "bignumber.js";
 
 const NetworkWidgetContainer = () => {
   const { address } = useContext(Web3Context);
@@ -41,12 +42,14 @@ const NetworkWidgetContainer = () => {
                 <span className="address__ref">{memberInfo.refs[i]}</span>
               </div>
               <div className="ref_stat">
-                {/* <span className="ref_user hidden-mobile">
-                  [Total Invest: {agencyInfo.totalInvest / 10 ** 18}
-                </span> */}
                 <span className="hidden-mobile">|</span>
                 <span className="ref_commission">
-                  Total Sales: <span>{agencyInfo.totalSales / 10 ** 18}</span>
+                  Total Staking:{" "}
+                  <span>
+                    {new BigNumber(agencyInfo.totalSales)
+                      .dividedBy(10 ** 18)
+                      .toString()}
+                  </span>
                   <span className="hidden-mobile">]</span>
                 </span>
               </div>
@@ -101,12 +104,14 @@ const NetworkWidgetContainer = () => {
               <span className="address__ref">{memberInfo.refs[i]}</span>
             </div>
             <div className="ref_stat">
-              {/* <span className="ref_user hidden-mobile">
-                [Total Invest: {agencyInfo.totalInvest / 10 ** 18}
-              </span> */}
               <span className="hidden-mobile">|</span>
               <span className="ref_commission">
-                Total Sales: <span>{agencyInfo.totalSales / 10 ** 18}</span>
+                Total Staking:{" "}
+                <span>
+                  {new BigNumber(agencyInfo.totalSales)
+                    .dividedBy(10 ** 18)
+                    .toString()}
+                </span>
                 <span className="hidden-mobile">]</span>
               </span>
             </div>
