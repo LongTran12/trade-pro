@@ -207,6 +207,66 @@ const NetworkWrap = memo(styled.div`
                   color: #fff;
                 }
               }
+              & > ul {
+                & > li {
+                  & > .ant-tree-node-content-wrapper {
+                    background-color: rgb(3, 169, 244) !important;
+                    .level__ref,
+                    .address__ref,
+                    .ref_stat span {
+                      color: #fff;
+                    }
+                  }
+                  & > ul {
+                    & > li {
+                      & > .ant-tree-node-content-wrapper {
+                        background-color: rgb(156, 39, 176) !important;
+                        .level__ref,
+                        .address__ref,
+                        .ref_stat span {
+                          color: #fff;
+                        }
+                      }
+                      & > ul {
+                        & > li {
+                          & > .ant-tree-node-content-wrapper {
+                            background-color: rgb(236, 64, 122) !important;
+                            .level__ref,
+                            .address__ref,
+                            .ref_stat span {
+                              color: #fff;
+                            }
+                          }
+                          & > ul {
+                            & > li {
+                              & > .ant-tree-node-content-wrapper {
+                                background-color: #2196F3 !important;
+                                .level__ref,
+                                .address__ref,
+                                .ref_stat span {
+                                  color: #fff;
+                                }
+                              }
+                            }
+                          }
+                          & > ul {
+                            & > li {
+                              & > .ant-tree-node-content-wrapper {
+                                background-color: #36b2be !important;
+                                .level__ref,
+                                .address__ref,
+                                .ref_stat span {
+                                  color: #fff;
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }

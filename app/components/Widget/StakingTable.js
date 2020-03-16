@@ -22,6 +22,7 @@ import { web3Public } from "../../provider/web3Public";
 import { Web3Context } from "../../provider/web3";
 import { config } from "../../config";
 import BigNumber from "bignumber.js";
+import Swal from "sweetalert2";
 const StakingTable = ({ classes }) => {
   // const { getLang } = useContext(LanguageContext)
   const { address, contract } = useContext(Web3Context);
@@ -130,6 +131,16 @@ const StakingTable = ({ classes }) => {
       }
     });
   };
+  const datas = [
+    {
+      id: 2,
+      amount: 1000,
+      term: 6,
+      timeStart: 1579487117000,
+      lastDay: 1584671117000,
+      status: 0,
+    },
+  ]
 
   return (
     <PapperBlock
@@ -209,10 +220,31 @@ const StakingTable = ({ classes }) => {
                             break;
                         }
                         const btnID = column.event && value;
-                        console.log("data id", btnID);
+                        console.log("data id s", btnID);
                         const onSubmit = e => {
                           // console.log('data id', e)
                         };
+                        const buttonFire = (idFire) => {
+                          Swal.fire({
+                            title: 'Are you sure?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, delete it!'
+                          }).then((result) => {
+                            if (result.value) {
+                              Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                              ).then(function () {
+                                cancelStaking(idFire);
+                              });
+                            }
+                          })
+                        }
                         const elementButton =
                           row.status === 0 ? (
                             <Button
@@ -220,14 +252,15 @@ const StakingTable = ({ classes }) => {
                               variant="contained"
                               color="secondary"
                               onClick={() => {
-                                cancelStaking(row.id);
+                                // cancelStaking(row.id);
+                                buttonFire(row.id);
                               }}
                             >
                               {textTranslate("cancel")}
                             </Button>
                           ) : (
-                            <div />
-                          );
+                              <div />
+                            );
 
                         return (
                           <TableCell key={is} align={column.align}>
@@ -240,10 +273,10 @@ const StakingTable = ({ classes }) => {
                               {column.action
                                 ? elementButton
                                 : column.format
-                                ? column.format(value)
-                                : column.status
-                                ? elementStatus
-                                : value}
+                                  ? column.format(value)
+                                  : column.status
+                                    ? elementStatus
+                                    : value}
                             </form>
                           </TableCell>
                         );

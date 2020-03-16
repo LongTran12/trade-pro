@@ -197,6 +197,8 @@
     "serve-favicon": "^2.4.5",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.0.1",
+    "sweetalert2": "^9.10.1",
+    "sweetalert2-react-content": "^3.0.1",
     "tunnel-agent": "^0.6.0",
     "warning": "4.0.2",
     "web3": "^1.2.6"
