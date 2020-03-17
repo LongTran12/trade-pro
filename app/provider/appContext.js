@@ -6,6 +6,7 @@ import coinAddressValidator from "coin-address-validator";
 import * as qs from "query-string";
 import { config } from "../config";
 import { memberPublic } from "../provider/web3Public";
+import web3 from "web3";
 const AppContext = React.createContext();
 
 const AppWrap = ({ children }) => {
@@ -15,7 +16,9 @@ const AppWrap = ({ children }) => {
     otePrice: 0,
     chart: []
   });
-  const [ref, setRef] = useState(config.oteex);
+  const [ref, setRef] = useState(
+    web3.utils.toChecksumAddress("0x0000000000000000000000000000000000000000")
+  );
   useEffect(() => {
     const getUser = async username => {
       let getAddress = await memberPublic.methods.getAddress(username).call();
@@ -33,6 +36,7 @@ const AppWrap = ({ children }) => {
       }
     }
     if (parsed.user && parsed.user !== "") {
+      console.log("hahaha");
       getUser(parsed.user);
     }
   }, []);

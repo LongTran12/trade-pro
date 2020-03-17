@@ -24,7 +24,7 @@ const WrapWeb3 = ({ children }) => {
         try {
           window.ethereum
             .enable()
-            .then(function (accounts) {
+            .then(function(accounts) {
               // User has allowed account access to DApp...
               let w3contract = window.web3.eth
                 .contract(config.oteexAbi)

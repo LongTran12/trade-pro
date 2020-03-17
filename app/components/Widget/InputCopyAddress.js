@@ -21,7 +21,6 @@ import copy from "copy-to-clipboard";
 import InputLabel from "@material-ui/core/InputLabel";
 // import Button from '@material-ui/core/Button';
 import { memberPublic } from "../../provider/web3Public";
-import { member } from "../../provider/web3";
 import { AppContext } from "../../provider/appContext";
 import { message } from "antd";
 
@@ -32,7 +31,8 @@ const InputCopyAddress = ({ classes }) => {
   const textTranslate = text => {
     return i18n.exists(text) ? t(text) : text;
   };
-  const { address } = useContext(Web3Context);
+
+  const { member, address } = useContext(Web3Context);
   useEffect(() => {
     const time = setTimeout(() => {
       setCopy(false);
@@ -55,19 +55,15 @@ const InputCopyAddress = ({ classes }) => {
     setPhone(e.target.value);
   };
   const onRegister = async () => {
-    let valid = await memberPublic.methods.validRegisterUser(
-      userName,
-      phone,
-      ref
-    );
+    let valid = await memberPublic.methods
+      .validRegisterUser(userName, phone, ref)
+      .call();
     valid = Number(valid);
     if (valid === 0) {
       member.registerUser(userName, phone, ref, { value: 0 }, err => {
         if (err) {
-          console.log(err.message);
           message.error(err.message);
         } else {
-          console.log("Register success!");
           message.info("Register success!");
         }
       });
@@ -103,10 +99,12 @@ const InputCopyAddress = ({ classes }) => {
           setIsUser(true);
           setUserName(user.user);
         }
-      } catch (error) {}
+      } catch (error) {
+        console.log(error);
+      }
     };
     getUsername();
-  }, []);
+  }, [address]);
   //end user
   return (
     <PapperBlock

@@ -2,11 +2,11 @@
 const config = {
   web3Provider:
     "wss://mainnet.infura.io/ws/v3/2526c65276fd4134a550212871a550fd",
-  oteex: "0xCa2011e25e804c5FC8C9047a386aA5a822FBA598",
+  oteex: "0x63Bc8b028fB95Cc94ad6Ddf4993B3230e60d4944",
   ote: "0x7Fa7Ee339b26C35cA5F642cE940c8c1E8639E66e",
   usdt: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
   usdi: "0xdC1F5E7f20691b33E4cdD872f815E066d221C29D",
-  memberAddress: "0x5Ab99972976Ee1Ae5004471056D8A1aCf0670ee5",
+  memberAddress: "0x1234bEc966cFb6b16dAe082ecec74775275Da029",
   memberAbi: [
     {
       constant: false,
@@ -1035,7 +1035,7 @@ const config = {
       inputs: [
         {
           internalType: "address",
-          name: "memberContract",
+          name: "_memberContract",
           type: "address"
         }
       ],
@@ -1312,27 +1312,6 @@ const config = {
           internalType: "uint256",
           name: "",
           type: "uint256"
-        }
-      ],
-      payable: false,
-      stateMutability: "view",
-      type: "function"
-    },
-    {
-      constant: true,
-      inputs: [
-        {
-          internalType: "address",
-          name: "_investor",
-          type: "address"
-        }
-      ],
-      name: "getAllSales",
-      outputs: [
-        {
-          internalType: "uint256[]",
-          name: "",
-          type: "uint256[]"
         }
       ],
       payable: false,
@@ -1636,21 +1615,6 @@ const config = {
           internalType: "uint256[]",
           name: "status",
           type: "uint256[]"
-        }
-      ],
-      payable: false,
-      stateMutability: "view",
-      type: "function"
-    },
-    {
-      constant: true,
-      inputs: [],
-      name: "logs",
-      outputs: [
-        {
-          internalType: "uint256",
-          name: "",
-          type: "uint256"
         }
       ],
       payable: false,
