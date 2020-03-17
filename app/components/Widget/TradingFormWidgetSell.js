@@ -19,6 +19,7 @@ import { config } from "../../config";
 import { useTranslation } from "react-i18next";
 import { message } from "antd";
 import { otePublic } from "../../provider/web3Public";
+import Swal from "sweetalert2";
 
 const TradingFormWidgetSell = ({ classes }) => {
   const { otePrice } = useContext(AppContext);
@@ -60,6 +61,41 @@ const TradingFormWidgetSell = ({ classes }) => {
       }
     ];
   }
+  const [status, setStatus] = useState({ code: "" });
+  useEffect(() => {
+    if (status.code === "loading") {
+      Swal.fire({
+        title: "Waiting!",
+        timer: 1000000,
+        text: "Please waiting for confirm your transaction!",
+        onBeforeOpen: () => {
+          Swal.showLoading();
+        }
+      });
+    } else if (status.code === "success") {
+      Swal.fire({
+        timer: "Success",
+        text: "Thanks for make sell order!"
+      }).then(() => {
+        updateMember();
+      });
+    } else if (status.code === "error") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: status.message
+      });
+    } else if (status.code === "loading-approve") {
+      Swal.fire({
+        title: "Waiting!",
+        timer: 1000000,
+        text: "Please waiting for confirm your approve transaction!",
+        onBeforeOpen: () => {
+          Swal.showLoading();
+        }
+      });
+    }
+  }, [status]);
 
   const [price, setPrice] = useState(() => {
     if (otePrice / 10 ** 6 === 0.5) {
@@ -80,12 +116,13 @@ const TradingFormWidgetSell = ({ classes }) => {
   const makeOrder = async () => {
     console.log(amount);
     let allow = await otePublic.methods.allowance(address, config.oteex).call();
-    console.log("allow", allow);
     if (allow >= amount * 10 ** 18) {
-      console.log("hello");
+      setStatus({
+        code: "loading"
+      });
       contract.makeOrder(amount * 10 ** 18, price, { value: 0 }, err => {
         if (err) {
-          console.log(err.message);
+          setStatus({ code: "error", message: err.message });
           message.error(err.message);
         } else {
           message.info("Make order success!");
@@ -93,11 +130,15 @@ const TradingFormWidgetSell = ({ classes }) => {
         }
       });
     } else {
+      setStatus({
+        code: "loading-token"
+      });
       ote.approve(config.oteex, 10 ** 25, { value: 0 }, err => {
         if (err) {
-          console.log(err.message);
+          setStatus({ code: "error", message: err.message });
           message.error(err.message);
         } else {
+          etStatus({ code: "success" });
           message.info("Approve success!");
           const hide = message.loading("Action in progress..", 0);
           console.log("Approve success!");
@@ -112,13 +153,15 @@ const TradingFormWidgetSell = ({ classes }) => {
     let allow = await otePublic.methods.allowance(address, config.oteex).call();
     if (allow >= amount * 10 ** 18) {
       hide && hide();
-      console.log("hello");
+      setStatus({
+        code: "loading"
+      });
       contract.makeOrder(amount * 10 ** 18, price, { value: 0 }, err => {
         if (err) {
-          console.log(err.message);
+          setStatus({ code: "error", message: err.message });
           message.error(err.message);
         } else {
-          message.info("Make order success!");
+          etStatus({ code: "success" });
           console.log("Make order success!");
         }
       });

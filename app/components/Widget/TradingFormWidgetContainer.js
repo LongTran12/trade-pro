@@ -29,6 +29,7 @@ import TradingFormWidgetStacking from "./TradingFormWidgetStacking";
 import { useTranslation } from "react-i18next";
 import { message } from "antd";
 import BigNumber from "bignumber.js";
+import Swal from "sweetalert2";
 
 function TabContainer({ children, dir }) {
   return (
@@ -67,6 +68,41 @@ const TradingFormWidgetContainer = ({ classes }) => {
   };
 
   const [amount, setAmount] = useState(100);
+  const [status, setStatus] = useState({ code: "" });
+  useEffect(() => {
+    if (status.code === "loading") {
+      Swal.fire({
+        title: "Waiting!",
+        timer: 1000000,
+        text: "Please waiting for confirm your transaction!",
+        onBeforeOpen: () => {
+          Swal.showLoading();
+        }
+      });
+    } else if (status.code === "success") {
+      Swal.fire({
+        timer: "Success",
+        text: "Thanks for purchase token!"
+      }).then(() => {
+        updateMember();
+      });
+    } else if (status.code === "error") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: status.message
+      });
+    } else if (status.code === "loading-approve") {
+      Swal.fire({
+        title: "Waiting!",
+        timer: 1000000,
+        text: "Please waiting for confirm your approve transaction!",
+        onBeforeOpen: () => {
+          Swal.showLoading();
+        }
+      });
+    }
+  }, [status]);
   const buyOTE = async () => {
     console.log(ref);
     let allow = 0;
@@ -75,37 +111,44 @@ const TradingFormWidgetContainer = ({ classes }) => {
     } else {
       allow = await usdtPublic.methods.allowance(address, config.oteex).call();
     }
-    console.log("ref", ref);
     if (allow >= otePrice * amount) {
+      setStatus({
+        code: "loading"
+      });
       contract.buyOTE(amount * 10 ** 18, coin, ref, { value: 0 }, err => {
         if (err) {
           console.log(err.message);
+          setStatus({ code: "error", message: err.message });
           message.error(err.message);
         } else {
-          console.log("Buy success!");
+          setStatus({ code: "success" });
           message.info("Buy success!");
         }
       });
     } else {
       if (Number(coin) === 1) {
+        setStatus({
+          code: "loading-approve"
+        });
         usdi.approve(config.oteex, 10 ** 15, { value: 0 }, err => {
           if (err) {
-            console.log(err.message);
+            setStatus({ code: "error", message: err.message });
             message.error(err.message);
           } else {
-            console.log("Approve success!");
             message.info("Approve success!");
             const hide = message.loading("Action in progress..", 0);
             checkAndBuy(hide);
           }
         });
       } else {
+        setStatus({
+          code: "loading-approve"
+        });
         usdt.approve(config.oteex, 10 ** 15, { value: 0 }, err => {
           if (err) {
-            console.log(err.message);
+            setStatus({ code: "error", message: err.message });
             message.error(err.message);
           } else {
-            console.log("Approve success!");
             message.info("Approve success!");
             const hide = message.loading("Action in progress..", 0);
             checkAndBuy(hide);
@@ -123,16 +166,17 @@ const TradingFormWidgetContainer = ({ classes }) => {
     } else {
       allow = await usdtPublic.methods.allowance(address, config.oteex).call();
     }
-    console.log("check", allow, otePrice * amount);
     if (allow >= otePrice * amount) {
       hide && hide();
-      console.log("ref", ref);
+      setStatus({
+        code: "loading"
+      });
       contract.buyOTE(amount * 10 ** 18, coin, ref, { value: 0 }, err => {
         if (err) {
-          console.log(err.message);
+          setStatus({ code: "error", message: err.message });
           message.error(err.message);
         } else {
-          message.info("Buy success!");
+          setStatus({ code: "success" });
           console.log("Buy success!");
         }
       });
