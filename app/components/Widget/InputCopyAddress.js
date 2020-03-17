@@ -103,7 +103,9 @@ const InputCopyAddress = ({ classes }) => {
         console.log(error);
       }
     };
-    getUsername();
+    if (address) {
+      getUsername();
+    }
   }, [address]);
   //end user
   return (

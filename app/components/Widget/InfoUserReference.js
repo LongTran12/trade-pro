@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -13,7 +13,10 @@ import { CounterWidget } from "dan-components";
 import styles from "dan-components/Widget/widget-jss";
 import CounterMember from "../Counter/CounterMember";
 import { contractPublic } from "../../provider/web3Public";
+import { Web3Context } from "../../provider/web3";
+
 const InfoUserReference = ({ classes }) => {
+  const { address } = useContext(Web3Context);
   const [info, setInfo] = useState({
     level: "",
     members: 0,
@@ -22,16 +25,24 @@ const InfoUserReference = ({ classes }) => {
   });
   useEffect(() => {
     const getInfo = async () => {
-      let userInfo = await contractPublic.methods.getUserStats(address).call();
-      setInfo({
-        level: userInfo.staking,
-        members: userInfo.totalMembers,
-        staking: userInfo.currentSales,
-        totalStaking: userInfo.totalSales
-      });
+      if (address) {
+        let month = Number(await contractPublic.methods.currentMonth().call());
+        let currentSales = await contractPublic.methods
+          .getSale(address, month)
+          .call();
+        let level = await contractPublic.methods
+          .getMemberActiveStacking(address)
+          .call();
+        setInfo({
+          level: level,
+          members: 0,
+          staking: currentSales,
+          totalStaking: 0
+        });
+      }
     };
     getInfo();
-  }, []);
+  }, [address]);
   return (
     <div className={classes.rootCounterFull}>
       <Grid container spacing={2}>
@@ -39,7 +50,7 @@ const InfoUserReference = ({ classes }) => {
           <CounterMember
             color={colorfull[0]}
             start={0}
-            end={207}
+            end={info.level}
             duration={3}
             title="level"
           >
