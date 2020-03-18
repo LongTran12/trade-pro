@@ -22,6 +22,7 @@ const AppWrap = ({ children }) => {
   useEffect(() => {
     const getUser = async username => {
       let getAddress = await memberPublic.methods.getAddress(username).call();
+      console.log("fsdhjfs", getAddress);
       setRef(getAddress);
     };
     const parsed = qs.parse(window.location.search);

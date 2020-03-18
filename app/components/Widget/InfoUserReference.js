@@ -18,11 +18,19 @@ import { Web3Context } from "../../provider/web3";
 const InfoUserReference = ({ classes }) => {
   const { address } = useContext(Web3Context);
   const [info, setInfo] = useState({
-    level: "",
+    level: "Member",
     members: 0,
     staking: 0,
     totalStaking: 0
   });
+  const getLevelLabel = amount => {
+    if (amount < 100) return "Member";
+    if (amount < 1000) return "Brozen";
+    if (amount < 10000) return "Silver";
+    if (amount < 50000) return "Gold";
+    if (amount < 100000) return "Platinum";
+    return "Diamond";
+  };
   useEffect(() => {
     const getInfo = async () => {
       if (address) {
@@ -34,7 +42,7 @@ const InfoUserReference = ({ classes }) => {
           .getMemberActiveStacking(address)
           .call();
         setInfo({
-          level: level,
+          level: getLevelLabel(level),
           members: 0,
           staking: currentSales,
           totalStaking: 0
@@ -43,14 +51,14 @@ const InfoUserReference = ({ classes }) => {
     };
     getInfo();
   }, [address]);
+
   return (
     <div className={classes.rootCounterFull}>
       <Grid container spacing={2}>
         <Grid item xs={6} md={3}>
           <CounterMember
             color={colorfull[0]}
-            start={0}
-            end={info.level}
+            raw={info.level}
             duration={3}
             title="level"
           >
@@ -61,7 +69,7 @@ const InfoUserReference = ({ classes }) => {
           <CounterMember
             color={colorfull[1]}
             start={0}
-            end={info.members}
+            end={info.level}
             duration={3}
             title="members"
           >
