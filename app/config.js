@@ -2,7 +2,7 @@
 const config = {
   web3Provider:
     "wss://mainnet.infura.io/ws/v3/2526c65276fd4134a550212871a550fd",
-  oteex: "0x63Bc8b028fB95Cc94ad6Ddf4993B3230e60d4944",
+  oteex: "0x904395fa6aD4C1BbC48EA54c919def6C3669e8c6",
   ote: "0x7Fa7Ee339b26C35cA5F642cE940c8c1E8639E66e",
   usdt: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
   usdi: "0xdC1F5E7f20691b33E4cdD872f815E066d221C29D",
