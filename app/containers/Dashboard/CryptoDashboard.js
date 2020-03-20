@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import brand from "dan-api/dummy/brand";
@@ -17,6 +17,13 @@ import HistoryTableContainer from "../../components/Widget/HistoryTableContainer
 
 import LatestTransactionWidgetContainer from "../../components/Widget/LatestTransactionWidgetContainer";
 import InputCopyAddress from "../../components/Widget/InputCopyAddress";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import { Web3Context } from "../../provider/web3";
 
 const CryptoDahboard = ({ classes }) => {
   const title = brand.name + " - Cryptocurrency Dashboard";
@@ -69,6 +76,55 @@ const CryptoDahboard = ({ classes }) => {
           <LatestTransactionWidgetContainer />
         </Grid>
       </Grid>
+      <AlertDialog />
+    </div>
+  );
+};
+
+const AlertDialog = () => {
+  const { address } = useContext(Web3Context);
+  const [open, setOpen] = React.useState(!address);
+
+  useEffect(() => {
+    if (address) {
+      setOpen(false);
+    }
+  }, [address]);
+  function handleClickOpen() {
+    setOpen(true);
+  }
+
+  function handleClose() {
+    setOpen(false);
+  }
+
+  return (
+    <div>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        Open alert dialog
+      </Button>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Use Metamask/Trust Wallet for using Exchange!!"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            You must install and login Metamask for using on PC
+            <br />
+            Using TrustWallet for using on Mobile
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary" autoFocus>
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
