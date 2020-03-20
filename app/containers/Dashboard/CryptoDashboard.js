@@ -90,42 +90,34 @@ const AlertDialog = () => {
       setOpen(false);
     }
   }, [address]);
-  function handleClickOpen() {
-    setOpen(true);
-  }
 
   function handleClose() {
     setOpen(false);
   }
 
   return (
-    <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open alert dialog
-      </Button>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {"Use Metamask/Trust Wallet for using Exchange!!"}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            You must install and login Metamask for using on PC
-            <br />
-            Using TrustWallet for using on Mobile
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary" autoFocus>
-            Agree
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+    <Dialog
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <DialogTitle id="alert-dialog-title">
+        {"Use Metamask/Trust Wallet for using Exchange!!"}
+      </DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+          You must install and login Metamask for using on PC
+          <br />
+          Using TrustWallet for using on Mobile
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose} color="primary" autoFocus>
+          Agree
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 };
 
