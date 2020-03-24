@@ -18,7 +18,7 @@ import { Chip, Button } from "@material-ui/core";
 import messageStyles from "dan-styles/Messages.scss";
 import moment from "moment";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { web3Public } from "../../provider/web3Public";
+import { web3Public, contractPublic } from "../../provider/web3Public";
 import { Web3Context } from "../../provider/web3";
 import { config } from "../../config";
 import BigNumber from "bignumber.js";
@@ -124,7 +124,10 @@ const StakingTable = ({ classes }) => {
   };
 
   const cancelStaking = async id => {
-    contract.cancelStacking(id, { value: 0 }, err => {
+    let idStack = await contractPublic.methods
+      .getStackMember(address, id)
+      .call();
+    contract.cancelStacking(idStack, { value: 0 }, err => {
       if (err) {
         console.log(err.message);
         message.error(err.message);

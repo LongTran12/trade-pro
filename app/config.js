@@ -2,7 +2,7 @@
 const config = {
   web3Provider:
     "wss://mainnet.infura.io/ws/v3/2526c65276fd4134a550212871a550fd",
-  oteex: "0x904395fa6aD4C1BbC48EA54c919def6C3669e8c6",
+  oteex: "0x6c95bc52cc717bC04bE8FE7370185caE5Ca96Aa4",
   ote: "0x7Fa7Ee339b26C35cA5F642cE940c8c1E8639E66e",
   usdt: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
   usdi: "0xdC1F5E7f20691b33E4cdD872f815E066d221C29D",
@@ -1295,15 +1295,6 @@ const config = {
       type: "function"
     },
     {
-      constant: false,
-      inputs: [],
-      name: "deleteContract",
-      outputs: [],
-      payable: false,
-      stateMutability: "nonpayable",
-      type: "function"
-    },
-    {
       constant: true,
       inputs: [],
       name: "getActiveStackCount",
@@ -1507,6 +1498,32 @@ const config = {
       ],
       payable: false,
       stateMutability: "view",
+      type: "function"
+    },
+    {
+      constant: false,
+      inputs: [
+        {
+          internalType: "address",
+          name: "_investor",
+          type: "address"
+        },
+        {
+          internalType: "uint256",
+          name: "_index",
+          type: "uint256"
+        }
+      ],
+      name: "getStackMember",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256"
+        }
+      ],
+      payable: false,
+      stateMutability: "nonpayable",
       type: "function"
     },
     {
@@ -1736,6 +1753,52 @@ const config = {
       ],
       payable: false,
       stateMutability: "nonpayable",
+      type: "function"
+    },
+    {
+      constant: true,
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256"
+        }
+      ],
+      name: "stackInfo",
+      outputs: [
+        {
+          internalType: "address",
+          name: "owner",
+          type: "address"
+        },
+        {
+          internalType: "uint256",
+          name: "amount",
+          type: "uint256"
+        },
+        {
+          internalType: "uint256",
+          name: "term",
+          type: "uint256"
+        },
+        {
+          internalType: "uint256",
+          name: "timeStart",
+          type: "uint256"
+        },
+        {
+          internalType: "uint256",
+          name: "timePayed",
+          type: "uint256"
+        },
+        {
+          internalType: "uint256",
+          name: "status",
+          type: "uint256"
+        }
+      ],
+      payable: false,
+      stateMutability: "view",
       type: "function"
     },
     {

@@ -44,14 +44,13 @@ const InfoUserReference = ({ classes }) => {
         setInfo({
           level: getLevelLabel(level),
           members: 0,
-          staking: currentSales,
-          totalStaking: 0
+          staking: currentSales / 10 ** 18,
+          totalStaking: currentSales / 10 ** 18
         });
       }
     };
     getInfo();
   }, [address]);
-
   return (
     <div className={classes.rootCounterFull}>
       <Grid container spacing={2}>
