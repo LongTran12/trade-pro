@@ -3,7 +3,8 @@ import avatarApi from "../images/avatars";
 import intro1 from 'dan-images/intro/intro_ote.jpg';
 import roadmap from 'dan-images/intro/roadmap.jpg';
 import round from 'dan-images/intro/roadmap.jpg';
-
+import logoTimeline from 'dan-images/intro/timeline-first.jpg';
+import slide5_coche from "dan-images/slide/slide5.jpg";
 const timelineData = [
   {
     id: "1",
@@ -12,7 +13,7 @@ const timelineData = [
     time: "08:01",
     icon: "add_circle",
     avatar: avatarApi[6],
-    image: intro1,
+    image: logoTimeline,
     content: '',
     liked: true,
     comments: [
@@ -21,7 +22,7 @@ const timelineData = [
         from: "Jim Doe",
         avatar: avatarApi[2],
         date: "May, 29 2018",
-        message: "OTFUND LÀ ĐƠN  VỊ Quỹ ĐẦU TIÊN TÍCH hợp Blockchain vào  DAPP GAME DIGITAL LOTTERY  and  DIGITAL TRADING, GAME ONLINE. HỌC VIện ACADEMY, Thương Mại Điện Tử SHARING ECONOMY  VÀ CHÍNH THỨC RA MẮT VÀO THÁNG 10"
+        message: `OTFUND LÀ ĐƠN  VỊ Quỹ ĐẦU TIÊN TÍCH hợp Blockchain vào  DAPP GAME DIGITAL LOTTERY  and  DIGITAL TRADING, GAME ONLINE. HỌC VIện ACADEMY, Thương Mại Điện Tử SHARING ECONOMY  VÀ CHÍNH THỨC RA MẮT VÀO THÁNG 10`
       },
       {
         id: "1_2",
@@ -44,13 +45,12 @@ const timelineData = [
   {
     id: "2",
     name: "OTE User",
-    date: "20/01/2020",
+    date: "20/03/2020",
     time: "03:20",
     icon: "date_range",
     avatar: avatarApi[6],
     image: roadmap,
-    content:
-      "",
+    content: "THÔNG BÁO QUỸ OTFUND CHÍNH THỨC  PHÁT HÀNH CỔ PHIẾU CHO  CỘNG ĐỒNG GIÁ OTF = 0.5 USD  ",
     liked: true,
     // comments: [
     //   {
@@ -78,7 +78,7 @@ const timelineData = [
     time: "04:10",
     icon: "description",
     avatar: avatarApi[6],
-    image: round,
+    image: slide5_coche,
     content:
       "Platform Bao Gồm 3 Đơn Vị:  Game  Blockchain Tài Chính, blockchain Trao Đổi,blockchain Đầu Tư Tài Chính  , và 6 Nhánh Quỹ Đang Phát Triển  : Quỹ Ecosystem Quỹ Exchanger ,Quỹ Trading ,Quỹ Education ,Quỹ Foundation , Quỹ  Insurance token",
     liked: false,

@@ -1,7 +1,7 @@
 module.exports = {
-  name: "OTE Exchange",
-  desc: "OTE Exchange",
+  name: "OTExchange",
+  desc: "OTExchange",
   prefix: "oteex",
-  footerText: "OTE Exchange All Rights Reserved 2020",
-  logoText: "OTE Exchange"
+  footerText: "OTExchange All Rights Reserved 2020",
+  logoText: "OTExchange"
 };

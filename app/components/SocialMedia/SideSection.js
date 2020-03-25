@@ -21,7 +21,7 @@ import avatarApi from "dan-api/images/avatars";
 import PapperBlock from "../PapperBlock/PapperBlock";
 import NewsCard from "../CardPaper/NewsCard";
 import ProfileCard from "../CardPaper/ProfileCard";
-import avatar_user from "dan-images/intro/avatar_user.jpg";
+import avatarUser from 'dan-images/intro/timeline-first.jpg';
 import slide1 from "dan-images/slide/slide1.jpg";
 import slide2 from "dan-images/slide/slide2.jpg";
 import slide3 from "dan-images/slide/slide3.jpg";
@@ -117,13 +117,14 @@ class SideSection extends React.Component {
       <div>
         {/* Profile */}
         <ProfileCard
-          cover={avatar_user}
+          cover={avatarUser}
           avatar={avatarApi[6]}
           name="OTE User"
           title="Founder"
           connection={10}
           btnText={<TextTranslate text="myProfile" />}
           isVerified
+
         />
         <Divider className={classes.divider} />
         {/* ----------------------------------------------------------------------*/}
@@ -171,8 +172,8 @@ class SideSection extends React.Component {
                 {theme.direction === "rtl" ? (
                   <KeyboardArrowLeft />
                 ) : (
-                  <KeyboardArrowRight />
-                )}
+                    <KeyboardArrowRight />
+                  )}
               </Button>
             }
             backButton={
@@ -184,8 +185,8 @@ class SideSection extends React.Component {
                 {theme.direction === "rtl" ? (
                   <KeyboardArrowRight />
                 ) : (
-                  <KeyboardArrowLeft />
-                )}
+                    <KeyboardArrowLeft />
+                  )}
                 <TextTranslate text="back" />
               </Button>
             }

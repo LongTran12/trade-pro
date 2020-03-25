@@ -4,7 +4,7 @@ const contactData = [
     id: '1',
     avatar: avatarApi[9],
     name: 'Hồ Ty',
-    title: 'Founder',
+    title: 'Founder Quỹ OTFund Việt Nam',
     phone: '+84942777777',
     secondaryPhone: '+84942777777',
     personalEmail: 'tysqual@gmail.com',

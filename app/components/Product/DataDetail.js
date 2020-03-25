@@ -22,7 +22,8 @@ import productVertu4 from 'dan-images/product/vertu4.jpg';
 import productSim from 'dan-images/product/simsodep1.jpg';
 import productRestaurant from 'dan-images/product/restaurant1.jpg';
 import productHotel from 'dan-images/product/holtel1.jpg';
-import productCoffee from 'dan-images/product/coffee1.jpg';
+// import productCoffee from 'dan-images/product/coffee1.jpg';
+import productCoffee from 'dan-images/product/OTCafe-new.png';
 import productOto from 'dan-images/product/oto1.jpg';
 import productAcademy from 'dan-images/product/academy.jpg';
 
@@ -43,10 +44,10 @@ const DataDetail = [
         ],
         shortDesc: 'Vanguard V32 QZ D 5N. BC, 32.00 x 42.30mm là mẫu đồng hồ dành cho phái đẹp của Franck Muller. Sở hữu sự trang nhã, cao cấp từ kiểu dáng đến chất liệu kim cương, vàng trắng hay da cá sấu. Đây quả thực là sản phẩm chiếm được tâm trí mọi người ngay từ cái nhìn đầu tiên.',
         description: <p>Vanguard V32 QZ D 5N. BC, 32.00 x 42.30mm là mẫu đồng hồ dành cho phái đẹp của Franck Muller. Sở hữu sự trang nhã, cao cấp từ kiểu dáng đến chất liệu kim cương, vàng trắng hay da cá sấu. Đây quả thực là sản phẩm chiếm được tâm trí mọi người ngay từ cái nhìn đầu tiên.
-        <p/>Nó có kiểu mặt Tonneau với chất liệu cao cấp là vàng hồng 18k được đính hàng trăm viên kim cương tinh sảo. Mặt số màu bạc được tạo vân Guilloche (chính là tên gọi chung của tất cả các loại họa tiết rất nhỏ lặp đi lặp lại trên bề mặt của mặt số đồng hồ, nó có quá trình tạo thành rất phức tạp bằng các kỹ thuật khắc máy hoăc bằng tay bởi các nghệ nhân tài ba) với mục chỉ giờ là các chữ số phong cách Ả Rập thiết kế lớncùng viền bằng vàng hồng.
+        <p />Nó có kiểu mặt Tonneau với chất liệu cao cấp là vàng hồng 18k được đính hàng trăm viên kim cương tinh sảo. Mặt số màu bạc được tạo vân Guilloche (chính là tên gọi chung của tất cả các loại họa tiết rất nhỏ lặp đi lặp lại trên bề mặt của mặt số đồng hồ, nó có quá trình tạo thành rất phức tạp bằng các kỹ thuật khắc máy hoăc bằng tay bởi các nghệ nhân tài ba) với mục chỉ giờ là các chữ số phong cách Ả Rập thiết kế lớncùng viền bằng vàng hồng.
         Hai kim chỉ giờ cũng làm từ vàng hồng và chỉ phút cùng toàn bộ số mục chỉ giờ được phủ một lớp phản quang có thể quan sát trong bóng tối. Tên hãng Franck Muler Geneve và tên dòng Vanguard lần lượt nằm ở bên trên và bên dưới chính giữa mặt số.
-        <p/>Mặt kính đồng hồ được trang bị kính Sapphire cao cấp chống xước, chống phản chiếu giúp nhìn dễ dàng dưới môi trường ánh sáng mạnh như ánh sáng mặt trời. Đồng hồ được trang bị bộ máy Quartz hoạt động chính xác, chịu áp lực nước dưới độ sâu 30 mét.
-        <p/>Dây đeo màu trắng được làm từ da cá sấu với đặc điểm là sự bền bỉ, không bị trầy xước dù có tác động của ma sát, chất liệu da mềm mại nên tạo cảm giác đặc biệt thoải mái cho người dùng. Hơn nữa, tính cách nhiêt, tính tĩnh điện cực tốt nên sẽ không gây ra tình trạng bị nóng bỏng thi bạn tiếp xúc với nguồn nhiệt cao. Tính thoáng khí của loại da cá sấu sẽ giúp bề mặt da tay của bạn luôn  thông thoáng khi đeo đồng hồ trong thời gian dài. Nó được hoàn thiện hoàn toàn thủ công.
+        <p />Mặt kính đồng hồ được trang bị kính Sapphire cao cấp chống xước, chống phản chiếu giúp nhìn dễ dàng dưới môi trường ánh sáng mạnh như ánh sáng mặt trời. Đồng hồ được trang bị bộ máy Quartz hoạt động chính xác, chịu áp lực nước dưới độ sâu 30 mét.
+        <p />Dây đeo màu trắng được làm từ da cá sấu với đặc điểm là sự bền bỉ, không bị trầy xước dù có tác động của ma sát, chất liệu da mềm mại nên tạo cảm giác đặc biệt thoải mái cho người dùng. Hơn nữa, tính cách nhiêt, tính tĩnh điện cực tốt nên sẽ không gây ra tình trạng bị nóng bỏng thi bạn tiếp xúc với nguồn nhiệt cao. Tính thoáng khí của loại da cá sấu sẽ giúp bề mặt da tay của bạn luôn  thông thoáng khi đeo đồng hồ trong thời gian dài. Nó được hoàn thiện hoàn toàn thủ công.
         </p>,
         ratting: 5,
         price: 19700,
@@ -165,7 +166,7 @@ const DataDetail = [
         description: <p><p>Chiếc đồng hồ Cosmograph Daytona Oyster Perpetual 116503-0004, 40mm là một trong những chiếc đồng hồ cao cấp thuộc bộ sưu tập Daytona của Thụy Sỹ – đây có thể nói đây là sự lựa chọn hoàn hảo cho những quý ông có niềm đam mê với thể thao và đặc biệt phù hợp với những tay đua chuyên nghiệp.
         </p>Cosmograph Daytona Oyster Perpetual 116503-0004, 40mm  sở hữu phần mặt số đen với đường kính 40mm được bao phủ bởi mặt kính sapphire chống xước, và khả năng chống nước lên đến 100m. Sự kết hợp giữa sắc đen thanh lịch cùng với màu vàng và trắng của dây đeo đã khiến chiếc đồng hồ dường như có khả năng tồn tại song song với thời gian, đi từ một thế kỷ hiện đại về với những nét lịch lãm của thập niên cũ.
         Mặt số của Cosmograph Daytona Oyster Perpetual 116503-0004, 40mm được trang trí bởi các cọc số đen được thiết kế với khả năng phát quang. Ngoài ra, kim đồng hồ và cả các mặt số phụ đều được chế tác từ chất liệu vàng vàng và thép không gỉ 904L đồng bộ với phần vỏ đồng hồ. Tên thương hiệu cùng biểu tượng vương miện truyền thống của Rolex được đặt tại góc 6h và 12h của mặt số đồng hồ. Ngoài ra, ôm trọn lấy mặt số là vành bezel gốm Cerachrom - sự kỳ tích về công nghệ và mỹ thuật của Rolex và được trang bị bộ khóa gấp Easylink 5mm, hỗ trợ người sử dụng có thể điều chỉnh chiếc đồng hồ chuẩn tới 5mm.
-        <p/>Sử dụng bô máy vận hành 4130 có khả năng chạy bền bỉ trong vòng 72 giờ, sai lệch thời gian chỉ trong khoảng -2/+2 giây - độ chính xác gấp đôi những chiếc đồng hồ khác. Chính nhờ những cải tiến ấy chiếc đồng hồ có khả năng vận hành cùng lúc các chức năng báo giờ, phút, giây, đếm giờ, phút và đặc biệt là khả năng bấm giờ đến 1/8 giây. Đây là lý do vì sao để  vượt qua những thử nghiệm khắt khe của Rolex, đạt chứng nhận Superlative Chronometer của COSC.
+        <p />Sử dụng bô máy vận hành 4130 có khả năng chạy bền bỉ trong vòng 72 giờ, sai lệch thời gian chỉ trong khoảng -2/+2 giây - độ chính xác gấp đôi những chiếc đồng hồ khác. Chính nhờ những cải tiến ấy chiếc đồng hồ có khả năng vận hành cùng lúc các chức năng báo giờ, phút, giây, đếm giờ, phút và đặc biệt là khả năng bấm giờ đến 1/8 giây. Đây là lý do vì sao để  vượt qua những thử nghiệm khắt khe của Rolex, đạt chứng nhận Superlative Chronometer của COSC.
         </p>,
         ratting: 5,
         price: 19000,
@@ -294,8 +295,8 @@ const DataDetail = [
         ],
         shortDesc: 'Hublot Big Bang King Gold Full Pavé 45mm được thiết kể khá đơn giản nhưng nhờ vào những viên kim cương lộng lẫy trên cả phần vỏ và bezel đã làm cho chiếc đồng hồ này trở nên đầy sang trọng và đắt giá.',
         description: <p>Sở hữu dáng vẻ khỏe khoắn và năng động, bộ vỏ khung Hublot Big Bang King Gold Full Pavé 45mm được thiết kể dáng sandwich dưới chất liệu King Gold độc quyền, có khả năng chống nước ở độ sâu 50m. Bộ vỏ khung kích thước 45mm hiện lên với vẻ ngoài hấp dẫn và bắt mắt với 218 viên kim cương nặng tổng cộng khoảng 1,41 carat. Phía trên vành bezel công phu là 6 đinh ốc cách điệu chữ H bóng bẩy cùng với 126 viên kim cương nặng tổng cộng khoảng 1,41 carat. Núm chỉnh giờ bằng vàng hồng 18kt được đánh bóng khắc logo Hublot với phần đệm bằng ca su đen. Cửa sổ ngày nằm ở vị trí 3 giờ.
-         Bên dưới lớp kính sapphire phẳng phiu, cao cấp của Hublot Big Bang King Gold Full Pavé 45mm hiện lên sự trang trọng và hấp dẫn nhờ vào bộ mặt số kim cương Pave với 609 viên kim cương nặng tổng cộng khoảng 2,65 carat. Bộ kim phụ và bộ kim chính hiện lên nổi bật trong tông màu vàng cùng hệ thống cọc chỉ giờ được đính nổi thủ công và cẩn thận bởi đôi bàn tay của các nghệ nhân khéo léo. Dây đeo được làm bằng da cá sấu đầy sang trọng.
-        <p/>Tất nhiên chúng ta cũng không thể bỏ qua bộ máy tự động HUB1112 được bảo vệ kỹ lưỡng bên trong bộ vỏ khung, tần số dao động ở 28.800 vph, bao gồm 63 chi tiết, chứa 21 chân kính và có mức dự trữ năng lượng xấp xỉ 42 giờ.
+        Bên dưới lớp kính sapphire phẳng phiu, cao cấp của Hublot Big Bang King Gold Full Pavé 45mm hiện lên sự trang trọng và hấp dẫn nhờ vào bộ mặt số kim cương Pave với 609 viên kim cương nặng tổng cộng khoảng 2,65 carat. Bộ kim phụ và bộ kim chính hiện lên nổi bật trong tông màu vàng cùng hệ thống cọc chỉ giờ được đính nổi thủ công và cẩn thận bởi đôi bàn tay của các nghệ nhân khéo léo. Dây đeo được làm bằng da cá sấu đầy sang trọng.
+        <p />Tất nhiên chúng ta cũng không thể bỏ qua bộ máy tự động HUB1112 được bảo vệ kỹ lưỡng bên trong bộ vỏ khung, tần số dao động ở 28.800 vph, bao gồm 63 chi tiết, chứa 21 chân kính và có mức dự trữ năng lượng xấp xỉ 42 giờ.
         </p>,
         ratting: 5,
         price: 42000,
@@ -560,7 +561,7 @@ const DataDetail = [
         shortDesc: 'Sim Vip Tứ Quý – Ngũ Quý –Lục Quý',
         description: <p><p>Một số sim đẹp không chỉ là những bộ số dễ nhớ mà còn giúp chủ nhân thể hiện cái tôi, ĐẲNG CẤP riêng của mình. Ví dụ như bạn sở hữu chiếc sim đuôi Lục Quý 9, khi bạn gọi điện đối tác hay khách hàng của mình nó không chỉ giúp họ dễ nhớ tới bạn hơn mà còn để lại một ấn tượng cực kỳ mạnh và có cái nhìn khác về bạn.</p>
         Việc sử dụng những số sim có dãy số đẹp hay sự sắp xếp hợp với phong thủy của chủ nhân và đã khiến đẳng cấp của chủ sim được nâng lên một tầm cao hơn khi sử dụng một chiếc sim bình thường.
-        
+
         </p>,
         ratting: 4,
         price: 180000,

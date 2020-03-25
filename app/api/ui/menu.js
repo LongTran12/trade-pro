@@ -26,6 +26,50 @@ module.exports = [
     ]
   },
   {
+    key: 'otgame',
+    name: 'OTGame',
+    icon: 'ios-home-outline',
+    child: [
+      {
+        key: 'crypto1',
+        name: 'Game Lucky',
+        link: '/game-lucky',
+        icon: 'ios-medal-outline'
+      },
+      {
+        key: 'network1',
+        name: 'Binary Option',
+        link: '/binary-option',
+        icon: 'ios-medal-outline'
+      },
+    ]
+  },
+  {
+    key: 'trao-doi',
+    name: 'Trao Đổi',
+    icon: 'ios-home-outline',
+    child: [
+      {
+        key: 'swap-usdt',
+        name: 'Swap Usdt',
+        link: '/swap-usdt',
+        icon: 'ios-medal-outline'
+      },
+      {
+        key: 'witdraw',
+        name: 'Witdraw',
+        link: '/witdraw',
+        icon: 'ios-medal-outline'
+      },
+    ]
+  },
+  {
+    key: 'ottrade',
+    name: 'OTTrade',
+    link: '/ottrade',
+    icon: 'ios-home-outline',
+  },
+  {
     key: 'apps',
     name: 'applications',
     icon: 'ios-appstore-outline',
@@ -114,5 +158,10 @@ module.exports = [
       },
     ]
   },
-
+  {
+    key: 'ho-so',
+    name: 'Hồ Sơ',
+    link: '/ho-so',
+    icon: 'ios-home-outline',
+  },
 ];

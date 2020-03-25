@@ -71,6 +71,7 @@ class Timeline extends React.Component {
           </Tooltip>
         </div>
         <Card className={classes.cardSocmed}>
+
           <CardHeader
             avatar={
               <Avatar alt="avatar" src={data.get('avatar')} className={classes.avatar} />
@@ -89,6 +90,11 @@ class Timeline extends React.Component {
             title={data.get('name')}
             subheader={data.get('date')}
           />
+          <CardContent>
+            <Typography component="p">
+              {data.get('content')}
+            </Typography>
+          </CardContent>
           {data.get('image') !== '' && (
             <CardMedia
               className={classes.media}
@@ -96,11 +102,11 @@ class Timeline extends React.Component {
               title={data.get('name')}
             />
           )}
-          <CardContent>
+          {/* <CardContent>
             <Typography component="p">
               {data.get('content')}
             </Typography>
-          </CardContent>
+          </CardContent> */}
           <CardActions className={classes.actions}>
             <IconButton aria-label="Like this" onClick={() => onlike(data)}>
               <FavoriteIcon className={data.get('liked') ? classes.liked : ''} />
