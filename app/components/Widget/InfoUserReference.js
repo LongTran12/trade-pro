@@ -42,7 +42,7 @@ const InfoUserReference = ({ classes }) => {
           .getMemberActiveStacking(address)
           .call();
         setInfo({
-          level: getLevelLabel(level),
+          level: getLevelLabel(Number(level / 10 ** 18)),
           members: 0,
           staking: currentSales / 10 ** 18,
           totalStaking: currentSales / 10 ** 18
