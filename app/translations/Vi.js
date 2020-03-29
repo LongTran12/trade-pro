@@ -157,7 +157,7 @@ export default {
   cancel: "Cancel",
   //network
   level: "Cấp Độ",
-  members: "Số Thành Viên",
+  members: "Staking",
   sales: "Doanh Số",
   totalSales: "Tổng doanh số",
   userInfo: "Thông tin User",

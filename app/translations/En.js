@@ -155,7 +155,7 @@ export default {
   cancel: "Cancel",
   //network
   level: "Level",
-  members: "Members",
+  members: "Staking",
   sales: "Sales",
   totalSales: "Total Sales",
   userInfo: "User Info",

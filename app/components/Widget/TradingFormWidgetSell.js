@@ -138,7 +138,7 @@ const TradingFormWidgetSell = ({ classes }) => {
           setStatus({ code: "error", message: err.message });
           message.error(err.message);
         } else {
-          etStatus({ code: "success" });
+          setStatus({ code: "success" });
           message.info("Approve success!");
           const hide = message.loading("Action in progress..", 0);
           console.log("Approve success!");
@@ -161,7 +161,7 @@ const TradingFormWidgetSell = ({ classes }) => {
           setStatus({ code: "error", message: err.message });
           message.error(err.message);
         } else {
-          etStatus({ code: "success" });
+          setStatus({ code: "success" });
           console.log("Make order success!");
         }
       });

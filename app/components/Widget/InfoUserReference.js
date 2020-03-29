@@ -43,7 +43,7 @@ const InfoUserReference = ({ classes }) => {
           .call();
         setInfo({
           level: getLevelLabel(Number(level / 10 ** 18)),
-          members: 0,
+          members: Number(level / 10 ** 18),
           staking: currentSales / 10 ** 18,
           totalStaking: currentSales / 10 ** 18
         });
@@ -68,7 +68,7 @@ const InfoUserReference = ({ classes }) => {
           <CounterMember
             color={colorfull[1]}
             start={0}
-            end={info.level}
+            end={info.members}
             duration={3}
             title="members"
           >

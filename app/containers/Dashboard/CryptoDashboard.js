@@ -58,24 +58,29 @@ const CryptoDahboard = ({ classes }) => {
       </PapperBlock>
       <Divider className={classes.divider} />
       {/* <MarketPlaceWIdget /> */}
-
+      {/* <HistoryTableContainer /> */}
       <Grid container spacing={3} className={classes.root}>
         <Grid item md={12} xs={12}>
-          {/* <HistoryWidget /> */}
+          <TradingFormWidgetContainer />
+        </Grid>
+      </Grid>
+      <Grid container spacing={3} className={classes.root}>
+        <Grid item md={12} xs={12}>
           <HistoryTableContainer />
         </Grid>
       </Grid>
       <Grid container spacing={3} className={classes.root}>
-        <Grid item md={6} xs={12}>
-          {/* <TradingFormWidget /> */}
-          <TradingFormWidgetContainer />
-        </Grid>
-        <Grid item md={6} xs={12}>
-          {/* <TransferCryptoWidget /> */}
-          {/* <Divider className={classes.divider} /> */}
+        <Grid item md={12} xs={12}>
           <LatestTransactionWidgetContainer />
         </Grid>
       </Grid>
+      {/* <Grid container spacing={3} className={classes.root}>
+        <Grid item md={6} xs={12}>
+        </Grid>
+        <Grid item md={6} xs={12}>
+          <LatestTransactionWidgetContainer />
+        </Grid>
+      </Grid> */}
       <AlertDialog />
     </div>
   );

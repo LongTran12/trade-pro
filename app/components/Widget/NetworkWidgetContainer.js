@@ -22,6 +22,15 @@ const NetworkWidgetContainer = () => {
         .getCurrentSales(memberInfo.refs)
         .call();
       let refs = [];
+      let userInfo = {};
+      await Promise.all(
+        memberInfo.refs.map(async item => {
+          console.log(item);
+          return (userInfo[item] = await member.methods
+            .infoMember(item)
+            .call());
+        })
+      );
       for (let i = 0; i < memberInfo.refs.length; i++) {
         //TODO
         let totalInvest = 0;
@@ -39,12 +48,19 @@ const NetworkWidgetContainer = () => {
             <div className="ref_title">
               <div className="ref_name">
                 <span className="level__ref">F1</span>
-                <span className="address__ref">{memberInfo.refs[i]}</span>
+                <span className="address__ref">
+                  {userInfo[memberInfo.refs[i]] &&
+                  userInfo[memberInfo.refs[i]].user
+                    ? userInfo[memberInfo.refs[i]].user +
+                      " " +
+                      userInfo[memberInfo.refs[i]].phone
+                    : memberInfo.refs[i]}
+                </span>
               </div>
               <div className="ref_stat">
                 <span className="hidden-mobile">|</span>
                 <span className="ref_commission">
-                  Total Staking:{" "}
+                  Doanh số:{" "}
                   <span>
                     {new BigNumber(agencyInfo.totalSales)
                       .dividedBy(10 ** 18)
@@ -73,14 +89,19 @@ const NetworkWidgetContainer = () => {
       config.memberAbi,
       config.memberAddress
     );
-    let oteEX = new web3Public.eth.Contract(config.oteexAbi, config.oteex);
-    console.log(oteEX);
     let memberInfo = await member.methods
       .infoMember(treeNode.props.name)
       .call();
     let currentSales = await contractPublic.methods
       .getCurrentSales(memberInfo.refs)
       .call();
+    let userInfo = {};
+    await Promise.all(
+      memberInfo.refs.map(async item => {
+        return (userInfo[item] = await member.methods.infoMember(item).call());
+      })
+    );
+    console.log("currentSales", memberInfo.refs, currentSales);
     treeNode.props.dataRef.children = [];
     for (let i = 0; i < memberInfo.refs.length; i++) {
       //TODO
@@ -101,12 +122,19 @@ const NetworkWidgetContainer = () => {
               <span className="level__ref">
                 F{treeNode.props.eventKey.replace(/[^-]/g, "").length + 2}
               </span>
-              <span className="address__ref">{memberInfo.refs[i]}</span>
+              <span className="address__ref">
+                {userInfo[memberInfo.refs[i]] &&
+                userInfo[memberInfo.refs[i]].user
+                  ? userInfo[memberInfo.refs[i]].user +
+                    " " +
+                    userInfo[memberInfo.refs[i]].phone
+                  : memberInfo.refs[i]}
+              </span>
             </div>
             <div className="ref_stat">
               <span className="hidden-mobile">|</span>
               <span className="ref_commission">
-                Total Staking:{" "}
+                Doanh số:{" "}
                 <span>
                   {new BigNumber(agencyInfo.totalSales)
                     .dividedBy(10 ** 18)
@@ -142,7 +170,7 @@ const NetworkWrap = memo(styled.div`
       height: inherit !important;
       background: #3d7cb3;
       color: #fff;
-      :hover{
+      :hover {
         background: #3d7cb3;
       }
       .ant-tree-title {
@@ -181,8 +209,8 @@ const NetworkWrap = memo(styled.div`
         position: absolute;
         top: 15px;
         right: 10px;
-        i{
-          font-size:1.2em !important;
+        i {
+          font-size: 1.2em !important;
         }
       }
     }
@@ -248,7 +276,7 @@ const NetworkWrap = memo(styled.div`
                           & > ul {
                             & > li {
                               & > .ant-tree-node-content-wrapper {
-                                background-color: #2196F3 !important;
+                                background-color: #2196f3 !important;
                                 .level__ref,
                                 .address__ref,
                                 .ref_stat span {
