@@ -31,33 +31,36 @@ const TradingFormWidgetSell = ({ classes }) => {
       number: 0.5
     },
     {
-      name: "0.75$",
+      name: "0.51$",
       value: 1,
-      number: 0.75
+      number: 0.51
     },
     {
-      name: "1$",
+      name: "0.52$",
       value: 2,
-      number: 1
+      number: 0.52
     }
   ];
-  if (otePrice / 10 ** 6 === 0.75) {
+  if (otePrice / 10 ** 6 === 0.51) {
     dataPrice = [
       {
-        name: "0.75$",
-        value: 1
+        name: "0.51$",
+        value: 1,
+        number: 0.51
       },
       {
-        name: "1$",
-        value: 2
+        name: "0.52$",
+        value: 2,
+        number: 0.52
       }
     ];
   }
-  if (otePrice / 10 ** 6 === 1) {
+  if (otePrice / 10 ** 6 === 0.52) {
     dataPrice = [
       {
-        name: "1$",
-        value: 2
+        name: "0.52$",
+        value: 2,
+        number: 0.52
       }
     ];
   }
@@ -101,10 +104,10 @@ const TradingFormWidgetSell = ({ classes }) => {
     if (otePrice / 10 ** 6 === 0.5) {
       return `${dataPrice[0].value}`;
     }
-    if (otePrice / 10 ** 6 === 0.75) {
+    if (otePrice / 10 ** 6 === 0.51) {
       return `${dataPrice[1].value}`;
     }
-    if (otePrice / 10 ** 6 === 1) {
+    if (otePrice / 10 ** 6 === 0.52) {
       return `${dataPrice[2].value}`;
     }
     return `${dataPrice[0].value}`;
