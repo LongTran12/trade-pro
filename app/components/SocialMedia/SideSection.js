@@ -21,7 +21,7 @@ import avatarApi from "dan-api/images/avatars";
 import PapperBlock from "../PapperBlock/PapperBlock";
 import NewsCard from "../CardPaper/NewsCard";
 import ProfileCard from "../CardPaper/ProfileCard";
-import avatarUser from 'dan-images/intro/timeline-first.jpg';
+import avatarUser from 'dan-images/intro/coinUser2.jpg';
 import slide1 from "dan-images/slide/slide1.jpg";
 import slide2 from "dan-images/slide/slide2.jpg";
 import slide3 from "dan-images/slide/slide3.jpg";

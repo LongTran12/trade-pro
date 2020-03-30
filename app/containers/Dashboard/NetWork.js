@@ -40,7 +40,7 @@ const NetWork = ({ classes }) => {
             </PapperBlock>
             <Divider className={classes.divider} />
             <PapperBlock title={textTran('Network')} desc="" icon="ios-stats-outline" noMargin whiteBg>
-                {arrAddress.map((item, index) => {
+                {arrAddress.length > 0 && arrAddress.map((item, index) => {
                     <Fragment key={index}>
                         <NetworkWidgetListContainer address={item.address} />
                     </Fragment>
