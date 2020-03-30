@@ -22,20 +22,28 @@ import PapperBlock from "../PapperBlock/PapperBlock";
 import NewsCard from "../CardPaper/NewsCard";
 import ProfileCard from "../CardPaper/ProfileCard";
 import avatarUser from 'dan-images/intro/timeline-first.jpg';
-import slide1 from "dan-images/slide/slide1.jpg";
-import slide2 from "dan-images/slide/slide2.jpg";
-import slide3 from "dan-images/slide/slide3.jpg";
-import slide4 from "dan-images/slide/slide4.jpg";
-import slide5 from "dan-images/slide/slide5.jpg";
-import slide6 from "dan-images/slide/slide6.jpg";
-import slide7 from "dan-images/slide/slide7.jpg";
-import slide8 from "dan-images/slide/slide8.jpg";
-import slide9 from "dan-images/slide/slide9.jpg";
-import slide10 from "dan-images/slide/slide10.jpg";
-import slide11 from "dan-images/slide/slide11.jpg";
-import slide12 from "dan-images/slide/slide12.jpg";
-import slide13 from "dan-images/slide/slide13.jpg";
-import slide15 from "dan-images/slide/slide15.jpg";
+import slide1 from "dan-images/slide/1.jpg";
+import slide2 from "dan-images/slide/2.jpg";
+import slide3 from "dan-images/slide/3.jpg";
+import slide4 from "dan-images/slide/4.jpg";
+import slide5 from "dan-images/slide/5.jpg";
+import slide6 from "dan-images/slide/6.jpg";
+import slide7 from "dan-images/slide/7.jpg";
+import slide8 from "dan-images/slide/8.jpg";
+import slide9 from "dan-images/slide/9.jpg";
+import slide10 from "dan-images/slide/10.jpg";
+import slide11 from "dan-images/slide/11.jpg";
+import slide12 from "dan-images/slide/12.jpg";
+import slide13 from "dan-images/slide/13.jpg";
+import slide14 from "dan-images/slide/14.jpg";
+import slide15 from "dan-images/slide/15.jpg";
+import slide16 from "dan-images/slide/16.jpg";
+import slide17 from "dan-images/slide/17.jpg";
+import slide18 from "dan-images/slide/18.jpg";
+import slide19 from "dan-images/slide/19.jpg";
+import slide20 from "dan-images/slide/20.jpg";
+import slide21 from "dan-images/slide/21.jpg";
+import slide22 from "dan-images/slide/22.jpg";
 import styles from "./jss/socialMedia-jss";
 
 const slideData = [
@@ -79,7 +87,31 @@ const slideData = [
     imgPath: slide13
   },
   {
+    imgPath: slide14
+  },
+  {
     imgPath: slide15
+  },
+  {
+    imgPath: slide16
+  },
+  {
+    imgPath: slide17
+  },
+  {
+    imgPath: slide18
+  },
+  {
+    imgPath: slide19
+  },
+  {
+    imgPath: slide20
+  },
+  {
+    imgPath: slide21
+  },
+  {
+    imgPath: slide22
   }
 ];
 const TextTranslate = ({ text }) => {
