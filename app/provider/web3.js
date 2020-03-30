@@ -14,7 +14,8 @@ const WrapWeb3 = ({ children }) => {
     contract: undefined,
     usdt: undefined,
     usdi: undefined,
-    ote: undefined
+    ote: undefined,
+    isAdmin: false
   });
 
   useEffect(() => {

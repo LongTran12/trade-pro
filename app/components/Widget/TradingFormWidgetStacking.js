@@ -20,7 +20,7 @@ const TradingFormWidgetSell = ({ classes }) => {
   const [amount, setAmount] = useState(100);
   const dataTerm = [
     {
-      name: "6 months - 1%",
+      name: "6 months - 1.5%",
       value: 6
     },
     {
@@ -28,7 +28,7 @@ const TradingFormWidgetSell = ({ classes }) => {
       value: 12
     },
     {
-      name: "18 months - 5%",
+      name: "18 months - 6%",
       value: 18
     }
   ];
