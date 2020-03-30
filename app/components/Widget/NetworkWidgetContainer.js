@@ -10,7 +10,7 @@ import BigNumber from "bignumber.js";
 const NetworkWidgetContainer = () => {
   const { address } = useContext(Web3Context);
   const [treeData, setTreeData] = useState([]);
-
+  console.log("treeData", treeData);
   useEffect(() => {
     const getInfo = async () => {
       let member = new web3Public.eth.Contract(
