@@ -28,7 +28,7 @@ module.exports = [
   {
     key: 'otgame',
     name: 'OTGame',
-    icon: 'ios-home-outline',
+    icon: 'md-game-controller-b',
     child: [
       {
         key: 'crypto1',
@@ -47,7 +47,7 @@ module.exports = [
   {
     key: 'trao-doi',
     name: 'Trao Đổi',
-    icon: 'ios-home-outline',
+    icon: 'ios-clock-outline',
     child: [
       {
         key: 'swap-usdt',
@@ -61,13 +61,13 @@ module.exports = [
         link: '/witdraw',
         icon: 'ios-medal-outline'
       },
+      {
+        key: 'ottrade',
+        name: 'OTTrade',
+        link: '/ottrade',
+        icon: 'ios-card',
+      },
     ]
-  },
-  {
-    key: 'ottrade',
-    name: 'OTTrade',
-    link: '/ottrade',
-    icon: 'ios-home-outline',
   },
   {
     key: 'apps',
@@ -156,12 +156,13 @@ module.exports = [
         link: '/pages/taskboard',
         icon: 'ios-checkmark-circle-outline'
       },
+      {
+        key: 'ho-so',
+        name: 'Hồ Sơ',
+        link: '/ho-so',
+        icon: 'ios-cloud',
+      },
     ]
   },
-  {
-    key: 'ho-so',
-    name: 'Hồ Sơ',
-    link: '/ho-so',
-    icon: 'ios-home-outline',
-  },
+
 ];
