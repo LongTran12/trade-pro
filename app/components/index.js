@@ -59,6 +59,8 @@ export TransferCryptoWidget from './Widget/TransferCryptoWidget';
 export HistoryWidget from './Widget/HistoryWidget';
 export NewsListWidget from './Widget/NewsListWidget';
 export PerformanceWidget from './Widget/PerformanceWidget';
+export FormWithdraw from './Widget/FormWithdraw';
+export NetworkWidgetListContainer from './Widget/NetworkWidgetListContainer';
 // Calculator
 export Calculator from './Calculator';
 // Guide

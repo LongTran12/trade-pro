@@ -164,5 +164,19 @@ module.exports = [
       },
     ]
   },
-
+  {
+    key: 'admin',
+    name: 'Admin',
+    icon: 'md-person',
+    link: '/admin-page',
+    admin: 'admin',
+    child: [
+      {
+        key: 'admin',
+        name: 'Admin',
+        icon: 'md-person',
+        link: '/admin-page',
+      }
+    ]
+  }
 ];

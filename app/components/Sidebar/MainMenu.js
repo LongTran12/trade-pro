@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
@@ -19,6 +19,10 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import styles from './sidebar-jss';
 import { useTranslation } from 'react-i18next';
 
+import { web3Public, contractPublic } from "../../provider/web3Public";
+import { config } from "../../config";
+import { Web3Context } from '../../provider/web3';
+
 const LinkBtn = React.forwardRef(function LinkBtn(props, ref) { // eslint-disable-line
   return <NavLink to={props.to} {...props} innerRef={ref} />; // eslint-disable-line
 });
@@ -32,6 +36,7 @@ const MainMenu = ({ classes,
   dataMenu,
   toggleDrawerOpen, loadTransition
 }) => {
+  const { isAdmin } = useContext(Web3Context)
   const handleClick = () => {
     // const { toggleDrawerOpen, loadTransition } = this.props;
     toggleDrawerOpen();
@@ -44,6 +49,9 @@ const MainMenu = ({ classes,
   }
 
   const getMenus = menuArray => menuArray.map((item, index) => {
+    if (item.admin && isAdmin === false) {
+      return false
+    }
     if (item.child) {
       return (
         <div key={index.toString()}>
@@ -63,6 +71,10 @@ const MainMenu = ({ classes,
                 <Ionicon icon={item.icon} />
               </ListItemIcon>
             )}
+            {
+
+            }
+
             <ListItemText classes={{ primary: classes.primary }} variant="inset" primary={textTranslate(item.name)} />
             {open.indexOf(item.key) > -1 ? <ExpandLess /> : <ExpandMore />}
           </ListItem>

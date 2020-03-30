@@ -1,12 +1,13 @@
 /* eslint-disable */
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import brand from 'dan-api/dummy/brand';
 import { withStyles } from '@material-ui/core/styles';
 import {
     PapperBlock,
-    NetworkWidgetContainer
+    NetworkWidgetContainer,
+    NetworkWidgetListContainer
 } from 'dan-components';
 import styles from './dashboard-jss';
 import InputCopyAddress from '../../components/Widget/InputCopyAddress';
@@ -22,6 +23,14 @@ const NetWork = ({ classes }) => {
         return i18n.exists(text)
             ? t(text) : text;
     }
+    const arrAddress = [
+        {
+            address: "0x6C1515A8861d825639378576d76494Cb303D3A97"
+        },
+        {
+            address: ""
+        },
+    ]
     return (
         <div>
             <InputCopyAddress />
@@ -31,7 +40,11 @@ const NetWork = ({ classes }) => {
             </PapperBlock>
             <Divider className={classes.divider} />
             <PapperBlock title={textTran('Network')} desc="" icon="ios-stats-outline" noMargin whiteBg>
-                <NetworkWidgetContainer />
+                {arrAddress.map((item, index) => {
+                    <Fragment key={index}>
+                        <NetworkWidgetListContainer address={item.address} />
+                    </Fragment>
+                })}
             </PapperBlock>
         </div>
     );

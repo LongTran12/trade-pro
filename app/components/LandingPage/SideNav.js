@@ -76,8 +76,8 @@ MenuContent.propTypes = {
 };
 
 MenuContent.defaultProps = {
-  toggleDrawerOpen: () => {},
-  loadTransition: () => {}
+  toggleDrawerOpen: () => { },
+  loadTransition: () => { }
 };
 
 const MenuContentStyle = withStyles(styles)(MenuContent);

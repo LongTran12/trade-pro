@@ -27,6 +27,10 @@ export const PersonalDashboard = loadable(() =>
   import('./Dashboard/PersonalDashboard'), {
   fallback: <Loading />,
 });
+export const AdminPage = loadable(() =>
+  import('./Dashboard/AdminPage'), {
+  fallback: <Loading />,
+});
 export const CrmDashboard = loadable(() =>
   import('./Dashboard/CrmDashboard'), {
   fallback: <Loading />,

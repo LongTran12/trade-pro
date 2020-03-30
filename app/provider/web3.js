@@ -17,7 +17,6 @@ const WrapWeb3 = ({ children }) => {
     ote: undefined,
     isAdmin: false
   });
-
   useEffect(() => {
     const checkWeb3 = () => {
       if (window.ethereum) {
@@ -25,7 +24,7 @@ const WrapWeb3 = ({ children }) => {
         try {
           window.ethereum
             .enable()
-            .then(function(accounts) {
+            .then(function (accounts) {
               // User has allowed account access to DApp...
               let w3contract = window.web3.eth
                 .contract(config.oteexAbi)
@@ -51,7 +50,8 @@ const WrapWeb3 = ({ children }) => {
                 usdt,
                 usdi,
                 ote,
-                member
+                member,
+                isAdmin: true//edit isadmin
               });
             })
             .catch(e => {
@@ -62,7 +62,9 @@ const WrapWeb3 = ({ children }) => {
                 web3: undefined,
                 contract: undefined,
                 usdt: undefined,
-                usdi: undefined
+                usdi: undefined,
+                isAdmin: false//edit isadmin
+
               });
               setTimeout(() => !web3State.loading && checkWeb3(), 1000);
             });
@@ -74,7 +76,8 @@ const WrapWeb3 = ({ children }) => {
             web3: undefined,
             contract: undefined,
             usdt: undefined,
-            usdi: undefined
+            usdi: undefined,
+            isAdmin: false//edit isadmin
           });
         }
       }
@@ -101,7 +104,8 @@ const WrapWeb3 = ({ children }) => {
           usdi,
           usdt,
           ote,
-          member
+          member,
+          isAdmin: true//edit isadmin
         });
       }
       // Non-DApp Browsers
