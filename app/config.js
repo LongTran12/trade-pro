@@ -6,6 +6,7 @@ const config = {
   ote: "0x7Fa7Ee339b26C35cA5F642cE940c8c1E8639E66e",
   usdt: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
   usdi: "0xdC1F5E7f20691b33E4cdD872f815E066d221C29D",
+  admin: "0xde121E87f1e26f0DD6173Cfe932A1CF222B8f01D",
   memberAddress: "0x1234bEc966cFb6b16dAe082ecec74775275Da029",
   memberAbi: [
     {
