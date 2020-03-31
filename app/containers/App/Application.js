@@ -20,7 +20,8 @@ import {
   Settings,
   HelpSupport,
   NotFound,
-  AdminPage
+  AdminPage,
+  AllMember
 } from "../pageListAsync";
 import Stacking from "../Dashboard/Stacking";
 
@@ -35,6 +36,7 @@ class Application extends React.Component {
           <Route exact path="/network" component={NetWork} />
           <Route exact path="/stacking" component={Stacking} />
           <Route exact path="/admin-page" component={AdminPage} />
+          <Route exact path="/all-member" component={AllMember} />
           {/* <Route exact path="/" component={PersonalDashboard} /> */}
           {/* <Route path="/crm-dashboard" component={CrmDashboard} /> */}
           {/* Widgets */}

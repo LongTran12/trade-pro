@@ -51,10 +51,10 @@ const NetworkWidgetContainer = () => {
                 <span className="level__ref">F1</span>
                 <span className="address__ref">
                   {userInfo[memberInfo.refs[i]] &&
-                  userInfo[memberInfo.refs[i]].user
+                    userInfo[memberInfo.refs[i]].user
                     ? userInfo[memberInfo.refs[i]].user +
-                      " " +
-                      userInfo[memberInfo.refs[i]].phone
+                    " " +
+                    userInfo[memberInfo.refs[i]].phone
                     : memberInfo.refs[i]}
                 </span>
               </div>
@@ -125,10 +125,10 @@ const NetworkWidgetContainer = () => {
               </span>
               <span className="address__ref">
                 {userInfo[memberInfo.refs[i]] &&
-                userInfo[memberInfo.refs[i]].user
+                  userInfo[memberInfo.refs[i]].user
                   ? userInfo[memberInfo.refs[i]].user +
-                    " " +
-                    userInfo[memberInfo.refs[i]].phone
+                  " " +
+                  userInfo[memberInfo.refs[i]].phone
                   : memberInfo.refs[i]}
               </span>
             </div>
@@ -180,6 +180,7 @@ const NetworkWrap = memo(styled.div`
           display: flex;
           justify-content: space-between;
           align-items: center;
+          flex-flow:row wrap;
           .ref_name {
             .level__ref {
               font-size: 18px;
@@ -192,7 +193,7 @@ const NetworkWrap = memo(styled.div`
     }
     ul {
       width: 100%;
-      padding: 0 0 0 18px;
+      padding: 0 0 0 15px;
     }
     li {
       display: flex;

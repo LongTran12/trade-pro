@@ -10,20 +10,11 @@ import {
     CounterCryptoWidgetContainer,
     PapperBlock,
     TradingFormWidgetContainer,
-    FormWithdraw
+    FormWithdraw,
+    FormViewNetwork
 } from "dan-components";
 import styles from "./dashboard-jss";
-import ChartBarStakedCrypto from "../Charts/demos/ChartBarStakedCrypto";
-import HistoryTableContainer from "../../components/Widget/HistoryTableContainer";
 
-import LatestTransactionWidgetContainer from "../../components/Widget/LatestTransactionWidgetContainer";
-import InputCopyAddress from "../../components/Widget/InputCopyAddress";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import { Web3Context } from "../../provider/web3";
 
 const AdminPage = ({ classes }) => {
@@ -45,15 +36,28 @@ const AdminPage = ({ classes }) => {
                 <meta property="twitter:description" content={description} />
             </Helmet>
             {isAdmin &&
-                <PapperBlock
-                    title={textTran("widthDraw")}
-                    icon="ios-stats-outline"
-                    whiteBg
-                    overflowX
-                    desc=""
-                >
-                    <FormWithdraw />
-                </PapperBlock>
+                <>
+                    <PapperBlock
+                        title={textTran("widthDraw")}
+                        icon="ios-stats-outline"
+                        whiteBg
+                        overflowX
+                        desc=""
+                    >
+                        <FormWithdraw />
+                    </PapperBlock>
+                    <Divider className={classes.divider} />
+
+                    <PapperBlock
+                        title={textTran("View Address Member")}
+                        icon="ios-stats-outline"
+                        whiteBg
+                        overflowX
+                        desc=""
+                    >
+                        <FormViewNetwork />
+                    </PapperBlock>
+                </>
             }
         </div>
     );

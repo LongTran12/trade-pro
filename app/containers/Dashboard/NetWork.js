@@ -6,8 +6,7 @@ import brand from "dan-api/dummy/brand";
 import { withStyles } from "@material-ui/core/styles";
 import {
   PapperBlock,
-  NetworkWidgetContainer,
-  NetworkWidgetListContainer
+  NetworkWidgetContainer
 } from "dan-components";
 import styles from "./dashboard-jss";
 import InputCopyAddress from "../../components/Widget/InputCopyAddress";

@@ -176,6 +176,12 @@ module.exports = [
         name: 'Admin',
         icon: 'md-person',
         link: '/admin-page',
+      },
+      {
+        key: 'allMember',
+        name: 'All Member',
+        icon: 'md-person',
+        link: '/all-member',
       }
     ]
   }

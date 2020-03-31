@@ -60,7 +60,11 @@ export HistoryWidget from './Widget/HistoryWidget';
 export NewsListWidget from './Widget/NewsListWidget';
 export PerformanceWidget from './Widget/PerformanceWidget';
 export FormWithdraw from './Widget/FormWithdraw';
-export NetworkWidgetListContainer from './Widget/NetworkWidgetListContainer';
+export FormViewNetwork from './Widget/FormViewNetwork';
+export FormPopupNetwork from './Widget/FormPopupNetwork';
+export InfoUserReference from './Widget/InfoUserReference';
+export InfoUserReferenceAddress from './Widget/admin/InfoUserReferenceAddress';
+export NetworkWidgetAddress from './Widget/admin/NetworkWidgetAddress';
 // Calculator
 export Calculator from './Calculator';
 // Guide

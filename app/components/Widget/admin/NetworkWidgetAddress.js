@@ -1,14 +1,16 @@
 /* eslint-disable */
 import React, { useContext, useState, useEffect, memo } from "react";
-import { web3Public, contractPublic } from "../../provider/web3Public";
-import { config } from "../../config";
-import { Web3Context } from "../../provider/web3";
-import NetWorkWidgetTree from "./NetworkWidgetTree";
+import { web3Public, contractPublic } from "../../../provider/web3Public";
+import { config } from "../../../config";
+import { Web3Context } from "../../../provider/web3";
+import NetWorkWidgetTree from "../NetworkWidgetTree";
 import styled from "styled-components";
 import BigNumber from "bignumber.js";
 
-const NetworkWidgetListContainer = ({ address }) => {
+const NetworkWidgetAddress = ({ address }) => {
+  //   const { address } = useContext(Web3Context);
   const [treeData, setTreeData] = useState([]);
+  console.log("treeData", treeData);
   useEffect(() => {
     const getInfo = async () => {
       let member = new web3Public.eth.Contract(
@@ -19,6 +21,7 @@ const NetworkWidgetListContainer = ({ address }) => {
       let currentSales = await contractPublic.methods
         .getCurrentSales(memberInfo.refs)
         .call();
+      console.log("memberInfo", memberInfo);
       let refs = [];
       let userInfo = {};
       await Promise.all(
@@ -156,7 +159,7 @@ const NetworkWidgetListContainer = ({ address }) => {
   );
 };
 
-export default NetworkWidgetListContainer;
+export default NetworkWidgetAddress;
 
 const NetworkWrap = memo(styled.div`
   .ant-tree {
@@ -177,7 +180,9 @@ const NetworkWrap = memo(styled.div`
           display: flex;
           justify-content: space-between;
           align-items: center;
+          flex-flow:row wrap;
           .ref_name {
+            white-space:pre-wrap;
             .level__ref {
               font-size: 18px;
               font-weight: 500;
@@ -189,7 +194,7 @@ const NetworkWrap = memo(styled.div`
     }
     ul {
       width: 100%;
-      padding: 0 0 0 18px;
+      padding: 0 0 0 15px;
     }
     li {
       display: flex;
