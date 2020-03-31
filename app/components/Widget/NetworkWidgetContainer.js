@@ -21,6 +21,7 @@ const NetworkWidgetContainer = () => {
       let currentSales = await contractPublic.methods
         .getCurrentSales(memberInfo.refs)
         .call();
+      console.log("memberInfo", memberInfo);
       let refs = [];
       let userInfo = {};
       await Promise.all(
