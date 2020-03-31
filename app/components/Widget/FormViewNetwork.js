@@ -1,79 +1,89 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
-import {
-    FormPopupNetwork
-} from "dan-components";
-import Grid from '@material-ui/core/Grid';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import { FormPopupNetwork } from "dan-components";
+import { memberPublic } from "../../provider/web3Public";
+import coinAddressValidator from "coin-address-validator";
 const styles = theme => ({
-    container: {
-        display: "flex",
-        flexWrap: "wrap",
-        alignItems: "center",
-        justifyContent: "space-between"
-    },
-    textField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1)
-    },
-    menu: {
-        width: 200
-    }
+  container: {
+    display: "flex",
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "space-between"
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1)
+  },
+  menu: {
+    width: 200
+  }
 });
 
 const FormViewNetwork = ({ classes }) => {
-    const [input, setInput] = useState('ex:0xx0');
-    // const [address,setAddress]=useState('')
-    const [open, setOpen] = useState(false)
-    const handleChangeInput = e => {
-        setInput(e.target.value);
-    };
-    const [address, setAddress] = useState('')
-    const onSubmit = (e) => {
-        setAddress(e)
-    };
+  const [input, setInput] = useState("ex:0xx0");
+  // const [address,setAddress]=useState('')
+  const [open, setOpen] = useState(false);
+  const handleChangeInput = e => {
+    setInput(e.target.value);
+  };
+  const [address, setAddress] = useState("");
+  const onSubmit = e => {
+    if (coinAddressValidator.validate(e, "eth", "prod")) {
+      setAddress(e);
+    } else {
+      memberPublic
+        .getAddress(e)
+        .call()
+        .then(add => {
+          console.log(add);
+          setAddress(add);
+        });
+    }
+  };
 
-    console.log('address', address)
-    return (
-        <Wrap>
-            <TextField
-                id="filled-uncontrolled"
-                label="Enter Address"
-                defaultValue="foo"
-                className={classes.textField}
-                margin="normal"
-                variant="outlined"
-                value={input}
-                onChange={handleChangeInput}
-                type="text"
-                placeholder="ex:0x0dasa"
-            />
-            <Button
-                className={classes.button}
-                variant="contained"
-                color="primary"
-                onClick={() => { setOpen(true); onSubmit(input) }}
-            >
-                View Member
-            </Button>
-            {
-                open &&
-                <FormPopupNetwork address={address} open={open} onOpen={() => setOpen(true)} onClose={() => setOpen(false)} />
-            }
-        </Wrap>
-    );
+  console.log("address", address);
+  return (
+    <Wrap>
+      <TextField
+        id="filled-uncontrolled"
+        label="Enter Address"
+        defaultValue="foo"
+        className={classes.textField}
+        margin="normal"
+        variant="outlined"
+        value={input}
+        onChange={handleChangeInput}
+        type="text"
+        placeholder="ex:0x0dasa"
+      />
+      <Button
+        className={classes.button}
+        variant="contained"
+        color="primary"
+        onClick={() => {
+          setOpen(true);
+          onSubmit(input);
+        }}
+      >
+        View Member
+      </Button>
+      {open && (
+        <FormPopupNetwork
+          address={address}
+          open={open}
+          onOpen={() => setOpen(true)}
+          onClose={() => setOpen(false)}
+        />
+      )}
+    </Wrap>
+  );
 };
 FormViewNetwork.propTypes = {
-    classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired
 };
 export default withStyles(styles)(FormViewNetwork);
 const Wrap = styled.div`
