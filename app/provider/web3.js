@@ -24,7 +24,7 @@ const WrapWeb3 = ({ children }) => {
         try {
           window.ethereum
             .enable()
-            .then(function (accounts) {
+            .then(function(accounts) {
               // User has allowed account access to DApp...
               let w3contract = window.web3.eth
                 .contract(config.oteexAbi)
@@ -51,10 +51,10 @@ const WrapWeb3 = ({ children }) => {
                 usdi,
                 ote,
                 member,
-                // isAdmin:
-                //   'accounts[0].toLowerCase() === config.admin.toLowerCase()' 
                 isAdmin:
-                  '0xde121E87f1e26f0DD6173Cfe932A1CF222B8f01D'
+                  accounts[0].toLowerCase() === config.admin.toLowerCase()
+                // isAdmin:
+                //   '0xde121E87f1e26f0DD6173Cfe932A1CF222B8f01D'
               });
             })
             .catch(e => {

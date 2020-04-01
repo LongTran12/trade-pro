@@ -33,13 +33,14 @@ const FormViewNetwork = ({ classes }) => {
   const [address, setAddress] = useState("");
   const onSubmit = e => {
     if (coinAddressValidator.validate(e, "eth", "prod")) {
+      console.log("valid", e);
       setAddress(e);
     } else {
-      memberPublic
+      memberPublic.methods
         .getAddress(e)
         .call()
         .then(add => {
-          console.log(add);
+          console.log("adddd", add);
           setAddress(add);
         });
     }
