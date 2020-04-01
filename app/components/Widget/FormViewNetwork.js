@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { FormPopupNetwork } from "dan-components";
 import { memberPublic } from "../../provider/web3Public";
 import coinAddressValidator from "coin-address-validator";
+import { message } from "antd";
 const styles = theme => ({
   container: {
     display: "flex",
@@ -40,8 +41,13 @@ const FormViewNetwork = ({ classes }) => {
         .getAddress(e)
         .call()
         .then(add => {
-          console.log("adddd", add);
-          setAddress(add);
+          if (
+            add.toLowerCase() === "0x0000000000000000000000000000000000000000"
+          ) {
+            message.error("Username not found");
+          } else {
+            setAddress(add);
+          }
         });
     }
   };
