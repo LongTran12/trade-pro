@@ -1,35 +1,34 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Dropzone from "react-dropzone";
-import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import Avatar from "@material-ui/core/Avatar";
-import Type from "dan-styles/Typography.scss";
-import IconButton from "@material-ui/core/IconButton";
-import PhotoCamera from "@material-ui/icons/PhotoCamera";
-import Typography from "@material-ui/core/Typography";
-import { connect } from "react-redux";
-import { reduxForm, Field } from "redux-form/immutable";
-import Tooltip from "@material-ui/core/Tooltip";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import PermContactCalendar from "@material-ui/icons/PermContactCalendar";
-import Bookmark from "@material-ui/icons/Bookmark";
-import LocalPhone from "@material-ui/icons/LocalPhone";
-import Email from "@material-ui/icons/Email";
-import Smartphone from "@material-ui/icons/Smartphone";
-import LocationOn from "@material-ui/icons/LocationOn";
-import Work from "@material-ui/icons/Work";
-import Language from "@material-ui/icons/Language";
-import css from "dan-styles/Form.scss";
-import { TextFieldRedux } from "../Forms/ReduxFormMUI";
-import styles from "./contact-jss";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Dropzone from 'react-dropzone';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Avatar from '@material-ui/core/Avatar';
+import Type from 'dan-styles/Typography.scss';
+import IconButton from '@material-ui/core/IconButton';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import Typography from '@material-ui/core/Typography';
+import { connect } from 'react-redux';
+import { reduxForm, Field } from 'redux-form/immutable';
+import Tooltip from '@material-ui/core/Tooltip';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import PermContactCalendar from '@material-ui/icons/PermContactCalendar';
+import Bookmark from '@material-ui/icons/Bookmark';
+import LocalPhone from '@material-ui/icons/LocalPhone';
+import Email from '@material-ui/icons/Email';
+import Smartphone from '@material-ui/icons/Smartphone';
+import LocationOn from '@material-ui/icons/LocationOn';
+import Work from '@material-ui/icons/Work';
+import Language from '@material-ui/icons/Language';
+import css from 'dan-styles/Form.scss';
+import { TextFieldRedux } from '../Forms/ReduxFormMUI';
+import styles from './contact-jss';
 
 // validation functions
-const required = value => (value == null ? "Required" : undefined);
-const email = value =>
-  value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-    ? "Invalid email"
-    : undefined;
+const required = value => (value == null ? 'Required' : undefined);
+const email = value => (value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
+  ? 'Invalid email'
+  : undefined);
 
 class AddContactForm extends React.Component {
   saveRef = ref => {
@@ -48,10 +47,10 @@ class AddContactForm extends React.Component {
       imgAvatar
     } = this.props;
     let dropzoneRef;
-    const acceptedFiles = ["image/jpeg", "image/png", "image/bmp"];
+    const acceptedFiles = ['image/jpeg', 'image/png', 'image/bmp'];
     const fileSizeLimit = 300000;
     const imgPreview = img => {
-      if (typeof img !== "string" && img !== "") {
+      if (typeof img !== 'string' && img !== '') {
         return URL.createObjectURL(imgAvatar);
       }
       return img;
@@ -70,7 +69,7 @@ class AddContactForm extends React.Component {
               </Typography>
               <Dropzone
                 className={classes.hiddenDropzone}
-                accept={acceptedFiles.join(",")}
+                accept={acceptedFiles.join(',')}
                 acceptClassName="stripes"
                 onDrop={onDrop}
                 maxSize={fileSizeLimit}
@@ -86,7 +85,7 @@ class AddContactForm extends React.Component {
               </Dropzone>
               <div className={classes.avatarWrap}>
                 <Avatar
-                  alt="OTE User"
+                  alt="OTF User"
                   className={classes.uploadAvatar}
                   src={imgPreview(imgAvatar)}
                 />
@@ -277,12 +276,12 @@ AddContactForm.propTypes = {
 };
 
 const AddContactFormRedux = reduxForm({
-  form: "immutableAddContact",
+  form: 'immutableAddContact',
   enableReinitialize: true
 })(AddContactForm);
 
 const AddContactInit = connect(state => ({
-  initialValues: state.getIn(["contact", "formValues"])
+  initialValues: state.getIn(['contact', 'formValues'])
 }))(AddContactFormRedux);
 
 export default withStyles(styles)(AddContactInit);

@@ -22,230 +22,231 @@ import { otePublic } from "../../provider/web3Public";
 import Swal from "sweetalert2";
 
 const TradingFormWidgetSell = ({ classes }) => {
-  const { otePrice } = useContext(AppContext);
-  const { contract, address, ote } = useContext(Web3Context);
-  let dataPrice = [
-    {
-      name: "0.5$",
-      value: 0,
-      number: 0.5
-    },
-    {
-      name: "0.51$",
-      value: 1,
-      number: 0.51
-    },
-    {
-      name: "0.52$",
-      value: 2,
-      number: 0.52
-    }
-  ];
-  if (otePrice / 10 ** 6 === 0.51) {
-    dataPrice = [
-      {
-        name: "0.51$",
-        value: 1,
-        number: 0.51
-      },
-      {
-        name: "0.52$",
-        value: 2,
-        number: 0.52
-      }
-    ];
-  }
-  if (otePrice / 10 ** 6 === 0.52) {
-    dataPrice = [
-      {
-        name: "0.52$",
-        value: 2,
-        number: 0.52
-      }
-    ];
-  }
-  const [status, setStatus] = useState({ code: "" });
-  useEffect(() => {
-    if (status.code === "loading") {
-      Swal.fire({
-        title: "Waiting!",
-        timer: 1000000,
-        text: "Please waiting for confirm your transaction!",
-        onBeforeOpen: () => {
-          Swal.showLoading();
+    const { t, i18n } = useTranslation();
+    const textTranslate = text => {
+        return i18n.exists(text) ? t(text) : text;
+    };
+    const { otePrice } = useContext(AppContext);
+    const { contract, address, ote } = useContext(Web3Context);
+    let dataPrice = [
+        {
+            name: "0.5$",
+            value: 0,
+            number: 0.5
+        },
+        {
+            name: "0.51$",
+            value: 1,
+            number: 0.51
+        },
+        {
+            name: "0.52$",
+            value: 2,
+            number: 0.52
         }
-      });
-    } else if (status.code === "success") {
-      Swal.fire({
-        timer: "Success",
-        text: "Thanks for make sell order!"
-      }).then(() => {
-        updateMember();
-      });
-    } else if (status.code === "error") {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: status.message
-      });
-    } else if (status.code === "loading-approve") {
-      Swal.fire({
-        title: "Waiting!",
-        timer: 1000000,
-        text: "Please waiting for confirm your approve transaction!",
-        onBeforeOpen: () => {
-          Swal.showLoading();
-        }
-      });
-    }
-  }, [status]);
-
-  const [price, setPrice] = useState(() => {
-    if (otePrice / 10 ** 6 === 0.5) {
-      return `${dataPrice[0].value}`;
-    }
+    ];
     if (otePrice / 10 ** 6 === 0.51) {
-      return `${dataPrice[1].value}`;
+        dataPrice = [
+            {
+                name: "0.51$",
+                value: 1,
+                number: 0.51
+            },
+            {
+                name: "0.52$",
+                value: 2,
+                number: 0.52
+            }
+        ];
     }
     if (otePrice / 10 ** 6 === 0.52) {
-      return `${dataPrice[2].value}`;
+        dataPrice = [
+            {
+                name: "0.52$",
+                value: 2,
+                number: 0.52
+            }
+        ];
     }
-    return `${dataPrice[0].value}`;
-  });
-  const handleChange = event => {
-    setPrice(event.target.value);
-  };
-  const [amount, setAmount] = useState(100);
-  const makeOrder = async () => {
-    console.log(amount);
-    let allow = await otePublic.methods.allowance(address, config.oteex).call();
-    if (allow >= amount * 10 ** 18) {
-      setStatus({
-        code: "loading"
-      });
-      contract.makeOrder(amount * 10 ** 18, price, { value: 0 }, err => {
-        if (err) {
-          setStatus({ code: "error", message: err.message });
-          message.error(err.message);
-        } else {
-          message.info("Make order success!");
-          console.log("Make order success!");
-        }
-      });
-    } else {
-      setStatus({
-        code: "loading-token"
-      });
-      ote.approve(config.oteex, 10 ** 25, { value: 0 }, err => {
-        if (err) {
-          setStatus({ code: "error", message: err.message });
-          message.error(err.message);
-        } else {
-          setStatus({ code: "success" });
-          message.info("Approve success!");
-          const hide = message.loading("Action in progress..", 0);
-          console.log("Approve success!");
-          checkAndBuy(hide);
-        }
-      });
-    }
-  };
-
-  const checkAndBuy = async hide => {
-    console.log("checkandBuy");
-    let allow = await otePublic.methods.allowance(address, config.oteex).call();
-    if (allow >= amount * 10 ** 18) {
-      hide && hide();
-      setStatus({
-        code: "loading"
-      });
-      contract.makeOrder(amount * 10 ** 18, price, { value: 0 }, err => {
-        if (err) {
-          setStatus({ code: "error", message: err.message });
-          message.error(err.message);
-        } else {
-          setStatus({ code: "success" });
-          console.log("Make order success!");
-        }
-      });
-    } else {
-      setTimeout(() => {
-        checkAndBuy(hide);
-      }, 1000);
-    }
-  };
-  const { t, i18n } = useTranslation();
-  const textTranslate = text => {
-    return i18n.exists(text) ? t(text) : text;
-  };
-  return (
-    <div className={classes.tabContainer}>
-      <Grid container spacing={2}>
-        <Grid item xs={6}>
-          <FormControl className={classes.formControlTrade}>
-            <InputLabel htmlFor="price-simple">
-              {" "}
-              {textTranslate("choosePrice")}
-            </InputLabel>
-            <Select
-              value={price}
-              onChange={handleChange}
-              startAdornment={
-                <InputAdornment position="start">$</InputAdornment>
-              }
-              inputProps={{
-                name: "price",
-                id: "price-simple"
-              }}
-            >
-              {dataPrice.map((index, i) => (
-                <MenuItem key={i} value={index.value}>
-                  {index.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid item xs={6}>
-          <FormControl fullWidth className={classes.formControlTrade}>
-            <InputLabel htmlFor="adornment-amountn">
-              {textTranslate("selectAmount")}
-            </InputLabel>
-            <Input
-              id="adornment-amountn"
-              value={amount}
-              onChange={e => setAmount(e.target.value)}
-              onBlur={e => {
-                if (e.target.value < 100) {
-                  setAmount(100);
-                  alert(textTranslate("validateInput"));
+    const [status, setStatus] = useState({ code: "" });
+    useEffect(() => {
+        if (status.code === "loading") {
+            Swal.fire({
+                title: `${textTranslate("tradingWaiting")}`,
+                timer: 1000000,
+                text: `${textTranslate("tradingPleaseWaiting")}`,
+                onBeforeOpen: () => {
+                    Swal.showLoading();
                 }
-              }}
-            />
-            <FormHelperText>
-              {textTranslate("totalPurchase")} $
+            });
+        } else if (status.code === "success") {
+            Swal.fire({
+                timer: "Success",
+                text: `${textTranslate("tradingThankSell")}`
+            }).then(() => {
+                updateMember();
+            });
+        } else if (status.code === "error") {
+            Swal.fire({
+                icon: "error",
+                title: `${textTranslate("tradingOops")}`,
+                text: status.message
+            });
+        } else if (status.code === "loading-approve") {
+            Swal.fire({
+                title: `${textTranslate("tradingWaiting")}`,
+                timer: 1000000,
+                text: `${textTranslate("tradingApproveWaiting")}`,
+                onBeforeOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+        }
+    }, [status]);
+
+    const [price, setPrice] = useState(() => {
+        if (otePrice / 10 ** 6 === 0.5) {
+            return `${dataPrice[0].value}`;
+        }
+        if (otePrice / 10 ** 6 === 0.51) {
+            return `${dataPrice[1].value}`;
+        }
+        if (otePrice / 10 ** 6 === 0.52) {
+            return `${dataPrice[2].value}`;
+        }
+        return `${dataPrice[0].value}`;
+    });
+    const handleChange = event => {
+        setPrice(event.target.value);
+    };
+    const [amount, setAmount] = useState(100);
+    const makeOrder = async () => {
+        console.log(amount);
+        let allow = await otePublic.methods.allowance(address, config.oteex).call();
+        if (allow >= amount * 10 ** 18) {
+            setStatus({
+                code: "loading"
+            });
+            contract.makeOrder(amount * 10 ** 18, price, { value: 0 }, err => {
+                if (err) {
+                    setStatus({ code: "error", message: err.message });
+                    message.error(err.message);
+                } else {
+                    message.info(`${textTranslate("tradingMakeOrder")}`);
+                    console.log("Make order success!");
+                }
+            });
+        } else {
+            setStatus({
+                code: "loading-token"
+            });
+            ote.approve(config.oteex, 10 ** 25, { value: 0 }, err => {
+                if (err) {
+                    setStatus({ code: "error", message: err.message });
+                    message.error(err.message);
+                } else {
+                    setStatus({ code: "success" });
+                    message.info(`${textTranslate("tradingApproveSuccess")}`);
+                    const hide = message.loading(`${textTranslate("tradingActionProgress")}`, 0);
+                    console.log("Approve success!");
+                    checkAndBuy(hide);
+                }
+            });
+        }
+    };
+
+    const checkAndBuy = async hide => {
+        console.log("checkandBuy");
+        let allow = await otePublic.methods.allowance(address, config.oteex).call();
+        if (allow >= amount * 10 ** 18) {
+            hide && hide();
+            setStatus({
+                code: "loading"
+            });
+            contract.makeOrder(amount * 10 ** 18, price, { value: 0 }, err => {
+                if (err) {
+                    setStatus({ code: "error", message: err.message });
+                    message.error(err.message);
+                } else {
+                    setStatus({ code: "success" });
+                    console.log("Make order success!");
+                }
+            });
+        } else {
+            setTimeout(() => {
+                checkAndBuy(hide);
+            }, 1000);
+        }
+    };
+
+    return (
+        <div className={classes.tabContainer}>
+            <Grid container spacing={2}>
+                <Grid item xs={6}>
+                    <FormControl className={classes.formControlTrade}>
+                        <InputLabel htmlFor="price-simple">
+                            {" "}
+                            {textTranslate("choosePrice")}
+                        </InputLabel>
+                        <Select
+                            value={price}
+                            onChange={handleChange}
+                            startAdornment={
+                                <InputAdornment position="start">$</InputAdornment>
+                            }
+                            inputProps={{
+                                name: "price",
+                                id: "price-simple"
+                            }}
+                        >
+                            {dataPrice.map((index, i) => (
+                                <MenuItem key={i} value={index.value}>
+                                    {index.name}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                </Grid>
+                <Grid item xs={6}>
+                    <FormControl fullWidth className={classes.formControlTrade}>
+                        <InputLabel htmlFor="adornment-amountn">
+                            {textTranslate("selectAmount")}
+                        </InputLabel>
+                        <Input
+                            id="adornment-amountn"
+                            value={amount}
+                            onChange={e => setAmount(e.target.value)}
+                            onBlur={e => {
+                                if (e.target.value < 100) {
+                                    setAmount(100);
+                                    alert(textTranslate("validateInput"));
+                                }
+                            }}
+                        />
+                        <FormHelperText>
+                            {textTranslate("totalPurchase")} $
               {dataPrice[price].number * amount}
-            </FormHelperText>
-          </FormControl>
-        </Grid>
-      </Grid>
-      <Divider className={classes.divider} />
-      <div className={classes.btnArea}>
-        {/* <Typography variant="subtitle1">Estimation: 0.02 BTC</Typography> */}
-        <div />
-        <Button
-          onClick={() => {
-            makeOrder();
-          }}
-          color="secondary"
-          variant="contained"
-          className={classes.button}
-        >
-          {textTranslate("makeSellOrder")}
-        </Button>
-      </div>
-    </div>
-  );
+                        </FormHelperText>
+                    </FormControl>
+                </Grid>
+            </Grid>
+            <Divider className={classes.divider} />
+            <div className={classes.btnArea}>
+                {/* <Typography variant="subtitle1">Estimation: 0.02 BTC</Typography> */}
+                <div />
+                <Button
+                    onClick={() => {
+                        makeOrder();
+                    }}
+                    color="secondary"
+                    variant="contained"
+                    className={classes.button}
+                >
+                    {textTranslate("makeSellOrder")}
+                </Button>
+            </div>
+        </div>
+    );
 };
 
 export default withStyles(styles)(TradingFormWidgetSell);
