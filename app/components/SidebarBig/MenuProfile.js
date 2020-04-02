@@ -1,19 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
-import ButtonBase from '@material-ui/core/ButtonBase';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Avatar from '@material-ui/core/Avatar';
-import dummy from 'dan-api/dummy/dummyContents';
-import styles from './sidebarBig-jss';
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import classNames from "classnames";
+import ButtonBase from "@material-ui/core/ButtonBase";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import Avatar from "@material-ui/core/Avatar";
+import dummy from "dan-api/dummy/dummyContents";
+import styles from "./sidebarBig-jss";
 
 class MenuProfile extends React.Component {
   state = {
     status: dummy.user.status,
-    anchorEl: null,
-  }
+    anchorEl: null
+  };
 
   handleOpen = event => {
     this.setState({ anchorEl: event.currentTarget });
@@ -26,18 +26,18 @@ class MenuProfile extends React.Component {
   handleChangeStatus = status => {
     this.setState({ status });
     this.handleClose();
-  }
+  };
 
   render() {
     const { classes } = this.props;
     const { anchorEl, status } = this.state;
     const setStatus = st => {
       switch (st) {
-        case 'online':
+        case "online":
           return classes.online;
-        case 'idle':
+        case "idle":
           return classes.idle;
-        case 'bussy':
+        case "bussy":
           return classes.bussy;
         default:
           return classes.offline;
@@ -52,7 +52,13 @@ class MenuProfile extends React.Component {
             src={dummy.user.avatar}
             className={classNames(classes.avatar, classes.bigAvatar)}
           />
-          <i className={classNames(classes.dotStatus, classes.pinned, setStatus(status))} />
+          <i
+            className={classNames(
+              classes.dotStatus,
+              classes.pinned,
+              setStatus(status)
+            )}
+          />
         </ButtonBase>
         <Menu
           id="status-menu"
@@ -73,19 +79,19 @@ class MenuProfile extends React.Component {
               {status}
             </div>
           </MenuItem>
-          <MenuItem onClick={() => this.handleChangeStatus('online')}>
+          <MenuItem onClick={() => this.handleChangeStatus("online")}>
             <i className={classNames(classes.dotStatus, classes.online)} />
-            online
+            Trực tuyến
           </MenuItem>
-          <MenuItem onClick={() => this.handleChangeStatus('idle')}>
+          <MenuItem onClick={() => this.handleChangeStatus("idle")}>
             <i className={classNames(classes.dotStatus, classes.idle)} />
             idle
           </MenuItem>
-          <MenuItem onClick={() => this.handleChangeStatus('bussy')}>
+          <MenuItem onClick={() => this.handleChangeStatus("bussy")}>
             <i className={classNames(classes.dotStatus, classes.bussy)} />
             bussy
           </MenuItem>
-          <MenuItem onClick={() => this.handleChangeStatus('offline')}>
+          <MenuItem onClick={() => this.handleChangeStatus("offline")}>
             <i className={classNames(classes.dotStatus, classes.offline)} />
             offline
           </MenuItem>
@@ -96,12 +102,12 @@ class MenuProfile extends React.Component {
 }
 
 MenuProfile.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 MenuProfile.defaultProps = {
   anchorEl: null,
-  isLogin: false,
+  isLogin: false
 };
 
 export default withStyles(styles)(MenuProfile);
