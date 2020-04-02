@@ -24,9 +24,14 @@ import messageStyles from 'dan-styles/Messages.scss';
 import avatarApi from 'dan-api/images/avatars';
 import link from 'dan-api/ui/link';
 import { FormControl, Select } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 import styles from './header-jss';
 import DropDownLanguage from './DropDownLanguage';
 
+const TextTranslate = ({ text }) => {
+    const { t, i18n } = useTranslation();
+    return i18n.exists(text) ? t(text) : text;
+};
 class UserMenu extends React.Component {
     state = {
         anchorEl: null,
@@ -153,15 +158,18 @@ class UserMenu extends React.Component {
                     open={openMenu === 'user-setting'}
                     onClose={this.handleClose}
                 >
-                    <MenuItem onClick={this.handleClose} component={Link} to={link.profile}>My Profile</MenuItem>
+                    <MenuItem onClick={this.handleClose} component={Link} to={link.profile}><TextTranslate text="myProfile" /></MenuItem>
 
                     {/* <MenuItem onClick={this.handleClose}>
             <DropDownLanguage />
           </MenuItem> */}
-                    <MenuItem onClick={this.handleClose} component={Link} to={link.calendar}>My Calendar</MenuItem>
+                    <MenuItem onClick={this.handleClose} component={Link} to={link.calendar}>
+                        {' '}
+                        <TextTranslate text="myCalendar" />
+                    </MenuItem>
                     <MenuItem onClick={this.handleClose} component={Link} to={link.email}>
-                        My Inbox
-              <ListItemIcon>
+                        <TextTranslate text="myInbox" />
+                        <ListItemIcon>
                             <Badge className={classNames(classes.badge, classes.badgeMenu)} badgeContent={2} color="secondary" />
                         </ListItemIcon>
                     </MenuItem>
@@ -170,8 +178,8 @@ class UserMenu extends React.Component {
                         <ListItemIcon>
                             <ExitToApp />
                         </ListItemIcon>
-                        Log Out
-            </MenuItem>
+                        <TextTranslate text="logOut" />
+                    </MenuItem>
                 </Menu>
             </div>
         );

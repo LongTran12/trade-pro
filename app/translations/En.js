@@ -186,4 +186,12 @@ export default {
     //comingsoon
     comingSoon: "Coming Soon",
     textComing: "Page will be available soon!",
+    copied: "copied!",
+    useMetamask: "Use Metamask/Trust Wallet for using Exchange!!",
+    warningPC: "You must install and login Metamask for using on PC",
+    warningMobile: "Using TrustWallet for using on Mobile",
+    agree: "Agree",
+    myInbox: "My Inbox",
+    myCalendar: "My Calendar",
+    logOut: "Log Out",
 };
