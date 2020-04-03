@@ -187,5 +187,14 @@ export default {
   tradingThankSell: "Cảm ơn đã thực hiện lệnh bán!",
   tradingMakeOrder: "Đặt hàng thành công!",
   comingSoon: "Sắp Có",
-  textComing: "Trang sẽ sớm được ra mắt!"
+  textComing: "Trang sẽ sớm được ra mắt!",
+  copied: "Đã sao chép!",
+  copy: "Sao chép",
+  useMetamask: "Sử dụng Metamask / Trust Wallet để sử dụng Exchange!!",
+  warningPC: "Bạn phải cài đặt và đăng nhập Metamask để sử dụng trên PC",
+  warningMobile: "Sử dụng TrustWallet để sử dụng trên thiết bị di động",
+  agree: "Đồng Ý",
+  myInbox: "Hộp thư",
+  myCalendar: "Lịch của tôi",
+  logOut: "Đăng Xuất"
 };
