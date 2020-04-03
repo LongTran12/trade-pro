@@ -4,27 +4,8 @@ import PropTypes from "prop-types";
 import brand from "dan-api/dummy/brand";
 import { Helmet } from "react-helmet";
 import { withStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Divider from "@material-ui/core/Divider";
-import {
-  CounterCryptoWidgetContainer,
-  PapperBlock,
-  TradingFormWidgetContainer,
-  FormWithdraw,
-  NetworkWidgetAddress
-} from "dan-components";
+import { PapperBlock, NetworkWidgetAddress } from "dan-components";
 import styles from "./dashboard-jss";
-import ChartBarStakedCrypto from "../Charts/demos/ChartBarStakedCrypto";
-import HistoryTableContainer from "../../components/Widget/HistoryTableContainer";
-
-import LatestTransactionWidgetContainer from "../../components/Widget/LatestTransactionWidgetContainer";
-import InputCopyAddress from "../../components/Widget/InputCopyAddress";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import { Web3Context } from "../../provider/web3";
 import styled from "styled-components";
 import { memberPublic } from "../../provider/web3Public";
@@ -45,10 +26,12 @@ const AllMember = ({ classes }) => {
         .getRootMembers()
         .call()
         .then(add => {
+          console.log(add);
           setRoot(add);
         });
     }
   }, [memberPublic]);
+  console.log("errot", root);
   return (
     <div>
       <Helmet>
@@ -70,9 +53,9 @@ const AllMember = ({ classes }) => {
           {root.map((item, index) => (
             <Wrap key={index}>
               <h5>
-                Address:<span>{item.address}</span>
+                Address:<span>{item}</span>
               </h5>
-              <NetworkWidgetAddress address={item.address} />
+              <NetworkWidgetAddress address={item} />
             </Wrap>
           ))}
         </PapperBlock>
