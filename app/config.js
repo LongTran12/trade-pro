@@ -129,6 +129,21 @@ const config = {
     },
     {
       constant: true,
+      inputs: [],
+      name: "getRootMembers",
+      outputs: [
+        {
+          internalType: "address[]",
+          name: "",
+          type: "address[]"
+        }
+      ],
+      payable: false,
+      stateMutability: "view",
+      type: "function"
+    },
+    {
+      constant: true,
       inputs: [
         {
           internalType: "address",
@@ -1298,6 +1313,21 @@ const config = {
     {
       constant: true,
       inputs: [],
+      name: "currentPay",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256"
+        }
+      ],
+      payable: false,
+      stateMutability: "view",
+      type: "function"
+    },
+    {
+      constant: true,
+      inputs: [],
       name: "getActiveStackCount",
       outputs: [
         {
@@ -1502,7 +1532,7 @@ const config = {
       type: "function"
     },
     {
-      constant: false,
+      constant: true,
       inputs: [
         {
           internalType: "address",
@@ -1524,7 +1554,7 @@ const config = {
         }
       ],
       payable: false,
-      stateMutability: "nonpayable",
+      stateMutability: "view",
       type: "function"
     },
     {
@@ -1742,6 +1772,21 @@ const config = {
       type: "function"
     },
     {
+      constant: true,
+      inputs: [],
+      name: "payLimit",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256"
+        }
+      ],
+      payable: false,
+      stateMutability: "view",
+      type: "function"
+    },
+    {
       constant: false,
       inputs: [],
       name: "payStacking",
@@ -1754,6 +1799,47 @@ const config = {
       ],
       payable: false,
       stateMutability: "nonpayable",
+      type: "function"
+    },
+    {
+      constant: true,
+      inputs: [
+        {
+          internalType: "address",
+          name: "",
+          type: "address"
+        },
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256"
+        }
+      ],
+      name: "stack",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256"
+        }
+      ],
+      payable: false,
+      stateMutability: "view",
+      type: "function"
+    },
+    {
+      constant: true,
+      inputs: [],
+      name: "stackCount",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256"
+        }
+      ],
+      payable: false,
+      stateMutability: "view",
       type: "function"
     },
     {
