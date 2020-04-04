@@ -54,7 +54,7 @@ const InfoUserReferenceAddress = ({ classes, address }) => {
     return (
         <div className={classes.rootCounterFull}>
             <Grid container spacing={2}>
-                <Grid item xs={6} md={3}>
+                <Grid item xs={12} md={3}>
                     <CounterMember
                         color={colorfull[0]}
                         raw={info.level}
@@ -64,7 +64,7 @@ const InfoUserReferenceAddress = ({ classes, address }) => {
                         <Assessment className={classes.counterIcon} />
                     </CounterMember>
                 </Grid>
-                <Grid item xs={6} md={3}>
+                <Grid item xs={12} md={3}>
                     <CounterMember
                         color={colorfull[1]}
                         start={0}
@@ -75,7 +75,7 @@ const InfoUserReferenceAddress = ({ classes, address }) => {
                         <SupervisorAccount className={classes.counterIcon} />
                     </CounterMember>
                 </Grid>
-                <Grid item xs={6} md={3}>
+                <Grid item xs={12} md={3}>
                     <CounterMember
                         color={colorfull[2]}
                         start={0}
@@ -86,7 +86,7 @@ const InfoUserReferenceAddress = ({ classes, address }) => {
                         <Edit className={classes.counterIcon} />
                     </CounterMember>
                 </Grid>
-                <Grid item xs={6} md={3}>
+                <Grid item xs={12} md={3}>
                     <CounterMember
                         color={colorfull[3]}
                         start={0}

@@ -35,7 +35,7 @@ const FormPopupNetwork = ({ classes, open, onOpen, onClose, address }) => {
             fullWidth={true}
             maxWidth={false}
         >
-            <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+            <DialogTitle id="form-dialog-title">Network Info</DialogTitle>
             <DialogContent>
                 {/* <DialogContentText> */}
                 <PapperBlock
