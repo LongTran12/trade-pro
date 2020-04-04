@@ -55,10 +55,10 @@ const NetworkWidgetContainer = () => {
                                         ? userInfo[memberInfo.refs[i]].user +
                                         " " +
                                         userInfo[memberInfo.refs[i]].phone
-                                        : memberInfo.refs[i]}
+                                        : ''}
                                 </span>
                                 <span className="address_wallet">
-                                    {address || ''}
+                                    {memberInfo.refs[i] || ''}
                                 </span>
                             </div>
                             <div className="ref_stat">
@@ -132,10 +132,10 @@ const NetworkWidgetContainer = () => {
                                     ? userInfo[memberInfo.refs[i]].user +
                                     " " +
                                     userInfo[memberInfo.refs[i]].phone
-                                    : memberInfo.refs[i]}
+                                    : ''}
                             </span>
                             <span className="address_wallet">
-                                {address || ''}
+                                {memberInfo.refs[i] || ''}
                             </span>
                         </div>
                         <div className="ref_stat">
