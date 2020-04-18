@@ -33,32 +33,32 @@ const AdminPage = ({ classes }) => {
                 <meta property="twitter:title" content={title} />
                 <meta property="twitter:description" content={description} />
             </Helmet>
-            {isAdmin
-                && (
-                    <>
-                        <PapperBlock
-                            title={textTran('widthDraw')}
-                            icon="ios-stats-outline"
-                            whiteBg
-                            overflowX
-                            desc=""
-                        >
-                            <FormWithdraw />
-                        </PapperBlock>
-                        <Divider className={classes.divider} />
+            {/* {isAdmin
+                && ( */}
+            <>
+                <PapperBlock
+                    title={textTran('widthDraw')}
+                    icon="ios-stats-outline"
+                    whiteBg
+                    overflowX
+                    desc=""
+                >
+                    <FormWithdraw />
+                </PapperBlock>
+                <Divider className={classes.divider} />
 
-                        <PapperBlock
-                            title={textTran('View Address Member')}
-                            icon="ios-stats-outline"
-                            whiteBg
-                            overflowX
-                            desc=""
-                        >
-                            <FormViewNetwork />
-                        </PapperBlock>
-                    </>
-                )
-            }
+                <PapperBlock
+                    title={textTran('View Address Member')}
+                    icon="ios-stats-outline"
+                    whiteBg
+                    overflowX
+                    desc=""
+                >
+                    <FormViewNetwork />
+                </PapperBlock>
+            </>
+            {/* )
+            } */}
         </div>
     );
 };

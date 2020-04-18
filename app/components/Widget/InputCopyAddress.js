@@ -2,13 +2,13 @@
 import React, { useState, useContext, useEffect } from "react";
 import PapperBlock from "../PapperBlock/PapperBlock";
 import {
-  Input,
-  withStyles,
-  Button,
-  SvgIcon,
-  TextField,
-  FormControl,
-  Tooltip
+    Input,
+    withStyles,
+    Button,
+    SvgIcon,
+    TextField,
+    FormControl,
+    Tooltip
 } from "@material-ui/core";
 import styles from "../Tables/tableStyle-jss";
 import { useTranslation } from "react-i18next";
@@ -24,184 +24,204 @@ import { memberPublic } from "../../provider/web3Public";
 import { AppContext } from "../../provider/appContext";
 import { message } from "antd";
 import { config } from "../../config";
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 const InputCopyAddress = ({ classes }) => {
-  const [copys, setCopy] = useState(false);
-  const [copyUser, setCopyUser] = useState(false);
-  const { t, i18n } = useTranslation();
-  const textTranslate = text => {
-    return i18n.exists(text) ? t(text) : text;
-  };
-
-  const { member, address } = useContext(Web3Context);
-  useEffect(() => {
-    const time = setTimeout(() => {
-      setCopy(false);
-      setCopyUser(false);
-    }, 1500);
-    return () => clearTimeout(time);
-  }, [copys, copyUser]);
-  const domain = window.location.origin + "/?ref=" + address;
-
-  //user
-  const { ref } = useContext(AppContext);
-  const [isUser, setIsUser] = useState(false);
-  const [userName, setUserName] = useState("");
-  const [phone, setPhone] = useState("");
-  const refUser = window.location.origin + "/?user=" + userName;
-  const changeUser = e => {
-    setUserName(e.target.value);
-  };
-  const changePhone = e => {
-    setPhone(e.target.value);
-  };
-  const onRegister = async () => {
-    let realRef =
-      ref === "0x0000000000000000000000000000000000000000" ? config.admin : ref;
-    let valid = await memberPublic.methods
-      .validRegisterUser(userName, phone, realRef)
-      .call();
-    valid = Number(valid);
-    if (valid === 0) {
-      member.registerUser(userName, phone, realRef, { value: 0 }, err => {
-        if (err) {
-          message.error(err.message);
-        } else {
-          message.info("Register success!");
-        }
-      });
-    } else {
-      //TODO
-      switch (valid) {
-        case 1:
-          message.error("User in use!");
-          break;
-        case 2:
-          message.error("Address already set username!");
-          break;
-        case 3:
-          message.error("Phone in use!");
-          break;
-        case 4:
-          message.error("Address already set phone!");
-          break;
-        case 5:
-          message.error("Reference is not valid, please contact sponsor!");
-          break;
-        default:
-          break;
-      }
-    }
-  };
-
-  useEffect(() => {
-    const getUsername = async () => {
-      try {
-        let user = await memberPublic.methods.infoMember(address).call();
-        if (user.user !== "") {
-          setIsUser(true);
-          setUserName(user.user);
-        }
-      } catch (error) {
-        console.log(error);
-      }
+    const [copys, setCopy] = useState(false);
+    const [copyUser, setCopyUser] = useState(false);
+    const { t, i18n } = useTranslation();
+    const textTranslate = text => {
+        return i18n.exists(text) ? t(text) : text;
     };
-    if (address) {
-      getUsername();
-    }
-  }, [address]);
-  //end user
-  return (
-    <PapperBlock
-      className={classes.root}
-      noMargin
-      title={textTranslate("refLink")}
-      icon="ios-basket-outline"
-      whiteBg
-      desc=""
-    >
-      {isUser ? (
-        <Wrap className="user">
-          <FormControl fullWidth className={classes.formControlTrade}>
-            <Input
-              id="adornment-amount1"
-              value={refUser}
-              disabled
-              startAdornment={
-                <InputAdornment position="start">
-                  <ImportContactsIcon />
-                </InputAdornment>
-              }
-            />
-          </FormControl>
-          <WrapCopy>
-            <Button
-              onClick={() => {
-                copy(refUser);
-                setCopyUser(true);
-              }}
-            >
-              <Tooltip title="copy">
-                <FileCopyOutlinedIcon />
-              </Tooltip>
-            </Button>
-            {copyUser && <Copied>{textTranslate("copied")}</Copied>}
-          </WrapCopy>
-        </Wrap>
-      ) : (
-        <WrapRegister>
-          <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="name-simple">
-              {textTranslate("user")}
-            </InputLabel>
-            <Input id="name-simple34" value={userName} onChange={changeUser} />
-          </FormControl>
-          <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="name-simple2">
-              {textTranslate("phone")}
-            </InputLabel>
-            <Input id="name-simple2" value={phone} onChange={changePhone} />
-          </FormControl>
-          <Button
-            variant="contained"
-            size="large"
-            color="primary"
-            className={classes.margin}
-            onClick={onRegister}
-          >
-            {textTranslate("register")}
-          </Button>
-        </WrapRegister>
-      )}
-      <Wrap>
-        <FormControl fullWidth className={classes.formControlTrade}>
-          <Input
-            id="adornment-amount1"
-            value={domain}
-            disabled
-            startAdornment={
-              <InputAdornment position="start">
-                <ImportContactsIcon />
-              </InputAdornment>
+
+    const { member, address } = useContext(Web3Context);
+    useEffect(() => {
+        const time = setTimeout(() => {
+            setCopy(false);
+            setCopyUser(false);
+        }, 1500);
+        return () => clearTimeout(time);
+    }, [copys, copyUser]);
+    const domain = window.location.origin + "/?ref=" + address;
+
+    //user
+    const { ref } = useContext(AppContext);
+    const [isUser, setIsUser] = useState(false);
+    const [userName, setUserName] = useState("");
+    const [phone, setPhone] = useState("");
+    const refUser = window.location.origin + "/?user=" + userName;
+    const changeUser = e => {
+        setUserName(e.target.value);
+    };
+    const changePhone = e => {
+        setPhone(e.target.value);
+    };
+    //regex user
+    let regexUserString = /[^A-Za-z0-9]+/
+    const regexUser = userName.match(regexUserString)
+    let regexPhoneString = /[^0-9]+/
+    const regexSPhone = phone.match(regexPhoneString)
+
+    const onRegister = async () => {
+        if (phone !== '' && !!regexSPhone || userName !== '' && !!regexUser) {
+            console.log('error validate')
+            return false
+        }
+        let realRef =
+            ref === "0x0000000000000000000000000000000000000000" ? config.admin : ref;
+        let valid = await memberPublic.methods
+            .validRegisterUser(userName, phone, realRef)
+            .call();
+        valid = Number(valid);
+        if (valid === 0) {
+            member.registerUser(userName, phone, realRef, { value: 0 }, err => {
+                if (err) {
+                    message.error(err.message);
+                } else {
+                    message.info("Register success!");
+                }
+            });
+        } else {
+            //TODO
+            switch (valid) {
+                case 1:
+                    message.error("User in use!");
+                    break;
+                case 2:
+                    message.error("Address already set username!");
+                    break;
+                case 3:
+                    message.error("Phone in use!");
+                    break;
+                case 4:
+                    message.error("Address already set phone!");
+                    break;
+                case 5:
+                    message.error("Reference is not valid, please contact sponsor!");
+                    break;
+                default:
+                    break;
             }
-          />
-        </FormControl>
-        <WrapCopy>
-          <Button
-            onClick={() => {
-              copy(domain);
-              setCopy(true);
-            }}
-          >
-            <Tooltip title={`${textTranslate("copy")}`}>
-              <FileCopyOutlinedIcon />
-            </Tooltip>
-          </Button>
-          {copys && <Copied> {textTranslate("copied")}</Copied>}
-        </WrapCopy>
-      </Wrap>
-    </PapperBlock>
-  );
+        }
+    };
+
+    useEffect(() => {
+        const getUsername = async () => {
+            try {
+                let user = await memberPublic.methods.infoMember(address).call();
+                if (user.user !== "") {
+                    setIsUser(true);
+                    setUserName(user.user);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        if (address) {
+            getUsername();
+        }
+    }, [address]);
+    //end user
+
+    return (
+        <PapperBlock
+            className={classes.root}
+            noMargin
+            title={textTranslate("refLink")}
+            icon="ios-basket-outline"
+            whiteBg
+            desc=""
+        >
+            {isUser ? (
+                <Wrap className="user">
+                    <FormControl fullWidth className={classes.formControlTrade}>
+                        <Input
+                            id="adornment-amount1"
+                            value={refUser}
+                            disabled
+                            startAdornment={
+                                <InputAdornment position="start">
+                                    <ImportContactsIcon />
+                                </InputAdornment>
+                            }
+                        />
+                    </FormControl>
+                    <WrapCopy>
+                        <Button
+                            onClick={() => {
+                                copy(refUser);
+                                setCopyUser(true);
+                            }}
+                        >
+                            <Tooltip title="copy">
+                                <FileCopyOutlinedIcon />
+                            </Tooltip>
+                        </Button>
+                        {copyUser && <Copied>{textTranslate("copied")}</Copied>}
+                    </WrapCopy>
+                </Wrap>
+            ) : (
+                    <WrapRegister>
+                        <FormControl className={classes.formControl}>
+                            <InputLabel htmlFor="name-simple">
+                                {textTranslate("user")}
+                            </InputLabel>
+                            <Input
+                                className={`${userName !== '' && !!regexUser ? "error" : ""}`}
+                                id="name-simple34" value={userName} onChange={changeUser}
+                            />
+                            {userName !== '' && !!regexUser ? <p className="error-icon"><HighlightOffIcon /></p> : ''}
+                        </FormControl>
+                        <FormControl className={classes.formControl}>
+                            <InputLabel htmlFor="name-simple2">
+                                {textTranslate("phone")}
+                            </InputLabel>
+                            <Input
+                                className={`${phone !== '' && !!regexSPhone ? "error" : ""}`}
+                                id="name-simple2" value={phone} onChange={changePhone}
+                            />
+                            {phone !== '' && !!regexSPhone ? <p className="error-icon"><HighlightOffIcon /></p> : ''}
+                        </FormControl>
+                        <Button
+                            variant="contained"
+                            size="large"
+                            color="primary"
+                            className={classes.margin}
+                            onClick={onRegister}
+                        >
+                            {textTranslate("register")}
+                        </Button>
+                    </WrapRegister>
+                )}
+            <Wrap>
+                <FormControl fullWidth className={classes.formControlTrade}>
+                    <Input
+                        id="adornment-amount1"
+                        value={domain}
+                        disabled
+                        startAdornment={
+                            <InputAdornment position="start">
+                                <ImportContactsIcon />
+                            </InputAdornment>
+                        }
+                    />
+                </FormControl>
+                <WrapCopy>
+                    <Button
+                        onClick={() => {
+                            copy(domain);
+                            setCopy(true);
+                        }}
+                    >
+                        <Tooltip title={`${textTranslate("copy")}`}>
+                            <FileCopyOutlinedIcon />
+                        </Tooltip>
+                    </Button>
+                    {copys && <Copied> {textTranslate("copied")}</Copied>}
+                </WrapCopy>
+            </Wrap>
+        </PapperBlock>
+    );
 };
 
 export default withStyles(styles)(InputCopyAddress);
@@ -245,6 +265,15 @@ const WrapRegister = styled.div`
   .MuiFormControl-root {
     flex-basis: 45%;
     margin-right: 2em;
+  }
+  .error{
+      border:1px solid red;
+  }
+  .error-icon{
+      position:absolute;
+      right:15px;
+      top:26px;
+      color:red;
   }
   @media (max-width: 480px) {
     flex-wrap: wrap;
