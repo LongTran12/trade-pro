@@ -41,7 +41,7 @@ const BlackListInfomation = () => {
         <PapperBlock
 
             noMargin
-            title="BlackList Infomation"
+            title="Infomation"
             icon="ios-basket-outline"
             whiteBg
             desc=""
@@ -50,8 +50,11 @@ const BlackListInfomation = () => {
                 <Wrap>
                     <Item>
                         <div className="name"><span>M6:</span>{m6}%</div>
-                        <div className="info-line"><span>Is Run:</span>{isRun ? 'true' : 'false'} </div>
-                        <Button onClick={() => setOpen({ ...open, bonus: true })} variant="contained" color="primary">Bonus</Button>
+                        <div className="name"><span>M12:</span>{m12}%</div>
+                        <div className="name"><span>M18:</span>{m18}%</div>
+
+                        {/* <Button onClick={() => setOpen({ ...open, bonus: true })} variant="contained" color="primary">Bonus</Button> */}
+                        <Button onClick={() => setOpen({ ...open, percent: true })} variant="contained" color="primary">Change Percent</Button>
                     </Item>
                     {open.bonus && <Modal
                         title="Edit Bonus"
@@ -85,7 +88,7 @@ const BlackListInfomation = () => {
                     </Modal>
                     }
                     <Item>
-                        <div className="name"><span>M12:</span>{m12}%</div>
+                        {/* <div className="name"><span>M12:</span>{m12}%</div> */}
                         <div className="info-line"><span>Price</span>{price}</div>
                         <Button onClick={() => setOpen({ ...open, price: true })} variant="contained" color="primary">Change price</Button>
                     </Item>
@@ -126,9 +129,10 @@ const BlackListInfomation = () => {
                     </Modal>
                     }
                     <Item>
-                        <div className="name"><span>M18:</span>{m18}%</div>
+                        <div className="info-line"><span>Is Run:</span>{isRun ? 'true' : 'false'} </div>
                         <div className="info-line"></div>
-                        <Button onClick={() => setOpen({ ...open, percent: true })} variant="contained" color="primary">Change Percent</Button>
+                        {/* <Button onClick={() => setOpen({ ...open, percent: true })} variant="contained" color="primary">Change Percent</Button> */}
+                        <Button onClick={() => setOpen({ ...open, bonus: true })} variant="contained" color="primary">Bonus</Button>
                     </Item>
                     {open.percent && <Modal
                         title="Change Percent"
@@ -201,14 +205,15 @@ const Wrap = styled.div`
     justify-content:space-between;
     width:100%;
     .name,.info-line{
+        margin:5px 0 10px;
         span{
             margin-right:15px;
         }
     }
-    .info-line{
+    /* .info-line{
         margin:5px 0 15px;
         
-    }
+    } */
     @media(max-width:480px){
        flex-wrap:wrap;
     }
@@ -219,6 +224,10 @@ const Item = styled.div`
     box-shadow:0 1px 3px rgba(0,0,0,.2);
     text-align:center;
     padding: 30px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     @media(max-width:480px){
         width:100%;
     }

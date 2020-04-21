@@ -24,19 +24,7 @@ module.exports = [
             }
         ]
     },
-    {
-        key: 'bonus',
-        name: 'Bonus',
-        icon: 'md-add-circle',
-        child: [
-            {
-                key: 'bonuss',
-                name: 'Bonus',
-                link: '/bonus',
-                icon: 'ios-medal-outline'
-            }
-        ]
-    },
+
     {
         key: 'otgame',
         name: 'OTGame',
@@ -198,5 +186,18 @@ module.exports = [
                 link: '/all-member'
             }
         ]
-    }
+    },
+    {
+        key: 'admin-page',
+        name: 'Admin',
+        icon: 'md-person',
+        child: [
+            {
+                key: 'bonuss',
+                name: 'Bonus',
+                link: '/bonus',
+                icon: 'ios-medal-outline'
+            }
+        ]
+    },
 ];
