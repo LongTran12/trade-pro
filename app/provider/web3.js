@@ -15,7 +15,8 @@ const WrapWeb3 = ({ children }) => {
     usdt: undefined,
     usdi: undefined,
     ote: undefined,
-    isAdmin: false
+    isAdmin: false,
+    bonus: undefined,
   });
   useEffect(() => {
     const checkWeb3 = () => {
@@ -38,6 +39,9 @@ const WrapWeb3 = ({ children }) => {
               let usdt = window.web3.eth
                 .contract(config.usdtAbi)
                 .at(config.usdt);
+              let bonus = window.web3.eth
+                .contract(config.bonusAbi)
+                .at(config.bonusAddress);
               let ote = window.web3.eth.contract(config.usdiAbi).at(config.ote);
               setState({
                 loading: false,
@@ -51,13 +55,14 @@ const WrapWeb3 = ({ children }) => {
                 usdi,
                 ote,
                 member,
+                bonus,
                 isAdmin:
-                  accounts[0].toLowerCase() === config.admin.toLowerCase()
+                  accounts[0].toLowerCase() === config.admin.toLowerCase(),
                 // isAdmin:
                 //   '0xde121E87f1e26f0DD6173Cfe932A1CF222B8f01D'
               });
             })
-            .catch(e => {
+            .catch((e) => {
               setState({
                 loading: false,
                 installed: true,
@@ -66,7 +71,7 @@ const WrapWeb3 = ({ children }) => {
                 contract: undefined,
                 usdt: undefined,
                 usdi: undefined,
-                isAdmin: false //edit isadmin
+                isAdmin: false, //edit isadmin
               });
               setTimeout(() => !web3State.loading && checkWeb3(), 1000);
             });
@@ -79,7 +84,7 @@ const WrapWeb3 = ({ children }) => {
             contract: undefined,
             usdt: undefined,
             usdi: undefined,
-            isAdmin: false //edit isadmin
+            isAdmin: false, //edit isadmin
           });
         }
       }
@@ -92,6 +97,9 @@ const WrapWeb3 = ({ children }) => {
         let usdi = window.web3.eth.contract(config.usdi).at(config.usdiAbi);
         let usdt = window.web3.eth.contract(config.usdt).at(config.usdtAbi);
         let ote = window.web3.eth.contract(config.usdiAbi).at(config.ote);
+        let bonus = window.web3.eth
+          .contract(config.bonusAbi)
+          .at(config.bonusAddress);
         let member = window.web3.eth
           .contract(config.memberAbi)
           .at(config.memberAddress);
@@ -106,11 +114,12 @@ const WrapWeb3 = ({ children }) => {
           usdi,
           usdt,
           ote,
+          bonus,
           member,
           isAdmin:
             (
               web3.eth.accounts[0] || window.web3.eth.accounts[0]
-            ).toLowerCase() === config.admin.toLowerCase() //edit isadmin
+            ).toLowerCase() === config.admin.toLowerCase(), //edit isadmin
         });
       }
       // Non-DApp Browsers
@@ -127,7 +136,7 @@ const WrapWeb3 = ({ children }) => {
   );
 };
 WrapWeb3.propTypes = {
-  children: PropTypes.element.isRequired
+  children: PropTypes.element.isRequired,
 };
 export default WrapWeb3;
 export { Web3Context };

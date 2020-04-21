@@ -12,6 +12,10 @@ const memberPublic = new web3Public.eth.Contract(
   config.memberAbi,
   config.memberAddress
 );
+const bonusPublic = new web3Public.eth.Contract(
+  config.bonusAbi,
+  config.bonusAddress
+);
 export default web3Public;
 
 export {
@@ -20,5 +24,6 @@ export {
   usdtPublic,
   usdiPublic,
   otePublic,
-  memberPublic
+  memberPublic,
+  bonusPublic,
 };
