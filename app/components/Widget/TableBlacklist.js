@@ -24,6 +24,8 @@ import styled from "styled-components";
 
 
 const TableBlacklist = ({ classes }) => {
+    const widthPopup = window.innerWidth
+
     const { t, i18n } = useTranslation();
     const textTranslate = text => {
         return i18n.exists(text) ? t(text) : text;
@@ -79,7 +81,7 @@ const TableBlacklist = ({ classes }) => {
 
                         onCancel={() => setOpen(false)}
                         footer={null}
-                        width="40%"
+                        width={widthPopup >= 1200 ? "40%" : "80%"}
                     >
                         <WrapInput>
                             <FormControl className={classes.formControl}>
@@ -107,11 +109,11 @@ const TableBlacklist = ({ classes }) => {
                     }
                     <Table
                         padding="default"
-                        className={classNames(
-                            classes.table,
-                            classes.stripped,
-                            classes.hover
-                        )}
+                    // className={classNames(
+                    //     classes.table,
+                    //     classes.stripped,
+                    //     classes.hover
+                    // )}
                     >
                         <TableHead>
                             <TableRow>
@@ -167,5 +169,14 @@ margin-bottom: 1.5em;
   .MuiFormControl-root {
     flex-basis: 80%;
     margin-right: 2em;
+  }
+  @media (max-width:480px){
+      flex-wrap:wrap;
+      justify-content:center;
+      .MuiFormControl-root {
+        flex-basis: 100%;
+        margin-right: 0;
+        margin-bottom:15px;
+    }
   }
 `

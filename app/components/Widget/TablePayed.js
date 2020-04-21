@@ -75,11 +75,11 @@ const TablePayed = ({ classes }) => {
 
                     <Table
                         padding="default"
-                        className={classNames(
-                            classes.table,
-                            classes.stripped,
-                            classes.hover
-                        )}
+                    // className={classNames(
+                    //     classes.table,
+                    //     classes.stripped,
+                    //     classes.hover
+                    // )}
                     >
                         <TableHead>
                             <TableRow>

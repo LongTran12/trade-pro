@@ -27,7 +27,7 @@ module.exports = [
     {
         key: 'bonus',
         name: 'Bonus',
-        icon: 'ios-medal-outlin',
+        icon: 'md-add-circle',
         child: [
             {
                 key: 'bonuss',
