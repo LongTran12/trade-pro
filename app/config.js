@@ -8,7 +8,7 @@ const config = {
   usdi: "0x211d6373313dAfa21789767E2A255e0C435E7F5d",
   admin: "0x43A42b173Db6da77484595195Af77e7EB06408EB",
   memberAddress: "0x39f7cA93692CD1C2795901dBD0BaEEAcBa2a413d",
-  bonusAddress: "0xCFB5d1a9cB6E0E34FCefBC8702aD604f4018C3e1",
+  bonusAddress: "0x9B0D01b92AEf7b0Ca5de0766a8c0988593ea0D82",
   // web3Provider:
   //   "wss://ropsten.infura.io/ws/v3/2526c65276fd4134a550212871a550fd",
   // oteex: "0xBfdBFfA41227520A3762394A78470109745999c4",
