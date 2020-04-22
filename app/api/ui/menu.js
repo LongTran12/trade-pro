@@ -184,14 +184,7 @@ module.exports = [
                 name: 'All Member',
                 icon: 'md-person',
                 link: '/all-member'
-            }
-        ]
-    },
-    {
-        key: 'admin-page',
-        name: 'Admin',
-        icon: 'md-person',
-        child: [
+            },
             {
                 key: 'bonuss',
                 name: 'Bonus',
