@@ -1,53 +1,82 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import events from 'dan-api/apps/eventData';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
-import brand from 'dan-api/dummy/brand';
-import 'dan-styles/vendors/react-big-calendar/react-big-calendar.css';
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { Helmet } from "react-helmet";
+import brand from "dan-api/dummy/brand";
+import "dan-styles/vendors/react-big-calendar/react-big-calendar.css";
 import {
   EventCalendar,
   DetailEvent,
   AddEvent,
-  Notification
-} from 'dan-components';
+  Notification,
+} from "dan-components";
 import {
   fetchAction,
   addAction,
   discardAction,
   submitAction,
   deleteAction,
-  closeNotifAction
-} from 'dan-actions/CalendarEventActions';
+  closeNotifAction,
+} from "dan-actions/CalendarEventActions";
+import { bonusPublic } from "../../../provider/web3Public";
 
 const styles = {
   root: {
-    display: 'block'
-  }
+    display: "block",
+  },
 };
 
 class Calendar extends React.Component {
   state = {
     anchorEl: false,
     event: null,
-    anchorPos: { top: 0, left: 0 }
+    anchorPos: { top: 0, left: 0 },
   };
 
   componentDidMount() {
     const { fetchEventsData } = this.props;
-    fetchEventsData(events);
+    bonusPublic.getPastEvents(
+      "BonusUSDI",
+      {
+        fromBlock: 0,
+        toBlock: "latest",
+      },
+      function(error, events) {
+        let formatEvents = events.map((item, index) => ({
+          id: index,
+          title: `M6:${item.returnValues.percent[0] / 100}%-M12:${item
+            .returnValues.percent[1] / 100}%-M18:${item.returnValues
+            .percent[2] / 100}%;`,
+          start: new Date(item.returnValues.time * 1000),
+          end: new Date(item.returnValues.time * 1000),
+          desc: `Today Percent: M6 - ${item.returnValues.percent[0] /
+            100}%; M12 - ${item.returnValues.percent[1] / 100}%;M18 - ${item
+            .returnValues.percent[2] / 100}%;`,
+          hexColor: "2196F3",
+        }));
+        fetchEventsData(formatEvents);
+        // {
+        //   id: 5,
+        //   title: 'Conference',
+        //   start: new Date(2015, 3, 11),
+        //   end: new Date(2015, 3, 13),
+        //   desc: 'Big conference for important people',
+        //   hexColor: '2196F3'
+        // },
+      }
+    );
   }
 
-  handleClick = event => {
+  handleClick = (event) => {
     setTimeout(() => {
-      const target = document.getElementsByClassName('rbc-selected')[0];
+      const target = document.getElementsByClassName("rbc-selected")[0];
       const targetBounding = target.getBoundingClientRect();
       this.setState({
         event,
         anchorEl: true,
-        anchorPos: { top: targetBounding.top, left: targetBounding.left }
+        anchorPos: { top: targetBounding.top, left: targetBounding.left },
       });
     }, 200);
   };
@@ -59,7 +88,7 @@ class Calendar extends React.Component {
   };
 
   render() {
-    const title = brand.name + ' - Calendar';
+    const title = brand.name + " - Calendar";
     const description = brand.desc;
     const { anchorEl, anchorPos, event } = this.state;
     const {
@@ -71,7 +100,7 @@ class Calendar extends React.Component {
       submit,
       remove,
       closeNotif,
-      messageNotif
+      messageNotif,
     } = this.props;
     return (
       <div>
@@ -85,7 +114,10 @@ class Calendar extends React.Component {
         </Helmet>
         <Notification close={() => closeNotif()} message={messageNotif} />
         <div className={classes.root}>
-          <EventCalendar events={eventData.toJS()} handleEventClick={this.handleClick} />
+          <EventCalendar
+            events={eventData.toJS()}
+            handleEventClick={this.handleClick}
+          />
           <DetailEvent
             event={event}
             anchorEl={anchorEl}
@@ -118,15 +150,15 @@ Calendar.propTypes = {
   messageNotif: PropTypes.string.isRequired,
 };
 
-const reducer = 'calendar';
-const mapStateToProps = state => ({
+const reducer = "calendar";
+const mapStateToProps = (state) => ({
   force: state, // force state from reducer
-  eventData: state.getIn([reducer, 'events']),
-  openFrm: state.getIn([reducer, 'openFrm']),
-  messageNotif: state.getIn([reducer, 'notifMsg']),
+  eventData: state.getIn([reducer, "events"]),
+  openFrm: state.getIn([reducer, "openFrm"]),
+  messageNotif: state.getIn([reducer, "notifMsg"]),
 });
 
-const constDispatchToProps = dispatch => ({
+const constDispatchToProps = (dispatch) => ({
   fetchEventsData: bindActionCreators(fetchAction, dispatch),
   submit: bindActionCreators(submitAction, dispatch),
   remove: bindActionCreators(deleteAction, dispatch),

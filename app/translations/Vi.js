@@ -164,7 +164,7 @@ export default {
   sales: "Doanh Số",
   totalSales: "Tổng doanh số",
   userInfo: "Thông tin User",
-  user: "Tài Khoản",
+  user: "Email",
   phone: "Số điện thoại",
   register: "Đăng kí",
   //Staking table
@@ -196,5 +196,5 @@ export default {
   agree: "Đồng Ý",
   myInbox: "Hộp thư",
   myCalendar: "Lịch của tôi",
-  logOut: "Đăng Xuất"
+  logOut: "Đăng Xuất",
 };

@@ -1,12 +1,12 @@
 const eventData = [
-  // {
-  //   id: 0,
-  //   title: 'All Day Event very long title',
-  //   allDay: true,
-  //   start: new Date(2015, 3, 0),
-  //   end: new Date(2015, 3, 1),
-  //   hexColor: 'EC407A'
-  // },
+  {
+    id: 0,
+    title: "All Day Event very long title",
+    allDay: true,
+    start: new Date(2020, 3, 23),
+    end: new Date(2020, 3, 24),
+    hexColor: "EC407A",
+  },
   // {
   //   id: 1,
   //   title: 'Long Event',
