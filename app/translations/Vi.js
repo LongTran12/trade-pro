@@ -143,7 +143,7 @@ export default {
   checkoutPage: "Thanh Toán",
   dynamicInvoice: "Hoá Đơn",
   Productivity: "Năng Suất",
-  Calendar: "Lịch",
+  Calendar: "Biên lợi nhuận",
   taskBoard: "Bảng Công Việc",
   addTask: "Thêm Hoạt Động",
   swap: "Trao Đổi",

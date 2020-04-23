@@ -142,7 +142,7 @@ export default {
   checkoutPage: "Checkout Page",
   dynamicInvoice: "Dynamic Invoice",
   Productivity: "Productivity",
-  Calendar: "Calendar",
+  Calendar: "Profit Trade",
   taskBoard: "Task Board",
   addTask: "Add Task",
   swap: "Swap",

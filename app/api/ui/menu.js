@@ -16,18 +16,17 @@ module.exports = [
         link: "/network",
         icon: "ios-medal-outline",
       },
-
-      {
-        key: "calendar",
-        name: "Calendar",
-        link: "/pages/calendar",
-        icon: "ios-calendar-outline",
-      },
       {
         key: "stackingMenu",
         name: "stakingMenu",
         link: "/stacking",
         icon: "ios-medal-outline",
+      },
+      {
+        key: "calendar",
+        name: "Calendar",
+        link: "/pages/calendar",
+        icon: "ios-calendar-outline",
       },
     ],
   },
