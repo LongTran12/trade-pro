@@ -46,9 +46,7 @@ class Calendar extends React.Component {
       function(error, events) {
         let formatEvents = events.map((item, index) => ({
           id: index,
-          title: `M6:${item.returnValues.percent[0] / 100}%-M12:${item
-            .returnValues.percent[1] / 100}%-M18:${item.returnValues
-            .percent[2] / 100}%;`,
+          title: `Bonus USDI`,
           start: new Date(item.returnValues.time * 1000),
           end: new Date(item.returnValues.time * 1000),
           desc: `Today Percent: M6 - ${item.returnValues.percent[0] /
@@ -57,14 +55,6 @@ class Calendar extends React.Component {
           hexColor: "2196F3",
         }));
         fetchEventsData(formatEvents);
-        // {
-        //   id: 5,
-        //   title: 'Conference',
-        //   start: new Date(2015, 3, 11),
-        //   end: new Date(2015, 3, 13),
-        //   desc: 'Big conference for important people',
-        //   hexColor: '2196F3'
-        // },
       }
     );
   }
