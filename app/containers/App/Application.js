@@ -26,6 +26,7 @@ import {
     BonusPage
 } from '../pageListAsync';
 import Stacking from '../Dashboard/Stacking';
+import GameLucky from '../Dashboard/GameLucky';
 
 class Application extends React.Component {
     render() {
@@ -41,6 +42,7 @@ class Application extends React.Component {
                     <Route exact path="/all-member" component={AllMember} />
                     <Route exact path="/coming-soon" component={ComingSoon} />
                     <Route exact path="/bonus" component={BonusPage} />
+                    <Route exact path="/game-lucky" component={GameLucky} />
                     {/* <Route exact path="/" component={PersonalDashboard} /> */}
                     {/* <Route path="/crm-dashboard" component={CrmDashboard} /> */}
                     {/* Widgets */}
