@@ -12,31 +12,36 @@ import Iframe from 'react-iframe'
 
 const carouselData = [
     {
-        title: 'Aliquam nec ex aliquet, aliquam neque non, gravida est.',
-        link: "http://www.youtube.com/embed/xDMP3i36naA",
-        img: `http://via.placeholder.com/1050x700/AD1457/FFFFFF/`
-
+        title: "Wefinex",
+        link: "https://wefinex.net/reg?r=4ADE545",
+        img: `https://s3-ap-southeast-1.amazonaws.com/ex.otfund.io/static/wfn.png`,
     },
     {
-        title: 'Vestibulum tempor, sem et molestie egestas, dui tortor laoreet tellus.',
-        link: "http://www.youtube.com/embed/xDMP3i36naA",
-        img: "http://via.placeholder.com/1050x700/558B2F/FFFFFF/"
+        title: "NagaTrade",
+        link: "https://trade.nagatrade.com/authorize/register?ref=5ea284d2a2170",
+        img: "https://s3-ap-southeast-1.amazonaws.com/ex.otfund.io/static/naga.png",
     },
     {
-        title: 'Vestibulum bibendum nisi eget magna malesuada',
-        link: "http://www.youtube.com/embed/xDMP3i36naA",
-        img: `http://via.placeholder.com/1050x700/607D8B/FFFFFF/`
+        title: "Youtube",
+        youtube: true,
+        link:
+            "https://www.youtube.com/embed/Zmh4oRhRh08",
+        img:
+            "https://s3-ap-southeast-1.amazonaws.com/ex.otfund.io/static/naga.png",
     },
     {
-        title: 'Vestibulum tempor, sem et molestie egestas, dui tortor laoreet tellus.',
-        link: "http://www.youtube.com/embed/xDMP3i36naA",
-        img: "http://via.placeholder.com/1050x700/558B2F/FFFFFF/"
+        title: "NagaTrade",
+        link: "https://trade.nagatrade.com/authorize/register?ref=5ea284d2a2170",
+        img: "https://s3-ap-southeast-1.amazonaws.com/ex.otfund.io/static/naga.png",
     },
     {
-        title: 'Vestibulum bibendum nisi eget magna malesuada',
-        link: "http://www.youtube.com/embed/xDMP3i36naA",
-        img: `http://via.placeholder.com/1050x700/607D8B/FFFFFF/`
-    },
+        title: "Youtube",
+        youtube: true,
+        link:
+            "https://www.youtube.com/embed/Zmh4oRhRh08",
+        img:
+            "https://s3-ap-southeast-1.amazonaws.com/ex.otfund.io/static/naga.png",
+    }
 ];
 const styles = ({
     item: {
@@ -51,7 +56,6 @@ const GameLucky = ({ classes }) => {
         dots: false,
         arrows: false,
         infinite: true,
-        centerMode: true,
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1,
@@ -60,35 +64,58 @@ const GameLucky = ({ classes }) => {
         focusOnSelect: true
 
     };
-    const [visible, setVisible] = useState(-1)
+    const [link, setLink] = useState('')
     return (
         <Wrap className="container">
             <Slider {...settings} >
-                {carouselData.map((item, index) => (
-                    <>
-                        <div key={index.toString()} className={classes.item} onClick={() => setVisible(index)}>
-                            <img src={item.img} alt={item.title} />
-                        </div>
+                {
+                    carouselData.map((item, index) => {
+                        return (
+                            <>
+                                <div key={index.toString()} className={classes.item} onClick={() => setLink(item.link)} >
 
-                        {visible === index &&
-                            <Column>
-                                <Iframe
-                                    style={{ width: "80vw", height: "100vh" }}
-                                    url={item.link}
-                                    width="100%"
-                                    height="100%"
-                                    id="myId"
-                                    className="myClassname"
-                                    display="initial"
-                                    position="relative"
-                                    frameBorder={0}
-                                />
-                            </Column>
-
-                        }
-                    </>
-                ))}
+                                    {
+                                        item.youtube ?
+                                            <div className="video">
+                                                <Iframe
+                                                    style={{ width: "100%", height: "100%" }}
+                                                    url={item.link}
+                                                    width="100%"
+                                                    height="100%"
+                                                    id="myId"
+                                                    className="myClassname"
+                                                    display="initial"
+                                                    position="relative"
+                                                    frameBorder={0}
+                                                    onClick={() => { setLink(item.link) }}
+                                                />
+                                            </div>
+                                            :
+                                            <img src={item.img} alt={item.title} />
+                                    }
+                                </div>
+                            </>
+                        )
+                    })
+                }
             </Slider>
+            {!(link === '') &&
+                <Row>
+                    <Column>
+                        <Iframe
+                            url={link}
+                            width="100%"
+                            height="100%"
+                            id="myId"
+                            className="myClassname"
+                            display="initial"
+                            position="relative"
+                            frameBorder={0}
+                        />
+                        <div className="close" onClick={() => setLink('')}>X</div>
+                    </Column>
+                </Row>
+            }
         </Wrap>
     );
 }
@@ -98,31 +125,48 @@ GameLucky.propTypes = {
 
 export default withStyles(styles)(GameLucky)
 const Wrap = styled.div`
-    /* position:relative; */
-    .slick-list{
-        overflow:unset;
-    }
-    margin-bottom:120vh;
-    @media (max-width:1024px){
-        margin-bottom:50vh;
+
+    .video{
+        margin-top:10px;
+        iframe{
+            height:308px;
+            @media (max-width:1280px){
+                height:188px;
+            }
+            @media (max-width:1024px){
+                height:82px;
+            }
+            @media (max-width:991px){
+                height:146px;
+            }
+            @media (max-width:480px){
+                height:82px;
+            }
+        }
     }
 `
 
+const Row = styled.div`
+    position: relative;
+    margin-top:70px;
+`
 const Column = styled.div`
-    width:72vw;
+    width:100%;
     height:100vh;
-    position:fixed;
-    left:50%;
-    transform:translateX(-50%);
-    background:#111;
-    top:400px;
-    z-index:9999;
-    @media (max-width:1024px){
-        top:250px;
-        height:50vh;
+    .close{
+        position: absolute;
+        right:0;
+        top:-50px;
+        font-size:30px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        width:45px;
+        height:45px;
+        background:#fff;
+        color:#111;
+        border-radius:999px;
+        box-shadow:0 1px 1px rgba(0,0,0,.3);
     }
-    @media (max-width:1024px){
-        top:100px;
-        height:30vh;
-    }
+    
 `
