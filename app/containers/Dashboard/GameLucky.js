@@ -7,33 +7,34 @@ import 'dan-styles/vendors/slick-carousel/slick-carousel.css';
 import 'dan-styles/vendors/slick-carousel/slick.css';
 import 'dan-styles/vendors/slick-carousel/slick-theme.css';
 import styled from 'styled-components';
+import Iframe from 'react-iframe'
 
 
 const carouselData = [
     {
         title: 'Aliquam nec ex aliquet, aliquam neque non, gravida est.',
-        link: "https://www.youtube.com/?gl=VN",
+        link: "http://www.youtube.com/embed/xDMP3i36naA",
         img: `http://via.placeholder.com/1050x700/AD1457/FFFFFF/`
 
     },
     {
         title: 'Vestibulum tempor, sem et molestie egestas, dui tortor laoreet tellus.',
-        link: "https://www.w3schools.com",
+        link: "http://www.youtube.com/embed/xDMP3i36naA",
         img: "http://via.placeholder.com/1050x700/558B2F/FFFFFF/"
     },
     {
         title: 'Vestibulum bibendum nisi eget magna malesuada',
-        link: "https://www.w3schools.com",
+        link: "http://www.youtube.com/embed/xDMP3i36naA",
         img: `http://via.placeholder.com/1050x700/607D8B/FFFFFF/`
     },
     {
         title: 'Vestibulum tempor, sem et molestie egestas, dui tortor laoreet tellus.',
-        link: "https://www.w3schools.com",
+        link: "http://www.youtube.com/embed/xDMP3i36naA",
         img: "http://via.placeholder.com/1050x700/558B2F/FFFFFF/"
     },
     {
         title: 'Vestibulum bibendum nisi eget magna malesuada',
-        link: "https://www.w3schools.com",
+        link: "http://www.youtube.com/embed/xDMP3i36naA",
         img: `http://via.placeholder.com/1050x700/607D8B/FFFFFF/`
     },
 ];
@@ -47,17 +48,22 @@ const styles = ({
 });
 const GameLucky = ({ classes }) => {
     const settings = {
-        dots: true,
+        dots: false,
+        arrows: false,
         infinite: true,
         centerMode: true,
         speed: 500,
         slidesToShow: 3,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        draggable: false,
+        autoplay: false,
+        focusOnSelect: true
+
     };
     const [visible, setVisible] = useState(-1)
     return (
         <Wrap className="container">
-            <Slider {...settings}>
+            <Slider {...settings} >
                 {carouselData.map((item, index) => (
                     <>
                         <div key={index.toString()} className={classes.item} onClick={() => setVisible(index)}>
@@ -65,9 +71,20 @@ const GameLucky = ({ classes }) => {
                         </div>
 
                         {visible === index &&
-                            <Row>
-                                <iframe style={{ width: "80vw", height: "100vh" }} src={item.link}></iframe>
-                            </Row>
+                            <Column>
+                                <Iframe
+                                    style={{ width: "80vw", height: "100vh" }}
+                                    url={item.link}
+                                    width="100%"
+                                    height="100%"
+                                    id="myId"
+                                    className="myClassname"
+                                    display="initial"
+                                    position="relative"
+                                    frameBorder={0}
+                                />
+                            </Column>
+
                         }
                     </>
                 ))}
@@ -82,14 +99,30 @@ GameLucky.propTypes = {
 export default withStyles(styles)(GameLucky)
 const Wrap = styled.div`
     /* position:relative; */
+    .slick-list{
+        overflow:unset;
+    }
+    margin-bottom:120vh;
+    @media (max-width:1024px){
+        margin-bottom:50vh;
+    }
 `
-const Row = styled.div`
-    width:80vw;
+
+const Column = styled.div`
+    width:72vw;
     height:100vh;
     position:fixed;
     left:50%;
     transform:translateX(-50%);
     background:#111;
-    top:300px;
+    top:400px;
     z-index:9999;
+    @media (max-width:1024px){
+        top:250px;
+        height:50vh;
+    }
+    @media (max-width:1024px){
+        top:100px;
+        height:30vh;
+    }
 `

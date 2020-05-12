@@ -166,6 +166,7 @@
     "react-google-maps": "^9.4.5",
     "react-helmet": "6.0.0-beta",
     "react-i18next": "^11.3.1",
+    "react-iframe": "^1.8.0",
     "react-intl": "2.8.0",
     "react-ionicons": "^2.1.6",
     "react-jss": "^10.0.0",
