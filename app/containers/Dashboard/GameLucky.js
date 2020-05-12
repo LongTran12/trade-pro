@@ -78,14 +78,7 @@ const GameLucky = ({ classes }) => {
                                         item.youtube ?
                                             <div className="video">
                                                 <Iframe
-                                                    style={{ width: "100%", height: "100%" }}
                                                     url={item.link}
-                                                    width="100%"
-                                                    height="100%"
-                                                    id="myId"
-                                                    className="myClassname"
-                                                    display="initial"
-                                                    position="relative"
                                                     frameBorder={0}
                                                     onClick={() => { setLink(item.link) }}
                                                 />
@@ -110,7 +103,7 @@ const GameLucky = ({ classes }) => {
                             className="myClassname"
                             display="initial"
                             position="relative"
-                            frameBorder={0}
+                            frameBorder={2}
                         />
                         <div className="close" onClick={() => setLink('')}>X</div>
                     </Column>
@@ -128,20 +121,16 @@ const Wrap = styled.div`
 
     .video{
         margin-top:10px;
+        overflow: hidden;
+        padding-top: 56.25%;
+        position: relative;
+        border: 0;
         iframe{
-            height:308px;
-            @media (max-width:1280px){
-                height:188px;
-            }
-            @media (max-width:1024px){
-                height:82px;
-            }
-            @media (max-width:991px){
-                height:146px;
-            }
-            @media (max-width:480px){
-                height:82px;
-            }
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
         }
     }
 `
