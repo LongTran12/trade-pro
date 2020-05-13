@@ -8,18 +8,22 @@ import "dan-styles/vendors/slick-carousel/slick.css";
 import "dan-styles/vendors/slick-carousel/slick-theme.css";
 import styled from "styled-components";
 import Iframe from "react-iframe";
+import imgBinance from "dan-images/bo/BinanceFuture1.png"
+import imgExness from "dan-images/bo/exness1.png"
+import imgNaga from "dan-images/bo/naga1.png"
+import imgWefinex from "dan-images/bo/wefinex1.png"
 
 const carouselData = [
     {
         title: "Wefinex",
         link: "https://wefinex.net/reg?r=4ADE545",
-        img: `https://s3-ap-southeast-1.amazonaws.com/ex.otfund.io/static/wfn.png`,
+        img: imgBinance,
     },
-    // {
-    //   title: "NagaTrade",
-    //   link: "https://trade.nagatrade.com/authorize/register?ref=5ea284d2a2170",
-    //   img: "https://s3-ap-southeast-1.amazonaws.com/ex.otfund.io/static/naga.png",
-    // },
+    {
+        title: "NagaTrade",
+        link: "https://trade.nagatrade.com/authorize/register?ref=5ea284d2a2170",
+        img: imgNaga,
+    },
     {
         title: "Youtube",
         youtube: true,
@@ -29,83 +33,52 @@ const carouselData = [
     {
         title: "Wefinex",
         link: "https://wefinex.net/reg?r=4ADE545",
-        img: `https://s3-ap-southeast-1.amazonaws.com/ex.otfund.io/static/wfn.png`,
+        img: imgExness,
     },
-    // {
-    //   title: "NagaTrade",
-    //   link: "https://trade.nagatrade.com/authorize/register?ref=5ea284d2a2170",
-    //   img: "https://s3-ap-southeast-1.amazonaws.com/ex.otfund.io/static/naga.png",
-    // },
     {
-        title: "Youtube",
-        youtube: true,
-        link: "https://www.youtube.com/embed/Zmh4oRhRh08",
-        img: "https://s3-ap-southeast-1.amazonaws.com/ex.otfund.io/static/naga.png",
+        title: "Wefinex",
+        link: "https://wefinex.net/reg?r=4ADE545",
+        img: imgWefinex,
     },
 ];
 const styles = {
     item: {
         textAlign: "center",
         "& img": {
-            margin: "10px auto",
+            // margin: "10px auto",
         },
     },
 };
 const GameLucky = ({ classes }) => {
-    const settings = {
-        dots: false,
-        arrows: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        draggable: false,
-        autoplay: false,
-        focusOnSelect: true
-
-    };
     const [link, setLink] = useState('')
     return (
         <Wrap className="container">
-            <Slider {...settings} >
+            <div className="sort">
                 {
-                    carouselData.map((item, index) => {
-                        return (
-                            <>
-                                <div key={index.toString()} className={classes.item} onClick={() => setLink(item.link)} >
-
-                                    {
-                                        item.youtube ?
-                                            <div className="video">
-                                                <Iframe
-                                                    url={item.link}
-                                                    frameBorder={0}
-                                                    onClick={() => { setLink(item.link) }}
-                                                />
-                                            </div>
-                                            :
-                                            <img src={item.img} alt={item.title} />
-                                    }
-                                </div>
-                            </>
-                        )
-                    })
+                    carouselData.map((item, index) =>
+                        <div key={index.toString()} className={`${classes.item} item-${index}`} onClick={() => setLink(item.link)} >
+                            {
+                                item.youtube ?
+                                    <div className="video">
+                                        <Iframe
+                                            url={item.link}
+                                            frameBorder={0}
+                                            onClick={() => { setLink(item.link) }}
+                                        />
+                                    </div>
+                                    :
+                                    <img src={item.img} alt={item.title} />
+                            }
+                        </div>
+                    )
                 }
-            </Slider>
+            </div>
             {!(link === '') &&
                 <Row>
                     <Column>
                         <Iframe
                             url={link}
-                            width="100%"
-                            height="100%"
-                            id="myId"
-                            className="myClassname"
-                            display="initial"
-                            position="relative"
-                            frameBorder={2}
                         />
-                        <div className="close" onClick={() => setLink('')}>X</div>
                     </Column>
                 </Row>
             }
@@ -120,11 +93,11 @@ GameLucky.propTypes = {
 export default withStyles(styles)(GameLucky);
 const Wrap = styled.div`
     .video{
-        margin-top:10px;
+        border:2px solid #fff;
+        margin-top:0;
         overflow: hidden;
         padding-top: 56.25%;
         position: relative;
-        border: 0;
         iframe{
             height: 100%;
             left: 0;
@@ -133,15 +106,42 @@ const Wrap = styled.div`
             width: 100%;
         }
     }
+    img{
+        border:2px solid #fff;
+    }
+    .sort{
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items:center;
+        .item-0,.item-1{
+            grid-row:1;
+        }
+        .item-2{
+            grid-area: 1/2/3;
+        }
+
+    }
 `;
 
 const Row = styled.div`
   position: relative;
-  margin-top: 70px;
+  margin-top: 20px;
 `;
 const Column = styled.div`
-  width: 100%;
-  height: 100vh;
+    width: 100%;
+    height: 100vh;
+    /* border:2px solid #fff; */
+    margin-top:0;
+    overflow: hidden;
+    padding-top: 56.25%;
+    position: relative;
+    iframe{
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
   .close {
     position: absolute;
     right: 0;
