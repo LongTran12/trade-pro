@@ -16,13 +16,13 @@ import imgWefinex from "dan-images/bo/wefinex1.png";
 const carouselData = [
   {
     title: "Wefinex",
-    link: "https://www.google.com/",
-    img: imgBinance,
+    link: "https://www.exness.com/a/uk4bt99m",
+    img: imgExness,
   },
   {
-    title: "NagaTrade",
-    link: "https://www.google.com/",
-    img: imgNaga,
+    title: "Wefinex",
+    link: "https://wefinex.net/reg?r=4ADE545",
+    img: imgWefinex,
   },
   {
     title: "Youtube",
@@ -33,13 +33,15 @@ const carouselData = [
   },
   {
     title: "Wefinex",
-    link: "https://www.exness.com/a/uk4bt99m",
-    img: imgExness,
+    link: "https://www.binance.com/en/futures/ref/41457556",
+    img: imgBinance,
+    blank: true,
   },
   {
-    title: "Wefinex",
-    link: "https://wefinex.net/reg?r=4ADE545",
-    img: imgWefinex,
+    title: "NagaTrade",
+    link: "https://trade.nagatrade.com/authorize/register?ref=5ea284d2a2170",
+    img: imgNaga,
+    blank: true,
   },
 ];
 const styles = {
@@ -59,7 +61,13 @@ const GameLucky = ({ classes }) => {
           <div
             key={index.toString()}
             className={`${classes.item} item-${index}`}
-            onClick={() => setLink(item.link)}
+            onClick={() => {
+              if (item.blank) {
+                window.location.href = item.link;
+              } else {
+                setLink(item.link);
+              }
+            }}
           >
             {item.youtube ? (
               <div className="video">
