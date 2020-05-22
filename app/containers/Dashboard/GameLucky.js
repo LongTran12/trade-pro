@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -12,38 +12,16 @@ import imgBinance from "dan-images/bo/BinanceFuture1.png";
 import imgExness from "dan-images/bo/exness1.png";
 import imgNaga from "dan-images/bo/naga1.png";
 import imgWefinex from "dan-images/bo/wefinex1.png";
+import axios from "axios";
 
-const carouselData = [
-  {
-    title: "Wefinex",
-    link: "https://www.exness.com/a/uk4bt99m",
-    img: imgExness,
-  },
-  {
-    title: "Wefinex",
-    link: "https://wefinex.net/reg?r=4ADE545",
-    img: imgWefinex,
-  },
-  {
-    title: "Youtube",
-    youtube: true,
-    link:
-      "https://www.youtube.com/embed/videoseries?list=PLJiGAeuHLIAZWhJwi-qnNOUp-8Tsc7Qw-",
-    img: "https://s3-ap-southeast-1.amazonaws.com/ex.otfund.io/static/naga.png",
-  },
-  {
-    title: "Wefinex",
-    link: "https://www.binance.com/en/futures/ref/41457556",
-    img: imgBinance,
-    blank: true,
-  },
-  {
-    title: "NagaTrade",
-    link: "https://trade.nagatrade.com/authorize/register?ref=5ea284d2a2170",
-    img: imgNaga,
-    blank: true,
-  },
-];
+const image = {
+  imgExness,
+  imgWefinex,
+  imgBinance,
+  imgNaga,
+  youtube:
+    "https://s3-ap-southeast-1.amazonaws.com/ex.otfund.io/static/naga.png",
+};
 const styles = {
   item: {
     textAlign: "center",
@@ -54,6 +32,15 @@ const styles = {
 };
 const GameLucky = ({ classes }) => {
   const [link, setLink] = useState("");
+
+  const [carouselData, setData] = useState([]);
+  useEffect(() => {
+    axios
+      .get("https://raw.githubusercontent.com/congnt171/disk/master/image.json")
+      .then((result) => {
+        setData(result.data);
+      });
+  }, []);
   return (
     <Wrap className="container">
       <div className="sort">
@@ -80,7 +67,7 @@ const GameLucky = ({ classes }) => {
                 />
               </div>
             ) : (
-              <img src={item.img} alt={item.title} />
+              <img src={image[item.img]} alt={item.title} />
             )}
           </div>
         ))}
