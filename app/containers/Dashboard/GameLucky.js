@@ -36,7 +36,7 @@ const GameLucky = ({ classes }) => {
   const [carouselData, setData] = useState([]);
   useEffect(() => {
     axios
-      .get("https://raw.githubusercontent.com/congnt171/disk/master/image.json")
+      .get("https://raw.githubusercontent.com/otfund/disk/master/ref.json")
       .then((result) => {
         setData(result.data);
       });
