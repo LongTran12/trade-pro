@@ -63,46 +63,46 @@ const InputCopyAddress = ({ classes }) => {
   const regexSPhone = phone.match(regexPhoneString);
 
   const onRegister = async () => {
-    if ((phone !== "" && !!regexSPhone) || (userName !== "" && !!!regexUser)) {
-      console.log("error validate");
-      return false;
-    }
-    let realRef =
-      ref === "0x0000000000000000000000000000000000000000" ? config.admin : ref;
-    let valid = await memberPublic.methods
-      .validRegisterUser(userName, phone, realRef)
-      .call();
-    valid = Number(valid);
-    if (valid === 0) {
-      member.registerUser(userName, phone, realRef, { value: 0 }, (err) => {
-        if (err) {
-          message.error(err.message);
-        } else {
-          message.info("Register success!");
-        }
-      });
-    } else {
-      //TODO
-      switch (valid) {
-        case 1:
-          message.error("User in use!");
-          break;
-        case 2:
-          message.error("Address already set username!");
-          break;
-        case 3:
-          message.error("Phone in use!");
-          break;
-        case 4:
-          message.error("Address already set phone!");
-          break;
-        case 5:
-          message.error("Reference is not valid, please contact sponsor!");
-          break;
-        default:
-          break;
-      }
-    }
+    // if ((phone !== "" && !!regexSPhone) || (userName !== "" && !!!regexUser)) {
+    //   console.log("error validate");
+    //   return false;
+    // }
+    // let realRef =
+    //   ref === "0x0000000000000000000000000000000000000000" ? config.admin : ref;
+    // let valid = await memberPublic.methods
+    //   .validRegisterUser(userName, phone, realRef)
+    //   .call();
+    // valid = Number(valid);
+    // if (valid === 0) {
+    //   member.registerUser(userName, phone, realRef, { value: 0 }, (err) => {
+    //     if (err) {
+    //       message.error(err.message);
+    //     } else {
+    //       message.info("Register success!");
+    //     }
+    //   });
+    // } else {
+    //   //TODO
+    //   switch (valid) {
+    //     case 1:
+    //       message.error("User in use!");
+    //       break;
+    //     case 2:
+    //       message.error("Address already set username!");
+    //       break;
+    //     case 3:
+    //       message.error("Phone in use!");
+    //       break;
+    //     case 4:
+    //       message.error("Address already set phone!");
+    //       break;
+    //     case 5:
+    //       message.error("Reference is not valid, please contact sponsor!");
+    //       break;
+    //     default:
+    //       break;
+    //   }
+    // }
   };
 
   useEffect(() => {

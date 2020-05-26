@@ -2,7 +2,7 @@
 const config = {
   web3Provider:
     "wss://mainnet.infura.io/ws/v3/2526c65276fd4134a550212871a550fd",
-  oteex: "0x29d31d6268f2F8b47CF3e9dF4CAB32e366796F13",
+  oteex: "0xc298518273F3dEB0Ce5e6f466048a0afB69cC63B",
   ote: "0x75A93C11dFF32A4312057714257758B113a0F512",
   usdt: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
   usdi: "0x211d6373313dAfa21789767E2A255e0C435E7F5d",
@@ -1669,6 +1669,15 @@ const config = {
     },
     {
       constant: false,
+      inputs: [],
+      name: "addPriceStep",
+      outputs: [],
+      payable: false,
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      constant: false,
       inputs: [
         {
           internalType: "uint256",
@@ -1761,36 +1770,6 @@ const config = {
           type: "bool",
         },
       ],
-      payable: false,
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-    {
-      constant: false,
-      inputs: [
-        {
-          internalType: "address",
-          name: "_bot",
-          type: "address",
-        },
-      ],
-      name: "changeBot",
-      outputs: [],
-      payable: false,
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-    {
-      constant: false,
-      inputs: [
-        {
-          internalType: "uint256",
-          name: "_limit",
-          type: "uint256",
-        },
-      ],
-      name: "changePayLimit",
-      outputs: [],
       payable: false,
       stateMutability: "nonpayable",
       type: "function",
@@ -1966,32 +1945,6 @@ const config = {
     },
     {
       constant: true,
-      inputs: [
-        {
-          internalType: "uint256",
-          name: "step",
-          type: "uint256",
-        },
-      ],
-      name: "getOrder",
-      outputs: [
-        {
-          internalType: "uint256[]",
-          name: "amount",
-          type: "uint256[]",
-        },
-        {
-          internalType: "address[]",
-          name: "ownerOrder",
-          type: "address[]",
-        },
-      ],
-      payable: false,
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      constant: true,
       inputs: [],
       name: "getPrice",
       outputs: [
@@ -2050,52 +2003,6 @@ const config = {
         {
           internalType: "uint256",
           name: "",
-          type: "uint256",
-        },
-      ],
-      payable: false,
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      constant: true,
-      inputs: [
-        {
-          internalType: "uint256",
-          name: "index",
-          type: "uint256",
-        },
-      ],
-      name: "getStacking",
-      outputs: [
-        {
-          internalType: "address",
-          name: "ownerStaking",
-          type: "address",
-        },
-        {
-          internalType: "uint256",
-          name: "amount",
-          type: "uint256",
-        },
-        {
-          internalType: "uint256",
-          name: "term",
-          type: "uint256",
-        },
-        {
-          internalType: "uint256",
-          name: "timeStart",
-          type: "uint256",
-        },
-        {
-          internalType: "uint256",
-          name: "timePayed",
-          type: "uint256",
-        },
-        {
-          internalType: "uint256",
-          name: "status",
           type: "uint256",
         },
       ],
@@ -2272,23 +2179,14 @@ const config = {
       type: "function",
     },
     {
-      constant: true,
-      inputs: [],
-      name: "payLimit",
-      outputs: [
+      constant: false,
+      inputs: [
         {
           internalType: "uint256",
-          name: "",
+          name: "_limit",
           type: "uint256",
         },
       ],
-      payable: false,
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      constant: false,
-      inputs: [],
       name: "payStacking",
       outputs: [
         {
@@ -2297,6 +2195,26 @@ const config = {
           type: "bool",
         },
       ],
+      payable: false,
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      constant: false,
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "_start",
+          type: "uint256",
+        },
+        {
+          internalType: "uint256",
+          name: "_ended",
+          type: "uint256",
+        },
+      ],
+      name: "recoveryData",
+      outputs: [],
       payable: false,
       stateMutability: "nonpayable",
       type: "function",
@@ -2400,6 +2318,11 @@ const config = {
           internalType: "uint256",
           name: "term",
           type: "uint256",
+        },
+        {
+          internalType: "address",
+          name: "ref",
+          type: "address",
         },
       ],
       name: "stackingOTE",

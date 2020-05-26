@@ -14,42 +14,50 @@ import { config } from "../../config";
 import { useTranslation } from "react-i18next";
 import { message } from "antd";
 import { otePublic } from "../../provider/web3Public";
+import { AppContext } from "../../provider/appContext";
 
 const TradingFormWidgetSell = ({ classes }) => {
   const { contract, address, ote } = useContext(Web3Context);
+  const { ref } = useContext(AppContext);
   const [amount, setAmount] = useState(100);
   const dataTerm = [
     {
       name: "6 months - 1.5%",
-      value: 6
+      value: 6,
     },
     {
       name: "12 months - 3%",
-      value: 12
+      value: 12,
     },
     {
       name: "18 months - 6%",
-      value: 18
-    }
+      value: 18,
+    },
   ];
   const [term, setTerm] = useState(`${dataTerm[0].value}`);
-  const handleChange = event => {
+  const handleChange = (event) => {
     setTerm(event.target.value);
   };
   const stackingOTE = async () => {
     let allow = await otePublic.methods.allowance(address, config.oteex).call();
     if (allow >= amount * 10 ** 18) {
-      contract.stackingOTE(amount * 10 ** 18, term, { value: 0 }, err => {
-        if (err) {
-          console.log(err.message);
-          message.error(err.message);
-        } else {
-          message.info("Stacking success!");
-          console.log("Stacking success!");
+      contract.stackingOTE(
+        amount * 10 ** 18,
+        term,
+        ref,
+        { value: 0 },
+        (err) => {
+          if (err) {
+            console.log(err.message);
+            message.error(err.message);
+          } else {
+            message.info("Stacking success!");
+            console.log("Stacking success!");
+          }
         }
-      });
+      );
     } else {
-      ote.approve(config.oteex, 10 ** 25, { value: 0 }, err => {
+      ote.approve(config.oteex, 10 ** 25, { value: 0 }, (err) => {
         if (err) {
           console.log(err.message);
           message.error(err.message);
@@ -63,20 +71,26 @@ const TradingFormWidgetSell = ({ classes }) => {
     }
   };
 
-  const checkAndBuy = async hide => {
+  const checkAndBuy = async (hide) => {
     console.log("checkandBuy");
     let allow = await otePublic.methods.allowance(address, config.oteex).call();
     if (allow >= amount * 10 ** 18) {
       hide && hide();
-      contract.stackingOTE(amount * 10 ** 18, term, { value: 0 }, err => {
-        if (err) {
-          console.log(err.message);
-          message.error(err.message);
-        } else {
-          message.info("Stacking success!");
-          console.log("Stacking success!");
+      contract.stackingOTE(
+        amount * 10 ** 18,
+        term,
+        ref,
+        { value: 0 },
+        (err) => {
+          if (err) {
+            console.log(err.message);
+            message.error(err.message);
+          } else {
+            message.info("Stacking success!");
+            console.log("Stacking success!");
+          }
         }
-      });
+      );
     } else {
       setTimeout(() => {
         checkAndBuy(hide);
@@ -84,7 +98,7 @@ const TradingFormWidgetSell = ({ classes }) => {
     }
   };
   const { t, i18n } = useTranslation();
-  const textTranslate = text => {
+  const textTranslate = (text) => {
     return i18n.exists(text) ? t(text) : text;
   };
   return (
@@ -100,7 +114,7 @@ const TradingFormWidgetSell = ({ classes }) => {
               onChange={handleChange}
               inputProps={{
                 name: "Term",
-                id: "Term-simple"
+                id: "Term-simple",
               }}
             >
               {dataTerm.map((index, i) => (
@@ -119,8 +133,8 @@ const TradingFormWidgetSell = ({ classes }) => {
             <Input
               id="adornment-amountn"
               value={amount}
-              onChange={e => setAmount(e.target.value)}
-              onBlur={e => {
+              onChange={(e) => setAmount(e.target.value)}
+              onBlur={(e) => {
                 if (e.target.value < 100) {
                   setAmount(100);
                   alert(textTranslate("validateInput"));
