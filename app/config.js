@@ -1,7 +1,7 @@
 /* eslint-disable */
 const config = {
   web3Provider:
-    "wss://mainnet.infura.io/ws/v3/2526c65276fd4134a550212871a550fd",
+    "wss://mainnet.infura.io/ws/v3/4da4b142e17d44b0ba39f7b49e66e1c3",
   oteex: "0xFD60d8511C17764A26099774c67ccb1EFF2aadb8",
   ote: "0x211d6373313dAfa21789767E2A255e0C435E7F5d",
   usdt: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
