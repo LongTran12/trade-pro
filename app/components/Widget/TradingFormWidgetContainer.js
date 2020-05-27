@@ -266,11 +266,17 @@ const TradingFormWidgetContainer = ({ classes }) => {
                     }}
                   />
                   <FormHelperText>
-                    {textTranslate("totalPurchase")} $
-                    {new BigNumber(otePrice)
-                      .dividedBy(10 ** 6)
-                      .multipliedBy(amount)
-                      .toNumber()}
+                    {textTranslate("totalPurchase")}
+                    {coin === 1
+                      ? new BigNumber(otePrice)
+                          .dividedBy(10 ** 6)
+                          .multipliedBy(amount)
+                          .multipliedBy(24000)
+                          .toNumber() + "VNDC"
+                      : new BigNumber(otePrice)
+                          .dividedBy(10 ** 6)
+                          .multipliedBy(amount)
+                          .toNumber() + "$"}
                   </FormHelperText>
                 </FormControl>
               </Grid>
