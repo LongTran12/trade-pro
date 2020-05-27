@@ -2,9 +2,9 @@
 export default {
   sellerOrder: "Số Cổ Phiếu Bán",
   stacking: "Số cổ phiếu kí gửi",
-  otePrice: "Giá cổ phiếu OTF",
+  otePrice: "Giá cổ phiếu USD",
   totalMember: "Tổng thành viên",
-  oteBuySell: "Cổ Phiếu OTF Mua / Bán",
+  oteBuySell: "Cổ Phiếu USD Mua / Bán",
   company: "Công ty",
   seller: "Người bán",
   tradeHistory: "Lịch sử giao dịch",
@@ -34,7 +34,7 @@ export default {
   sell: "Bán",
   choosePrice: "Giá bán cổ phiếu",
   makeSellOrder: "Tạo lệnh bán cổ phiếu",
-  validateInput: "Số Lượng phải lớn hơn 100 OTF",
+  validateInput: "Số Lượng phải lớn hơn 100 USD",
   //recent trade
   recentTrade: "Giao dịch mới thực hiện",
   currency: "Đơn vị tiền",
@@ -151,7 +151,7 @@ export default {
   //staking table
   stakingMenu: "Cổ phiếu kí gửi",
   stakingTable: "Cổ Phiếu kí gửi",
-  Cryptocurrency: "Cổ phiếu OTF",
+  Cryptocurrency: "Cổ phiếu USD",
   network: "Hội viên OTFUND",
   term: "Kì hạn",
   timeStart: "Thời gian bắt đầu",

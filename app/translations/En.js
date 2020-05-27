@@ -2,9 +2,9 @@
 export default {
   sellerOrder: "Seller Order",
   stacking: "Stacking",
-  otePrice: "OTF Price",
+  otePrice: "USD Price",
   totalMember: "Total Member",
-  oteBuySell: "OTF Buy / Sell",
+  oteBuySell: "USD Buy / Sell",
   company: "Company",
   seller: "Seller",
   tradeHistory: "Trade History",
@@ -34,7 +34,7 @@ export default {
   sell: "Sell",
   choosePrice: "Choose Price",
   makeSellOrder: "Make Sell Order",
-  validateInput: "Must be bigger than 100 OTF",
+  validateInput: "Must be bigger than 100 USD",
   //recent trade
   recentTrade: "Recent Trade",
   currency: "Currency",

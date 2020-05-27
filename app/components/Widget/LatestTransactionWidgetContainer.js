@@ -20,7 +20,7 @@ import { Web3Context } from "../../provider/web3";
 import BigNumber from "bignumber.js";
 
 function LatestTransactionWidgetContainer({ classes }) {
-  const getStatus = status => {
+  const getStatus = (status) => {
     if (status === false) {
       return messageStyles.bgError;
     }
@@ -29,31 +29,31 @@ function LatestTransactionWidgetContainer({ classes }) {
     }
   };
   const { t, i18n } = useTranslation();
-  const textTranslate = text => {
+  const textTranslate = (text) => {
     return i18n.exists(text) ? t(text) : text;
   };
   const columns = [
     {
       id: "tokenIcon",
       label: textTranslate("currency"),
-      formatImage: "image"
+      formatImage: "image",
     },
     {
       id: "tokenStatus",
       label: textTranslate("status"),
-      formatSTT: "status"
+      formatSTT: "status",
     },
     {
       id: "tokenPrice",
       label: textTranslate("price"),
-      format: value => value.toFixed(2)
+      format: (value) => value.toFixed(2),
     },
     {
       id: "total",
       label: textTranslate("total"),
       align: "right",
-      format: value => value.toFixed(2)
-    }
+      format: (value) => value.toFixed(2),
+    },
   ];
   const { address } = useContext(Web3Context);
   const [events, setEvents] = React.useState([]);
@@ -64,19 +64,19 @@ function LatestTransactionWidgetContainer({ classes }) {
         "allEvents",
         {
           fromBlock: 0,
-          toBlock: "latest"
+          toBlock: "latest",
         },
         function(error, result) {
           if (!error) {
             let lastEvent = result
               .filter(
-                item =>
+                (item) =>
                   item.returnValues["0"].toLowerCase() === address.toLowerCase()
               )
-              .map(item => ({
+              .map((item) => ({
                 tokenIcon:
                   item.returnValues.currency === "1" ? oteLogo : oteLogo,
-                tokenName: item.returnValues.currency === "1" ? "USDI" : "USDT",
+                tokenName: item.returnValues.currency === "1" ? "VNDC" : "USDT",
                 tokenStatus: item.event === "Buy",
                 tokenPrice: new BigNumber(item.returnValues.price)
                   .dividedBy(10 ** 6)
@@ -88,7 +88,7 @@ function LatestTransactionWidgetContainer({ classes }) {
                   .dividedBy(10 ** 6)
                   .multipliedBy(item.returnValues.amount)
                   .dividedBy(10 ** 18)
-                  .toNumber()
+                  .toNumber(),
               }));
             setEvents(lastEvent);
           } else {
@@ -178,7 +178,7 @@ function LatestTransactionWidgetContainer({ classes }) {
 }
 
 LatestTransactionWidgetContainer.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(LatestTransactionWidgetContainer);
