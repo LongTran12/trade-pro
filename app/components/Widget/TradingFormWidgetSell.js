@@ -30,44 +30,21 @@ const TradingFormWidgetSell = ({ classes }) => {
   const { contract, address, ote } = useContext(Web3Context);
   let dataPrice = [
     {
-      name: "0.5$",
-      value: 0,
-      number: 0.5,
-    },
-    {
-      name: "0.75$",
+      name: "1$",
       value: 1,
-      number: 0.75,
+      number: 1,
     },
     {
       name: "1$",
-      value: 2,
+      value: 1,
+      number: 1,
+    },
+    {
+      name: "1$",
+      value: 1,
       number: 1,
     },
   ];
-  if (otePrice / 10 ** 6 === 0.75) {
-    dataPrice = [
-      {
-        name: "0.75$",
-        value: 1,
-        number: 0.75,
-      },
-      {
-        name: "1$",
-        value: 2,
-        number: 1,
-      },
-    ];
-  }
-  if (otePrice / 10 ** 6 === 1) {
-    dataPrice = [
-      {
-        name: "1$",
-        value: 2,
-        number: 1,
-      },
-    ];
-  }
   const [status, setStatus] = useState({ code: "" });
   useEffect(() => {
     if (status.code === "loading") {
@@ -108,14 +85,15 @@ const TradingFormWidgetSell = ({ classes }) => {
     if (otePrice / 10 ** 6 === 0.5) {
       return `${dataPrice[0].value}`;
     }
-    if (otePrice / 10 ** 6 === 0.51) {
+    if (otePrice / 10 ** 6 === 0.75) {
       return `${dataPrice[1].value}`;
     }
-    if (otePrice / 10 ** 6 === 0.52) {
+    if (otePrice / 10 ** 6 === 1) {
       return `${dataPrice[2].value}`;
     }
     return `${dataPrice[0].value}`;
   });
+  console.log(price);
   const handleChange = (event) => {
     setPrice(event.target.value);
   };
