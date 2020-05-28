@@ -21,9 +21,9 @@ const InfoUserReference = ({ classes }) => {
     level: "Member",
     members: 0,
     staking: 0,
-    totalStaking: 0
+    totalStaking: 0,
   });
-  const getLevelLabel = amount => {
+  const getLevelLabel = (amount) => {
     if (amount < 100) return "Member";
     if (amount < 1000) return "Brozen";
     if (amount < 10000) return "Silver";
@@ -42,10 +42,10 @@ const InfoUserReference = ({ classes }) => {
           .getMemberActiveStacking(address)
           .call();
         setInfo({
-          level: getLevelLabel(Number(level / 10 ** 18)),
-          members: Number(level / 10 ** 18),
-          staking: currentSales / 10 ** 18,
-          totalStaking: currentSales / 10 ** 18
+          level: getLevelLabel(Number(level / 10 ** 6)),
+          members: Number(level / 10 ** 6),
+          staking: currentSales / 10 ** 6,
+          totalStaking: currentSales / 10 ** 6,
         });
       }
     };
@@ -103,7 +103,7 @@ const InfoUserReference = ({ classes }) => {
 };
 
 InfoUserReference.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(InfoUserReference);

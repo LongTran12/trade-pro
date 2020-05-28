@@ -40,22 +40,16 @@ const TradingFormWidgetSell = ({ classes }) => {
   };
   const stackingOTE = async () => {
     let allow = await otePublic.methods.allowance(address, config.oteex).call();
-    if (allow >= amount * 10 ** 18) {
-      contract.stackingOTE(
-        amount * 10 ** 18,
-        term,
-        ref,
-        { value: 0 },
-        (err) => {
-          if (err) {
-            console.log(err.message);
-            message.error(err.message);
-          } else {
-            message.info("Stacking success!");
-            console.log("Stacking success!");
-          }
+    if (allow >= amount * 10 ** 6) {
+      contract.stackingOTE(amount * 10 ** 6, term, ref, { value: 0 }, (err) => {
+        if (err) {
+          console.log(err.message);
+          message.error(err.message);
+        } else {
+          message.info("Stacking success!");
+          console.log("Stacking success!");
         }
-      );
+      });
     } else {
       ote.approve(config.oteex, 10 ** 25, { value: 0 }, (err) => {
         if (err) {
@@ -74,23 +68,17 @@ const TradingFormWidgetSell = ({ classes }) => {
   const checkAndBuy = async (hide) => {
     console.log("checkandBuy");
     let allow = await otePublic.methods.allowance(address, config.oteex).call();
-    if (allow >= amount * 10 ** 18) {
+    if (allow >= amount * 10 ** 6) {
       hide && hide();
-      contract.stackingOTE(
-        amount * 10 ** 18,
-        term,
-        ref,
-        { value: 0 },
-        (err) => {
-          if (err) {
-            console.log(err.message);
-            message.error(err.message);
-          } else {
-            message.info("Stacking success!");
-            console.log("Stacking success!");
-          }
+      contract.stackingOTE(amount * 10 ** 6, term, ref, { value: 0 }, (err) => {
+        if (err) {
+          console.log(err.message);
+          message.error(err.message);
+        } else {
+          message.info("Stacking success!");
+          console.log("Stacking success!");
         }
-      );
+      });
     } else {
       setTimeout(() => {
         checkAndBuy(hide);

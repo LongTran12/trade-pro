@@ -82,12 +82,12 @@ function LatestTransactionWidgetContainer({ classes }) {
                   .dividedBy(10 ** 6)
                   .toNumber(),
                 tokenAmount: new BigNumber(item.returnValues.amount)
-                  .dividedBy(10 ** 18)
+                  .dividedBy(10 ** 6)
                   .toNumber(),
                 total: new BigNumber(item.returnValues.price)
                   .dividedBy(10 ** 6)
                   .multipliedBy(item.returnValues.amount)
-                  .dividedBy(10 ** 18)
+                  .dividedBy(10 ** 6)
                   .toNumber(),
               }));
             setEvents(lastEvent);

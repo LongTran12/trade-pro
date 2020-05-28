@@ -16,95 +16,95 @@ import { contractPublic } from "../../../provider/web3Public";
 import { Web3Context } from "../../../provider/web3";
 
 const InfoUserReferenceAddress = ({ classes, address }) => {
-    //   const { address } = useContext(Web3Context);
-    const [info, setInfo] = useState({
-        level: "Member",
-        members: 0,
-        staking: 0,
-        totalStaking: 0
-    });
-    const getLevelLabel = amount => {
-        if (amount < 100) return "Member";
-        if (amount < 1000) return "Brozen";
-        if (amount < 10000) return "Silver";
-        if (amount < 50000) return "Gold";
-        if (amount < 100000) return "Platinum";
-        return "Diamond";
+  //   const { address } = useContext(Web3Context);
+  const [info, setInfo] = useState({
+    level: "Member",
+    members: 0,
+    staking: 0,
+    totalStaking: 0,
+  });
+  const getLevelLabel = (amount) => {
+    if (amount < 100) return "Member";
+    if (amount < 1000) return "Brozen";
+    if (amount < 10000) return "Silver";
+    if (amount < 50000) return "Gold";
+    if (amount < 100000) return "Platinum";
+    return "Diamond";
+  };
+  useEffect(() => {
+    const getInfo = async () => {
+      if (address) {
+        let month = Number(await contractPublic.methods.currentMonth().call());
+        let currentSales = await contractPublic.methods
+          .getSale(address, month)
+          .call();
+        let level = await contractPublic.methods
+          .getMemberActiveStacking(address)
+          .call();
+        setInfo({
+          level: getLevelLabel(Number(level / 10 ** 6)),
+          members: Number(level / 10 ** 6),
+          staking: currentSales / 10 ** 6,
+          totalStaking: currentSales / 10 ** 6,
+        });
+      }
     };
-    useEffect(() => {
-        const getInfo = async () => {
-            if (address) {
-                let month = Number(await contractPublic.methods.currentMonth().call());
-                let currentSales = await contractPublic.methods
-                    .getSale(address, month)
-                    .call();
-                let level = await contractPublic.methods
-                    .getMemberActiveStacking(address)
-                    .call();
-                setInfo({
-                    level: getLevelLabel(Number(level / 10 ** 18)),
-                    members: Number(level / 10 ** 18),
-                    staking: currentSales / 10 ** 18,
-                    totalStaking: currentSales / 10 ** 18
-                });
-            }
-        };
-        getInfo();
-    }, [address]);
-    return (
-        <div className={classes.rootCounterFull}>
-            <Grid container spacing={2}>
-                <Grid item xs={12} md={3}>
-                    <CounterMember
-                        color={colorfull[0]}
-                        raw={info.level}
-                        duration={3}
-                        title="level"
-                    >
-                        <Assessment className={classes.counterIcon} />
-                    </CounterMember>
-                </Grid>
-                <Grid item xs={12} md={3}>
-                    <CounterMember
-                        color={colorfull[1]}
-                        start={0}
-                        end={info.members}
-                        duration={3}
-                        title="members"
-                    >
-                        <SupervisorAccount className={classes.counterIcon} />
-                    </CounterMember>
-                </Grid>
-                <Grid item xs={12} md={3}>
-                    <CounterMember
-                        color={colorfull[2]}
-                        start={0}
-                        end={info.staking}
-                        duration={3}
-                        title="sales"
-                    >
-                        <Edit className={classes.counterIcon} />
-                    </CounterMember>
-                </Grid>
-                <Grid item xs={12} md={3}>
-                    <CounterMember
-                        color={colorfull[3]}
-                        start={0}
-                        end={info.totalStaking}
-                        duration={3}
-                        title="totalSales"
-                    >
-                        <CollectionsBookmark className={classes.counterIcon} />
-                    </CounterMember>
-                </Grid>
-            </Grid>
-        </div>
-    );
+    getInfo();
+  }, [address]);
+  return (
+    <div className={classes.rootCounterFull}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={3}>
+          <CounterMember
+            color={colorfull[0]}
+            raw={info.level}
+            duration={3}
+            title="level"
+          >
+            <Assessment className={classes.counterIcon} />
+          </CounterMember>
+        </Grid>
+        <Grid item xs={12} md={3}>
+          <CounterMember
+            color={colorfull[1]}
+            start={0}
+            end={info.members}
+            duration={3}
+            title="members"
+          >
+            <SupervisorAccount className={classes.counterIcon} />
+          </CounterMember>
+        </Grid>
+        <Grid item xs={12} md={3}>
+          <CounterMember
+            color={colorfull[2]}
+            start={0}
+            end={info.staking}
+            duration={3}
+            title="sales"
+          >
+            <Edit className={classes.counterIcon} />
+          </CounterMember>
+        </Grid>
+        <Grid item xs={12} md={3}>
+          <CounterMember
+            color={colorfull[3]}
+            start={0}
+            end={info.totalStaking}
+            duration={3}
+            title="totalSales"
+          >
+            <CollectionsBookmark className={classes.counterIcon} />
+          </CounterMember>
+        </Grid>
+      </Grid>
+    </div>
+  );
 };
 
 InfoUserReferenceAddress.propTypes = {
-    classes: PropTypes.object.isRequired,
-    address: PropTypes.string.isRequired
+  classes: PropTypes.object.isRequired,
+  address: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(InfoUserReferenceAddress);

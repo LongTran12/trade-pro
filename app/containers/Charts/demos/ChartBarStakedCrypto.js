@@ -36,8 +36,8 @@ const ChartBarStakedCrypto = ({ classes }) => {
     chart && chart.order
       ? chart.order.map((item, index) => ({
           name: name[index],
-          seller: item / 10 ** 18,
-          company: chart.company[index] / 10 ** 18,
+          seller: item / 10 ** 6,
+          company: chart.company[index] / 10 ** 6,
         }))
       : [];
   return (

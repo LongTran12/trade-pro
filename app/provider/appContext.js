@@ -14,13 +14,13 @@ const AppWrap = ({ children }) => {
     oteSeller: 0,
     oteStacking: 0,
     otePrice: 0,
-    chart: []
+    chart: [],
   });
   const [ref, setRef] = useState(
     web3.utils.toChecksumAddress("0x0000000000000000000000000000000000000000")
   );
   useEffect(() => {
-    const getUser = async username => {
+    const getUser = async (username) => {
       let getAddress = await memberPublic.methods.getAddress(username).call();
       console.log("fsdhjfs", getAddress);
       setRef(getAddress);
@@ -46,17 +46,17 @@ const AppWrap = ({ children }) => {
       const [stacking, chart, price] = await Promise.all([
         contractPublic.methods.getStackingStats().call(),
         contractPublic.methods.getChart().call(),
-        contractPublic.methods.getPrice().call()
+        contractPublic.methods.getPrice().call(),
       ]);
       let totalSeller = 0;
-      chart.order.map(item => (totalSeller += Number(item)));
+      chart.order.map((item) => (totalSeller += Number(item)));
       setAppState({
         ...appState,
         otePrice: price,
-        oteStacking: stacking.total / 10 ** 18,
+        oteStacking: stacking.total / 10 ** 6,
         chart: chart,
-        oteSeller: totalSeller / 10 ** 18,
-        totalMemberStacking: stacking.totalMem
+        oteSeller: totalSeller / 10 ** 6,
+        totalMemberStacking: stacking.totalMem,
       });
     };
     getDetail();
@@ -68,7 +68,7 @@ const AppWrap = ({ children }) => {
   );
 };
 AppWrap.propTypes = {
-  children: PropTypes.element.isRequired
+  children: PropTypes.element.isRequired,
 };
 export default AppWrap;
 export { AppContext };

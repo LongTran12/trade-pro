@@ -8,161 +8,159 @@ import styled from "styled-components";
 import BigNumber from "bignumber.js";
 
 const NetworkWidgetAddress = ({ address }) => {
-    //   const { address } = useContext(Web3Context);
-    const [treeData, setTreeData] = useState([]);
-    console.log("treeData", treeData);
-    useEffect(() => {
-        const getInfo = async () => {
-            let member = new web3Public.eth.Contract(
-                config.memberAbi,
-                config.memberAddress
-            );
-            let memberInfo = await member.methods.infoMember(address).call();
-            let currentSales = await contractPublic.methods
-                .getCurrentSales(memberInfo.refs)
-                .call();
-            console.log("memberInfo", memberInfo);
-            let refs = [];
-            let userInfo = {};
-            await Promise.all(
-                memberInfo.refs.map(async item => {
-                    console.log(item);
-                    return (userInfo[item] = await member.methods
-                        .infoMember(item)
-                        .call());
-                })
-            );
-            for (let i = 0; i < memberInfo.refs.length; i++) {
-                //TODO
-                let totalInvest = 0;
-                // let totalInvest = await contractPublic.methods
-                //   .getMemberActiveStacking(memberInfo.refs[i])
-                //   .call();
-                let totalSales = currentSales[i];
-                let agencyInfo = {
-                    totalInvest,
-                    totalSales
-                };
-                refs.push({
-                    name: memberInfo.refs[i],
-                    title: (
-                        <div className="ref_title">
-                            <div className="ref_name">
-                                <span className="level__ref">F1</span>
-                                <span className="address__ref">
-                                    {userInfo[memberInfo.refs[i]] &&
-                                        userInfo[memberInfo.refs[i]].user
-                                        ? userInfo[memberInfo.refs[i]].user +
-                                        " " +
-                                        userInfo[memberInfo.refs[i]].phone
-                                        : ''}
-                                </span>
-                                <span className="address_wallet">
-                                    {memberInfo.refs[i] || ''}
-                                </span>
-                            </div>
-                            <div className="ref_stat">
-                                <span className="hidden-mobile">|</span>
-                                <span className="ref_commission">
-                                    Doanh số:{" "}
-                                    <span>
-                                        {new BigNumber(agencyInfo.totalSales)
-                                            .dividedBy(10 ** 18)
-                                            .toString()}
-                                    </span>
-                                    <span className="hidden-mobile">]</span>
-                                </span>
-                            </div>
-                        </div>
-                    ),
-                    key: memberInfo.refs[i]
-                });
-            }
-            setTreeData(refs);
+  //   const { address } = useContext(Web3Context);
+  const [treeData, setTreeData] = useState([]);
+  console.log("treeData", treeData);
+  useEffect(() => {
+    const getInfo = async () => {
+      let member = new web3Public.eth.Contract(
+        config.memberAbi,
+        config.memberAddress
+      );
+      let memberInfo = await member.methods.infoMember(address).call();
+      let currentSales = await contractPublic.methods
+        .getCurrentSales(memberInfo.refs)
+        .call();
+      console.log("memberInfo", memberInfo);
+      let refs = [];
+      let userInfo = {};
+      await Promise.all(
+        memberInfo.refs.map(async (item) => {
+          console.log(item);
+          return (userInfo[item] = await member.methods
+            .infoMember(item)
+            .call());
+        })
+      );
+      for (let i = 0; i < memberInfo.refs.length; i++) {
+        //TODO
+        let totalInvest = 0;
+        // let totalInvest = await contractPublic.methods
+        //   .getMemberActiveStacking(memberInfo.refs[i])
+        //   .call();
+        let totalSales = currentSales[i];
+        let agencyInfo = {
+          totalInvest,
+          totalSales,
         };
-        if (address) {
-            getInfo();
-        }
-    }, [address]);
-
-    const onLoadData = async treeNode => {
-        if (treeNode.props.children) {
-            return;
-        }
-        let member = new web3Public.eth.Contract(
-            config.memberAbi,
-            config.memberAddress
-        );
-        let memberInfo = await member.methods
-            .infoMember(treeNode.props.name)
-            .call();
-        let currentSales = await contractPublic.methods
-            .getCurrentSales(memberInfo.refs)
-            .call();
-        let userInfo = {};
-        await Promise.all(
-            memberInfo.refs.map(async item => {
-                return (userInfo[item] = await member.methods.infoMember(item).call());
-            })
-        );
-        console.log("currentSales", memberInfo.refs, currentSales);
-        treeNode.props.dataRef.children = [];
-        for (let i = 0; i < memberInfo.refs.length; i++) {
-            //TODO
-            let totalInvest = 0;
-            // let totalInvest = await contractPublic.methods
-            //   .getMemberActiveStacking(memberInfo.refs[i])
-            //   .call();
-            let totalSales = currentSales[i];
-            let agencyInfo = {
-                totalInvest,
-                totalSales
-            };
-            treeNode.props.dataRef.children.push({
-                name: memberInfo.refs[i],
-                title: (
-                    <div className="ref_title">
-                        <div className="ref_name">
-                            <span className="level__ref">
-                                F{treeNode.props.eventKey.replace(/[^-]/g, "").length + 2}
-                            </span>
-                            <span className="address__ref">
-                                {userInfo[memberInfo.refs[i]] &&
-                                    userInfo[memberInfo.refs[i]].user
-                                    ? userInfo[memberInfo.refs[i]].user +
-                                    " " +
-                                    userInfo[memberInfo.refs[i]].phone
-                                    : ''}
-                            </span>
-                            <span className="address_wallet">
-                                {memberInfo.refs[i] || ''}
-                            </span>
-                        </div>
-                        <div className="ref_stat">
-                            <span className="hidden-mobile">|</span>
-                            <span className="ref_commission">
-                                Doanh số:{" "}
-                                <span>
-                                    {new BigNumber(agencyInfo.totalSales)
-                                        .dividedBy(10 ** 18)
-                                        .toString()}
-                                </span>
-                                <span className="hidden-mobile">]</span>
-                            </span>
-                        </div>
-                    </div>
-                ),
-                key: `${treeNode.props.eventKey}-${memberInfo.refs[i]}`,
-                level: treeNode.props.eventKey.replace(/[^-]/g, "").length + 2
-            });
-        }
-        setTreeData([...treeData]);
+        refs.push({
+          name: memberInfo.refs[i],
+          title: (
+            <div className="ref_title">
+              <div className="ref_name">
+                <span className="level__ref">F1</span>
+                <span className="address__ref">
+                  {userInfo[memberInfo.refs[i]] &&
+                  userInfo[memberInfo.refs[i]].user
+                    ? userInfo[memberInfo.refs[i]].user +
+                      " " +
+                      userInfo[memberInfo.refs[i]].phone
+                    : ""}
+                </span>
+                <span className="address_wallet">
+                  {memberInfo.refs[i] || ""}
+                </span>
+              </div>
+              <div className="ref_stat">
+                <span className="hidden-mobile">|</span>
+                <span className="ref_commission">
+                  Doanh số:{" "}
+                  <span>
+                    {new BigNumber(agencyInfo.totalSales)
+                      .dividedBy(10 ** 6)
+                      .toString()}
+                  </span>
+                  <span className="hidden-mobile">]</span>
+                </span>
+              </div>
+            </div>
+          ),
+          key: memberInfo.refs[i],
+        });
+      }
+      setTreeData(refs);
     };
-    return (
-        <NetworkWrap>
-            <NetWorkWidgetTree onLoadData={onLoadData} treeData={treeData} />
-        </NetworkWrap>
+    if (address) {
+      getInfo();
+    }
+  }, [address]);
+
+  const onLoadData = async (treeNode) => {
+    if (treeNode.props.children) {
+      return;
+    }
+    let member = new web3Public.eth.Contract(
+      config.memberAbi,
+      config.memberAddress
     );
+    let memberInfo = await member.methods
+      .infoMember(treeNode.props.name)
+      .call();
+    let currentSales = await contractPublic.methods
+      .getCurrentSales(memberInfo.refs)
+      .call();
+    let userInfo = {};
+    await Promise.all(
+      memberInfo.refs.map(async (item) => {
+        return (userInfo[item] = await member.methods.infoMember(item).call());
+      })
+    );
+    console.log("currentSales", memberInfo.refs, currentSales);
+    treeNode.props.dataRef.children = [];
+    for (let i = 0; i < memberInfo.refs.length; i++) {
+      //TODO
+      let totalInvest = 0;
+      // let totalInvest = await contractPublic.methods
+      //   .getMemberActiveStacking(memberInfo.refs[i])
+      //   .call();
+      let totalSales = currentSales[i];
+      let agencyInfo = {
+        totalInvest,
+        totalSales,
+      };
+      treeNode.props.dataRef.children.push({
+        name: memberInfo.refs[i],
+        title: (
+          <div className="ref_title">
+            <div className="ref_name">
+              <span className="level__ref">
+                F{treeNode.props.eventKey.replace(/[^-]/g, "").length + 2}
+              </span>
+              <span className="address__ref">
+                {userInfo[memberInfo.refs[i]] &&
+                userInfo[memberInfo.refs[i]].user
+                  ? userInfo[memberInfo.refs[i]].user +
+                    " " +
+                    userInfo[memberInfo.refs[i]].phone
+                  : ""}
+              </span>
+              <span className="address_wallet">{memberInfo.refs[i] || ""}</span>
+            </div>
+            <div className="ref_stat">
+              <span className="hidden-mobile">|</span>
+              <span className="ref_commission">
+                Doanh số:{" "}
+                <span>
+                  {new BigNumber(agencyInfo.totalSales)
+                    .dividedBy(10 ** 6)
+                    .toString()}
+                </span>
+                <span className="hidden-mobile">]</span>
+              </span>
+            </div>
+          </div>
+        ),
+        key: `${treeNode.props.eventKey}-${memberInfo.refs[i]}`,
+        level: treeNode.props.eventKey.replace(/[^-]/g, "").length + 2,
+      });
+    }
+    setTreeData([...treeData]);
+  };
+  return (
+    <NetworkWrap>
+      <NetWorkWidgetTree onLoadData={onLoadData} treeData={treeData} />
+    </NetworkWrap>
+  );
 };
 
 export default NetworkWidgetAddress;
@@ -186,21 +184,21 @@ const NetworkWrap = memo(styled.div`
           display: flex;
           justify-content: space-between;
           align-items: center;
-          flex-flow:row wrap;
+          flex-flow: row wrap;
           .ref_name {
-            white-space:pre-wrap;
+            white-space: pre-wrap;
             .level__ref {
               font-size: 18px;
               font-weight: 500;
               margin-right: 10px;
             }
-            .address_wallet{
-                padding-left:10px;
-                color:#fff;
-                @media(max-width:480px){
-                    display:block;
-                    padding-left:0;
-                }
+            .address_wallet {
+              padding-left: 10px;
+              color: #fff;
+              @media (max-width: 480px) {
+                display: block;
+                padding-left: 0;
+              }
             }
           }
         }

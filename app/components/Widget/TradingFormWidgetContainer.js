@@ -122,7 +122,7 @@ const TradingFormWidgetContainer = ({ classes }) => {
       setStatus({
         code: "loading",
       });
-      contract.buyOTE(amount * 10 ** 18, coin, ref, { value: 0 }, (err) => {
+      contract.buyOTE(amount * 10 ** 6, coin, ref, { value: 0 }, (err) => {
         if (err) {
           console.log(err.message);
           setStatus({ code: "error", message: err.message });
@@ -184,7 +184,7 @@ const TradingFormWidgetContainer = ({ classes }) => {
       setStatus({
         code: "loading",
       });
-      contract.buyOTE(amount * 10 ** 18, coin, ref, { value: 0 }, (err) => {
+      contract.buyOTE(amount * 10 ** 6, coin, ref, { value: 0 }, (err) => {
         if (err) {
           setStatus({ code: "error", message: err.message });
           message.error(err.message);

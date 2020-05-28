@@ -101,11 +101,11 @@ const TradingFormWidgetSell = ({ classes }) => {
   const makeOrder = async () => {
     console.log(amount);
     let allow = await otePublic.methods.allowance(address, config.oteex).call();
-    if (allow >= amount * 10 ** 18) {
+    if (allow >= amount * 10 ** 6) {
       setStatus({
         code: "loading",
       });
-      contract.makeOrder(amount * 10 ** 18, price, { value: 0 }, (err) => {
+      contract.makeOrder(amount * 10 ** 6, price, { value: 0 }, (err) => {
         if (err) {
           setStatus({ code: "error", message: err.message });
           message.error(err.message);
@@ -139,12 +139,12 @@ const TradingFormWidgetSell = ({ classes }) => {
   const checkAndBuy = async (hide) => {
     console.log("checkandBuy");
     let allow = await otePublic.methods.allowance(address, config.oteex).call();
-    if (allow >= amount * 10 ** 18) {
+    if (allow >= amount * 10 ** 6) {
       hide && hide();
       setStatus({
         code: "loading",
       });
-      contract.makeOrder(amount * 10 ** 18, price, { value: 0 }, (err) => {
+      contract.makeOrder(amount * 10 ** 6, price, { value: 0 }, (err) => {
         if (err) {
           setStatus({ code: "error", message: err.message });
           message.error(err.message);

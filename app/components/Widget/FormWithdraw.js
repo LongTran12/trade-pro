@@ -58,7 +58,7 @@ const FormWithdraw = ({ classes }) => {
     if (currency === 1 || currency === 2) {
       amountCoin *= 10 ** 6;
     } else {
-      amountCoin *= 10 ** 18;
+      amountCoin *= 10 ** 6;
     }
     contract.adminWithdraw(currency, amountCoin, { value: 0 }, (err) => {
       if (err) {
