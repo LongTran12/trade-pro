@@ -31,7 +31,7 @@ const ChartBarStakedCrypto = ({ classes }) => {
   const textTran = (text) => {
     return i18n.exists(text) ? t(text) : text;
   };
-  const name = ["0.5$", "0.75$", "1$"];
+  const name = ["1$", "1$", "1$"];
   let chartData =
     chart && chart.order
       ? chart.order.map((item, index) => ({
