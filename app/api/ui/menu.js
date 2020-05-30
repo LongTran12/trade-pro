@@ -28,6 +28,13 @@ module.exports = [
         link: "/pages/calendar",
         icon: "ios-calendar-outline",
       },
+      {
+        key: "otf",
+        name: "OTF Fund",
+        raw: true,
+        link: "https://ex.otfund.io",
+        icon: "ios-medal-outline",
+      },
     ],
   },
 
