@@ -151,7 +151,7 @@ export default {
   //staking table
   stakingMenu: "USD kí gửi",
   stakingTable: "USD kí gửi",
-  Cryptocurrency: "USD",
+  Cryptocurrency: "Mua Bán USD",
   network: "Hội viên OTFUND",
   term: "Kì hạn",
   timeStart: "Thời gian bắt đầu",

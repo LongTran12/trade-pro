@@ -30,7 +30,7 @@ module.exports = [
       },
       {
         key: "otf",
-        name: "OTF Fund",
+        name: "Cổ phiếu OTF",
         raw: true,
         link: "https://ex.otfund.io",
         icon: "ios-medal-outline",
