@@ -30,7 +30,7 @@ module.exports = [
       },
       {
         key: "usd",
-        name: "USD Fund",
+        name: "Mua bán USD",
         raw: true,
         link: "https://usd.otfund.io",
         icon: "ios-medal-outline",
