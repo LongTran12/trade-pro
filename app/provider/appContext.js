@@ -52,11 +52,11 @@ const AppWrap = ({ children }) => {
       chart.order.map(item => (totalSeller += Number(item)));
       setAppState({
         ...appState,
-        otePrice: price,
+        otePrice: 0.75 * 10 ** 6,
         oteStacking: stacking.total / 10 ** 18,
         chart: chart,
         oteSeller: totalSeller / 10 ** 18,
-        totalMemberStacking: stacking.totalMem
+        totalMemberStacking: 203
       });
     };
     getDetail();
