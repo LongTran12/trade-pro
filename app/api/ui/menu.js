@@ -30,7 +30,7 @@ module.exports = [
       },
       {
         key: "usd",
-        name: "Mua bán USD",
+        name: "Exchange USD",
         raw: true,
         link: "https://usd.otfund.io",
         icon: "ios-medal-outline",
@@ -53,6 +53,34 @@ module.exports = [
         key: "network1",
         name: "Binary Option",
         link: "/bo",
+        icon: "ios-medal-outline",
+      },
+    ],
+  },
+  {
+    key: "trc",
+    name: "TRC OTFund",
+    icon: "md-game-controller-b",
+    child: [
+      {
+        key: "otf1",
+        name: "Dashboard",
+        raw: true,
+        link: "https://trc.otfund.io",
+        icon: "ios-medal-outline",
+      },
+      {
+        key: "otf2",
+        name: "Network",
+        raw: true,
+        link: "https://trc.otfund.io/sun-network",
+        icon: "ios-medal-outline",
+      },
+      {
+        key: "otf3",
+        name: "Matrix",
+        raw: true,
+        link: "https://trc.otfund.io/matrix-network",
         icon: "ios-medal-outline",
       },
     ],

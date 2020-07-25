@@ -1,7 +1,7 @@
 /* eslint-disable */
 export default {
   sellerOrder: "Seller Order",
-  stacking: "Stacking",
+  stacking: "Staking",
   otePrice: "OTF Price",
   totalMember: "Total Member",
   oteBuySell: "OTF Buy / Sell",
@@ -20,10 +20,10 @@ export default {
   rowsPerPage: "Rows Per Page: ",
   //stacking
   quickTrade: "Quick Trade",
-  stakingTrade: "Stacking",
+  stakingTrade: "Staking",
   chooseTerm: "Choose Term",
   selectAmount: "Select Amount",
-  stakingButton: "Stacking",
+  stakingButton: "Staking",
   //buy
   buy: "Buy",
   chooseCurrentcy: "Choose Currency",
@@ -163,7 +163,7 @@ export default {
   userInfo: "User Info",
   user: "Email",
   phone: "Phone Number",
-  register: "Rigster",
+  register: "Register",
   //widget StakingTable
   areYouSure: "Are you sure?",
   cancelStakingif: "If you cancel your staking you will lost",

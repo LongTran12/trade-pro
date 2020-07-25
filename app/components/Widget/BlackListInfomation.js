@@ -26,6 +26,11 @@ const BlackListInfomation = () => {
     m12: 12,
     m18: 20,
   });
+  useEffect(()=>{
+    bonusPublic.methods.isRun().call().then(run =>{
+      setIsRun(run)
+    })
+  })
   useEffect(() => {
     bonusPublic.methods
       .getPercent()

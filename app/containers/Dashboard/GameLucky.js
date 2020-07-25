@@ -20,7 +20,7 @@ const image = {
   imgBinance,
   imgNaga,
   youtube:
-    "https://s3-ap-southeast-1.amazonaws.com/ex.otfund.io/static/naga.png",
+    "https://s3-ap-southeast-1.amazonaws.com/erc.otfund.io/static/naga.png",
 };
 const styles = {
   item: {
